@@ -1,0 +1,1336 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+<script src="https://kit.fontawesome.com/95d8d80a38.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+crossorigin="anonymous"></script>
+
+<div class="container main-wrapper">
+    <!-- Three columns layout -->
+    <div class="row">
+        <nav class='col-md-3 d-none d-md-block sidebar' style="padding:0;">
+            <div class="sidebar-sticky offset-fixed">
+                <div class="side-left" >
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <div class="d-grid gap-2">
+                            	<button type="button" class="btn btn-menu d-flex">
+                                <svg class="bi" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                                  </svg>
+                                  <span class="align-self-start" style="margin-left: 40px ;">Feed</span>
+                              </button>
+                          </div>
+                          <ul class="" style="list-style: none; margin-left: 2em;">
+                              <li>
+                                <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-menu d-flex" style="border: none;"><span style="font-size:smaller;">Trending </span></button>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-menu d-flex" style="border: none;"><span style="font-size:smaller;">Recent </span></button>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-menu d-flex" style="border: none;"><span style="font-size:smaller;">Top </span></button>
+                                </div>
+                              </li>
+                          </ul>
+                        </li>
+                        <li class="nav-item">
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-menu  d-flex" style="border: none; display: flex;">
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                                      </svg>
+                                      <span class="align-self-start" style="margin-left: 40px;" >My group                                    <span class="badge badge-success ml-5">NEW</span>                                       </span>
+                                    </button>
+
+                              </div>
+                          </li>
+                          <li class="nav-item">
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-menu  d-flex " style="border: none; display: flex;">
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                        <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                      </svg>
+                                      <span class="align-self-start" style="margin-left: 40px;">Disscusion   <span class="badge badge-success ml-5">NEW</span></span>
+                                      
+                                    </button>
+                              </div>
+                          </li>
+                          <li class="nav-item">
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-menu  d-flex " style="border: none; display: flex;">
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trophy" viewBox="0 0 16 16">
+                                        <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935zM3.504 1c.007.517.026 1.006.056 1.469.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.501.501 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667.03-.463.049-.952.056-1.469H3.504z"/>
+                                      </svg>
+                                      <span class="align-self-start" style="margin-left: 40px;">Leaderboard</span>
+                                      
+                                    </button>
+                              </div>
+                          </li>
+                          <li class="nav-item">
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-menu  d-flex " style="border: none; display: flex;">
+                                    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                      </svg>
+                                      <span class="align-self-start" style="margin-left: 40px;">Favorites</span>
+                                      
+                                    </button>
+                              </div>
+                          </li>
+                        </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- middle column -->
+        <div class="col-md-6 gedf-main">
+
+            <!--- \\\\\\\Create Post-->
+            <div class="card gedf-card">
+              <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" (change)="onSelectFile($event.target.files)" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Upload image</label>
+                </div>
+                <div class="col-md-4"> 
+                    <img [src]="imageUrl" width="100%" style="border-style:none;">  
+                    </div> 
+            </div>
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
+                                aria-controls="posts" aria-selected="true">Make
+                                a publication</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="images-tab" data-toggle="tab" role="tab"
+                                aria-controls="images" aria-selected="false" href="#images" >Images</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-inner-content">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="posts" role="tabpanel"
+                            aria-labelledby="posts-tab">
+                            <div class="form-group">
+                                <label class="sr-only" for="message">post</label>
+                                <textarea class="form-control" [(ngModel)]="contentt"name="contentt" id="message" rows="3"
+                                    placeholder="What are you thinking {{user.name}}?"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" (change)="onSelectFile($event.target.files)" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Upload image</label>
+                                </div>
+                                <div class="col-md-4"> 
+                                    <img [src]="imageUrl" width="100%" style="border-style:none;">  
+                                    </div> 
+                            </div>
+                            <div class="py-4"></div>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar justify-content-between">
+                        <div class="d-flex justify-content-start">
+                            <div class="post-buttons btn-group">
+                                <button type="submit" class="btn" (click)="addPost()" style="background-color:#52d997;">
+                                    <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+                                      </svg>
+                                </button>
+                            </div>
+                            <button id="btnGroupDrop1" type="button" class="btn"(click)="openn(task)"
+                                 aria-haspopup="true" aria-expanded="false">
+                                 <svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                  </svg>
+                                <span style="margin-left: 0.5em;">Task</span>
+                                </button>
+                                <button id="btnGroupDrop1" type="button" class="btn"(click)="open(offer)"
+                                 aria-haspopup="true" aria-expanded="false">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                                    <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                                  </svg>
+                                <span style="margin-left: 0.5em;">Offer</span>
+                                </button>
+                                <button id="btnGroupDrop1" type="button" class="btn"
+                                 aria-haspopup="true" aria-expanded="false">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+                                    <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+                                  </svg>
+                                
+                                <span style="margin-left: 0.5em;">Solution</span>
+                                </button>
+                            <!-- <div class="btn-group">
+                                <button type="submit" class="btn btn-info">Task</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-info">Offer</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-info">Soltion</button>
+                            </div> -->
+                        </div>
+                        <div class="btn-group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe" style="color: #52d997;"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="card gedf-card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
+                                aria-controls="posts" aria-selected="true">Make
+                                a publication</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="images-tab" data-toggle="tab" role="tab"
+                                aria-controls="images" aria-selected="false" href="#images">Images</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-inner-content">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="posts" role="tabpanel"
+                            aria-labelledby="posts-tab">
+                            <div class="form-group">
+                                <label class="sr-only" for="message">post</label>
+                                <textarea class="form-control" id="message" rows="3"
+                                    placeholder="What are you thinking?"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Upload image</label>
+                                </div>
+                            </div>
+                            <div class="py-4"></div>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar justify-content-between">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">share</button>
+                        </div>
+                        <div class="btn-group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Post /////-->
+
+            <!--- \\\\\\\Post-->
+            <div *ngFor="let offer of Pubs">
+                <div *ngIf="offer.post!=null">
+            <div class="card gedf-card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-2">
+                                <img class="rounded-circle" width="45" src="{{offer.user.image}}" alt="">
+                            </div>
+                            <div class="ml-2">
+                                <div class="h5 m-0">{{offer.user.name}} {{offer.user.lastName}}</div>
+                                <div class="h7 text-muted">{{offer.user.role[0].role}}</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-h" style="color: gray;"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                    <div class="h6 dropdown-header">Configuration</div>
+                                    <a class="dropdown-item" href="#">Save</a>
+                                    <a class="dropdown-item" href="#">Hide</a>
+                                    <a class="dropdown-item" href="#">Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-inner-content">
+                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{offer.affichedate}}</div>
+                    <a class="card-link" href="#">
+                        <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                    </a>
+
+                    <p class="card-text">
+                        {{offer.post.content}}
+                    </p>
+                    <br>
+                    <div *ngIf="offer.post.image!=null">
+                        <img mat-card-image src="{{offer.post.image}}"  alt="Photo of a Shiba Inu" style="width: 100%;">
+                        </div>
+                        <div *ngIf="offer.post.video!=null">
+                        <video width="320" height="240" controls >
+                          <source src="{{offer.post.video}}" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                        </div> 
+                </div>
+                <div class="card-footer">
+                    <button id="btnGroupDrop1" (click)="addLike(offer.id)" type="button" class="btn" aria-haspopup="true" aria-expanded="false">
+                        <div *ngIf="isLiked!=0">
+                            <svg style="color: #ebaeae;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                    
+                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                              </svg>
+                        </div>
+                        <div *ngIf="isLiked==0">
+                            <svg style="color: #52d997;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                    
+                                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                              </svg>
+                        </div>
+                        
+                                  
+                                  <div class="text">{{offer.nlike }}</div> Like</button>
+                                  <button id="btnGroupDrop1"(click)="commentShow(offer.id)" type="button" class="btn"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                  </svg><div class="text">{{offer.ncomment }}</div>
+                                    Comment</button>
+                                   <button id="btnGroupDrop1" (click)="sharePub(offer.id)"type="button" class="btn"
+                                   aria-haspopup="true" aria-expanded="false">
+                                   <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                  </svg> -->
+                                  <i class="mdi mdi-share"></i><div class="text">{{offer.nshare }}</div> Share</button>
+
+                                  <form (ngSubmit)="addComment(offer.id)">
+                                    <div class="form-group">
+                                      <div class="container">
+                                        <input type="text" class="form-control"[(ngModel)]="comm" name="comm" id="comm" placeholder="comment">
+                                        <i class='attachment'
+                              (click)="toggled = !toggled"
+                              [(emojiPickerIf)]="toggled"
+                              [emojiPickerDirection]="'top'"
+                              (emojiPickerSelect)="handleSelection($event)">😄</i>
+                                        </div><br>
+                                      <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmojiComm($event)" title="Choose your emoji"></emoji-mart>  
+                                            
+                                    </div>
+                              </form>
+                              <div *ngFor="let p of idp">
+                                <div *ngIf="p===offer.id">
+                          
+                              <div *ngFor="let com of comms;index as i;">
+                                <div *ngIf="offer.id===com.pub.id">
+                              <ul>      
+                                  <li >
+                                    <img src="{{com.user.image}}" alt="Photo of a Shiba Inu" width="8%"height="8%" style="border-radius: 100%;">
+                                    <span class="availability-status online"></span>
+                                    &nbsp;&nbsp;
+                                    <span class="badge badge-light" style="margin-left: auto; border-radius: 20px;   ">  
+                                     
+                                      <p style="text-align: left; padding-top: 10px; color: #6e6a6a;" ><b> {{com.user.lastName}} {{com.user.name}}</b> <br>
+                                      {{com.content}}  </p> </span>
+                                   
+                          
+                                    <br/>
+                                  </li>
+                              </ul>
+                            </div>
+                          </div>  
+                          </div>
+                          </div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Post /////-->
+
+
+            <!--- \\\\\\\Post-->
+            <div *ngIf="offer.offer!=null">
+            <div class="card gedf-card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-2">
+                                <img class="rounded-circle" width="45" src="{{offer.user.image}}" alt="">
+                            </div>
+                            <div class="ml-2">
+                                <div class="h5 m-0">{{offer.user.name}} {{offer.user.lastName}}</div>
+                                <div class="h7 text-muted">{{offer.user.role[0].role}}</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                    <div class="h6 dropdown-header">Configuration</div>
+                                    <a class="dropdown-item" href="#">Save</a>
+                                    <a class="dropdown-item" href="#">Hide</a>
+                                    <a class="dropdown-item" href="#">Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-inner-content">
+                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{offer.affichedate }}&nbsp;<i class="mdi mdi-map-marker-radius"></i>{{offer.offer.location}}</div>
+                    <a class="card-link" href="#">
+                        <h5 class="card-title">{{offer.offer.title}}</h5>
+                    </a>
+                    <h2 class="font-weight-normal mb-3" style="text-align: center;">{{offer.offer.cost}}$ </h2>
+                    <p class="card-text">
+                        {{offer.offer.description}}
+                    </p>
+                    <button mat-raised-button class="btn btn-success" (click)="getOffer(offer.offer)"style="width: 100%;">Details</button>
+                    <br>
+                    <div>
+                        <br>
+                        <span class="badge badge-primary">JavaScript</span>&nbsp;
+                        <span class="badge badge-primary">Android</span>&nbsp;
+                        <span class="badge badge-primary">PHP</span>&nbsp;
+                        <span class="badge badge-primary">Node.js</span>&nbsp;
+                        <span class="badge badge-primary">Ruby</span>&nbsp;
+                        <span class="badge badge-primary">Paython</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button id="btnGroupDrop1" (click)="addLike(offer.id)" type="button" class="btn" aria-haspopup="true" aria-expanded="false"><svg style="color: #52d997;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                    
+                                    <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                  </svg><div class="text">{{offer.nlike }}</div> Like</button>
+                                  <button id="btnGroupDrop1"(click)="commentShow(offer.id)" type="button" class="btn"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <div *ngIf="isLiked!=0">
+                                    <svg style="color: #ebaeae;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            
+                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                      </svg>
+                                </div>
+                                <div *ngIf="isLiked==0">
+                                    <svg style="color: #52d997;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            
+                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                      </svg>
+                                </div>
+                                    <div>{{offer.ncomment}}</div> Comment</button>
+                                   <button id="btnGroupDrop1" (click)="sharePub(offer.id)"type="button" class="btn"
+                                   aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                  </svg>{{offer.nshare}} Share</button>
+
+                                  <form (ngSubmit)="addComment(offer.id)">
+                                    <div class="form-group">
+                                      <div class="container">
+                                        <input type="text" class="form-control"[(ngModel)]="comm" name="comm" id="comm" placeholder="comment">
+                                        <i class='attachment'
+                              (click)="toggled = !toggled"
+                              [(emojiPickerIf)]="toggled"
+                              [emojiPickerDirection]="'top'"
+                              (emojiPickerSelect)="handleSelection($event)">😄</i>
+                                        </div><br>
+                                      <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmojiComm($event)" title="Choose your emoji"></emoji-mart>  
+                                            
+                                    </div>
+                              </form>
+                              <div *ngFor="let p of idp">
+                                <div *ngIf="p===offer.id">
+                          
+                              <div *ngFor="let com of comms;index as i;">
+                                <div *ngIf="offer.id===com.pub.id">
+                              <ul>      
+                                  <li >
+                                    <img src="{{com.user.image}}" alt="Photo of a Shiba Inu" width="8%"height="8%" style="border-radius: 100%;">
+                                    <span class="availability-status online"></span>
+                                    &nbsp;&nbsp;
+                                    <span class="badge badge-light" style="margin-left: auto; border-radius: 20px;   ">  
+                                     
+                                      <p style="text-align: left; padding-top: 10px; color: #6e6a6a;" ><b> {{com.user.lastName}} {{com.user.name}}</b> <br>
+                                      {{com.content}}  </p> </span>
+                                   
+                          
+                                    <br/>
+                                  </li>
+                              </ul>
+                            </div>
+                          </div>  
+                          </div>
+                          </div>
+                </div>
+            </div>
+            </div>
+            <!-- Post /////-->
+
+
+            <!--- \\\\\\\Post-->
+            <div *ngIf="offer.task!=null">
+            <div class="card gedf-card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-2">
+                                <img class="rounded-circle" width="45" src="{{offer.user.image}}" alt="">
+                            </div>
+                            <div class="ml-2">
+                                <div class="h5 m-0">{{offer.user.name}} {{offer.user.lastName}}</div>
+                                <div class="h7 text-muted">{{offer.user.role[0].role}}</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                    <div class="h6 dropdown-header">Configuration</div>
+                                    <a class="dropdown-item" href="#">Save</a>
+                                    <a class="dropdown-item" href="#">Hide</a>
+                                    <a class="dropdown-item" href="#">Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-inner-content">
+                    <div class="text-muted h7 mb-2"><i class="mdi mdi-map-marker-radius"></i>{{offer.task.location}}  <i class="fa fa-clock-o"></i> {{offer.affichedate}}</div>
+                    <a class="card-link" href="#">
+                        <h5 class="card-title">{{offer.task.title}}</h5>
+                    </a>
+                    <h2 class="font-weight-normal mb-3" style="text-align: center;">{{offer.task.cost}}$ </h2>
+
+                    <p class="card-text">
+                        {{offer.task.description}}
+                        <a href="https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU"
+                            target="_blank">https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU</a>
+                    
+                        </p>
+                        <button mat-raised-button class="btn btn-success" (click)="getTask(offer.task)"style="width: 100%;">Details</button>
+                        <br>
+                        <div *ngFor="let compe of lcompetances ">
+                            <br>
+                            <span class="badge badge-primary">{{compe}}</span>&nbsp;
+                            
+                        </div>
+                </div>
+                <div class="card-footer">
+                    <button id="btnGroupDrop1" type="button" class="btn" (click)="addLike(offer.id)"
+                                 aria-haspopup="true" aria-expanded="false">
+                                 <div *ngIf="isLiked!=0">
+                                    <svg style="color: #ebaeae;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            
+                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                      </svg>
+                                </div>
+                                <div *ngIf="isLiked==0">
+                                    <svg style="color: #52d997;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            
+                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                      </svg>
+                                </div>
+                                   <div>{{offer.nlike}} </div> Like</button>
+                                  <button id="btnGroupDrop1" type="button" class="btn" (click)="commentShow(offer.id)"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                  </svg>
+                                  <div>{{offer.ncomment}} </div> Comment</button>
+                                   <button id="btnGroupDrop1" type="button" class="btn" (click)="sharePub(offer.id)"
+                                   aria-haspopup="true" aria-expanded="false">
+                                   <i class="mdi mdi-share"></i>
+                                   <div>{{offer.nshare}} </div> Share</button>
+
+                                   <form (ngSubmit)="addComment(offer.id)">
+                                    <div class="form-group">
+                                      <div class="container">
+                                        <input type="text" class="form-control"[(ngModel)]="comm" name="comm" id="comm" placeholder="comment">
+                                        <i class='attachment'
+                              (click)="toggled = !toggled"
+                              [(emojiPickerIf)]="toggled"
+                              [emojiPickerDirection]="'top'"
+                              (emojiPickerSelect)="handleSelection($event)">😄</i>
+                                        </div><br>
+                                      <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmojiComm($event)" title="Choose your emoji"></emoji-mart>  
+                                            
+                                    </div>
+                              </form>
+                              <div *ngFor="let p of idp">
+                                <div *ngIf="p===offer.id">
+                          
+                              <div *ngFor="let com of comms;index as i;">
+                                <div *ngIf="offer.id===com.pub.id">
+                              <ul>      
+                                  <li >
+                                    <img src="{{com.user.image}}" alt="Photo of a Shiba Inu" width="8%"height="8%" style="border-radius: 100%;">
+                                    <span class="availability-status online"></span>
+                                    &nbsp;&nbsp;
+                                    <span class="badge badge-light" style="margin-left: auto; border-radius: 20px;   ">  
+                                     
+                                      <p style="text-align: left; padding-top: 10px; color: #6e6a6a;" ><b> {{com.user.lastName}} {{com.user.name}}</b> <br>
+                                      {{com.content}}  </p> </span>
+                                   
+                          
+                                    <br/>
+                                  </li>
+                              </ul>
+                            </div>
+                          </div>  
+                          </div>
+                          </div>
+                </div>
+            </div>
+            </div>
+            <!-- Post /////-->
+
+            <!--- \\\\\\\Post-->
+            <div *ngIf="offer.sharedpost!=null">
+                <div *ngIf="offer.sharedpost.pub.post!=null">
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <img class="rounded-circle" width="45" src="{{offer.user.image}}" alt="">
+                                    </div>
+                                    <div class="ml-2">
+                                        <div class="h5 m-0">{{offer.user.name}} {{offer.user.lastName}} a partagé une publication.</div>
+                                        <div class="h7 text-muted">{{offer.user.role[0].role}}</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-h" style="color: gray;"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                            <div class="h6 dropdown-header">Configuration</div>
+                                            <a class="dropdown-item" href="#">Save</a>
+                                            <a class="dropdown-item" href="#">Hide</a>
+                                            <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+                        <div class="card-inner-content">
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{offer.affichedate}}</div>
+
+                            <div class="card gedf-card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="mr-2">
+                                            <img class="rounded-circle" width="45" src="{{offer.sharedpost.pub.user.image}}" alt="">
+                                        </div>
+                                        <div class="ml-2">
+                                            <div class="h5 m-0">{{offer.sharedpost.pub.user.name}} {{offer.sharedpost.pub.user.lastName}} </div>
+                                            <div class="h7 text-muted">Name Name</div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="card-inner-content">
+                                <!-- <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{offer.affichedate}}</div> -->
+                                <a class="card-link" href="#">
+                                <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                                </a>
+        
+                                <p class="card-text">
+                                    {{offer.sharedpost.pub.post.content}}                            </p>
+                            <br>
+                            <div *ngIf="offer.sharedpost.pub.post.image!=null">
+                                <img mat-card-image src="{{offer.sharedpost.pub.post.image}}"  alt="Photo of a Shiba Inu" style="width: 100%;">
+                                </div>
+                                <div *ngIf="offer.sharedpost.pub.post.video!=null">
+                                <video width="320" height="240" controls >
+                                  <source src="{{offer.sharedpost.pub.post.video}}" type="video/mp4">
+                                  Your browser does not support the video tag.
+                                </video>
+                                </div> 
+                        </div>
+                        <div class="card-footer">
+                            <button id="btnGroupDrop1" (click)="addLike(offer.id)" type="button" class="btn" aria-haspopup="true" aria-expanded="false">
+                                
+                                <div *ngIf="isLiked!=0">
+                                    <svg style="color: #ebaeae;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            
+                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                      </svg>
+                                </div>
+                                <div *ngIf="isLiked==0">
+                                    <svg style="color: #52d997;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                            
+                                        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                      </svg>
+                                </div>
+                                          
+                                          <div class="text">{{offer.nlike }}</div> Like</button>
+                                          <button id="btnGroupDrop1"(click)="commentShow(offer.id)" type="button" class="btn"
+                                          aria-haspopup="true" aria-expanded="false">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                            <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                          </svg><div>{{offer.ncomment }}</div>
+                                             Comment</button>
+                                           <button id="btnGroupDrop1" (click)="sharePub(offer.id)"type="button" class="btn"
+                                           aria-haspopup="true" aria-expanded="false">
+                                           <i class="mdi mdi-share"></i>
+                                          <div>{{offer.nshare}}</div> Share</button>
+        
+                                          <form (ngSubmit)="addComment(offer.id)">
+                                            <div class="form-group">
+                                              <div class="container">
+                                                <input type="text" class="form-control"[(ngModel)]="comm" name="comm" id="comm" placeholder="comment">
+                                                <i class='attachment'
+                                      (click)="toggled = !toggled"
+                                      [(emojiPickerIf)]="toggled"
+                                      [emojiPickerDirection]="'top'"
+                                      (emojiPickerSelect)="handleSelection($event)">😄</i>
+                                                </div><br>
+                                              <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmojiComm($event)" title="Choose your emoji"></emoji-mart>  
+                                                    
+                                            </div>
+                                      </form>
+                                      <div *ngFor="let p of idp">
+                                        <div *ngIf="p===offer.id">
+                                  
+                                      <div *ngFor="let com of comms;index as i;">
+                                        <div *ngIf="offer.id===com.pub.id">
+                                      <ul>      
+                                          <li >
+                                            <img src="{{com.user.image}}" alt="Photo of a Shiba Inu" width="8%"height="8%" style="border-radius: 100%;">
+                                            <span class="availability-status online"></span>
+                                            &nbsp;&nbsp;
+                                            <span class="badge badge-light" style="margin-left: auto; border-radius: 20px;   ">  
+                                             
+                                              <p style="text-align: left; padding-top: 10px; color: #6e6a6a;" ><b> {{com.user.lastName}} {{com.user.name}}</b> <br>
+                                              {{com.content}}  </p> </span>
+                                           
+                                  
+                                            <br/>
+                                          </li>
+                                      </ul>
+                                    </div>
+                                  </div>  
+                                  </div>
+                                  </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div *ngIf="offer.sharedpost.pub.task!=null">
+                        <div class="card gedf-card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="mr-2">
+                                            <img class="rounded-circle" width="45" src="{{offer.user.image}}" alt="">
+                                        </div>
+                                        <div class="ml-2">
+                                            <div class="h5 m-0">{{offer.user.name}} {{offer.user.lastName}}</div>
+                                            <div class="h7 text-muted">{{offer.user.role[0].role}}</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                                <div class="h6 dropdown-header">Configuration</div>
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Hide</a>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="card-inner-content">
+                                <i class="mdi mdi-map-marker-radius"></i>{{offer.sharedpost.pub.task.location}}  <i class="fa fa-clock-o"></i> {{offer.affichedate}}
+                            </div>
+                                <div class="card gedf-card">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mr-2">
+                                                <img class="rounded-circle" width="45" src="{{offer.sharedpost.pub.user.image}}" alt="">
+                                            </div>
+                                            <div class="ml-2">
+                                                <div class="h5 m-0">{{offer.sharedpost.pub.user.name}} {{offer.sharedpost.pub.user.lastName}} </div>
+                                                <div class="h7 text-muted">Name Name</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="card-inner-content">
+
+                                <div class="text-muted h7 mb-2">
+                                <a class="card-link" href="#">
+                                    <h5 class="card-title">{{offer.sharedpost.pub.task.title}}</h5>
+                                </a>
+                                <h2 class="font-weight-normal mb-3" style="text-align: center;">{{offer.sharedpost.pub.task.cost}}$ </h2>
+            
+                                <p class="card-text">
+                                    {{offer.sharedpost.pub.task.description}}
+                                    <a href="https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU"
+                                        target="_blank">https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU</a>
+                                
+                                    </p>
+                                    <button mat-raised-button class="btn btn-success" (click)="getOffer(offer.sharedpost.pub.task)"style="width: 100%;">Details</button>
+            
+                            </div>
+                            <div class="card-footer">
+                                <button id="btnGroupDrop1" (click)="addLike(offer.id)" type="button" class="btn"
+                                             aria-haspopup="true" aria-expanded="false">
+                                             <div *ngIf="isLiked!=0">
+                                                <svg style="color: #ebaeae;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                                        
+                                                    <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                                  </svg>
+                                            </div>
+                                            <div *ngIf="isLiked==0">
+                                                <svg style="color: #52d997;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                                        
+                                                    <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                                  </svg>
+                                            </div>
+                                              {{offer.nlike }} Like</button>
+                                              <button id="btnGroupDrop1" type="button" class="btn" (click)="commentShow(offer.id)"
+                                              aria-haspopup="true" aria-expanded="false">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                                <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                              </svg><div>{{offer.ncomment }}</div>
+                                                 Comment</button>
+                                               <button id="btnGroupDrop1" type="button" class="btn" (click)="sharePub(offer.id)"
+                                               aria-haspopup="true" aria-expanded="false">
+                                               <i class="mdi mdi-share"></i>
+                                             <div>{{offer.nshare }}</div>  Share</button>
+                                             <form (ngSubmit)="addComment(offer.id)">
+                                                <div class="form-group">
+                                                  <div class="container">
+                                                    <input type="text" class="form-control"[(ngModel)]="comm" name="comm" id="comm" placeholder="comment">
+                                                    <i class='attachment'
+                                          (click)="toggled = !toggled"
+                                          [(emojiPickerIf)]="toggled"
+                                          [emojiPickerDirection]="'top'"
+                                          (emojiPickerSelect)="handleSelection($event)">😄</i>
+                                                    </div><br>
+                                                  <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmojiComm($event)" title="Choose your emoji"></emoji-mart>  
+                                                        
+                                                </div>
+                                          </form>
+                                          <div *ngFor="let p of idp">
+                                            <div *ngIf="p===offer.id">
+                                      
+                                          <div *ngFor="let com of comms;index as i;">
+                                            <div *ngIf="offer.id===com.pub.id">
+                                          <ul>      
+                                              <li >
+                                                <img src="{{com.user.image}}" alt="Photo of a Shiba Inu" width="8%"height="8%" style="border-radius: 100%;">
+                                                <span class="availability-status online"></span>
+                                                &nbsp;&nbsp;
+                                                <span class="badge badge-light" style="margin-left: auto; border-radius: 20px;   ">  
+                                                 
+                                                  <p style="text-align: left; padding-top: 10px; color: #6e6a6a;" ><b> {{com.user.lastName}} {{com.user.name}}</b> <br>
+                                                  {{com.content}}  </p> </span>
+                                               
+                                      
+                                                <br/>
+                                              </li>
+                                          </ul>
+                                        </div>
+                                      </div>  
+                                      </div>
+                                      </div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="offer.sharedpost.pub.offer!=null">
+                        <div class="card gedf-card">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="mr-2">
+                                            <img class="rounded-circle" width="45" src="{{offer.user.image}}" alt="">
+                                        </div>
+                                        <div class="ml-2">
+                                            <div class="h5 m-0">{{offer.user.name}} {{offer.user.lastName}}</div>
+                                            <div class="h7 text-muted">{{offer.user.role[0].role}}</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                                <div class="h6 dropdown-header">Configuration</div>
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Hide</a>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="card-inner-content">
+                                <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{offer.affichedate }}&nbsp;<i class="mdi mdi-map-marker-radius"></i>{{offer.sharedpost.pub.offer.location}}</div>
+                                <div class="card gedf-card">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mr-2">
+                                                <img class="rounded-circle" width="45" src="{{offer.user.image}}" alt="">
+                                            </div>
+                                            <div class="ml-2">
+                                                <div class="h5 m-0">{{offer.sharedpost.pub.user.name}} {{offer.sharedpost.pub.user.lastName}}</div>
+                                                <div class="h7 text-muted">{{offer.sharedpost.pub.user.role[0].role}}</div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <div class="card-inner-content">
+                                
+                                <a class="card-link" href="#">
+                                    <h5 class="card-title">{{offer.sharedpost.pub.offer.title}}</h5>
+                                </a>
+                                <h2 class="font-weight-normal mb-3" style="text-align: center;">{{offer.sharedpost.pub.offer.cost}}$ </h2>
+                                <p class="card-text">
+                                    {{offer.sharedpost.pub.offer.description}}
+                                </p>
+                                <button mat-raised-button class="btn btn-success" (click)="getOffer(offer.sharedpost.pub.offer)"style="width: 100%;">Details</button>
+                                <br>
+                                <div>
+                                    <br>
+                                    <span class="badge badge-primary">JavaScript</span>&nbsp;
+                                    <span class="badge badge-primary">Android</span>&nbsp;
+                                    <span class="badge badge-primary">PHP</span>&nbsp;
+                                    <span class="badge badge-primary">Node.js</span>&nbsp;
+                                    <span class="badge badge-primary">Ruby</span>&nbsp;
+                                    <span class="badge badge-primary">Paython</span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button id="btnGroupDrop1" (click)="addLike(offer.id)" type="button" class="btn" aria-haspopup="true" aria-expanded="false">
+                                    
+                                    <div *ngIf="isLiked!=0">
+                                        <svg style="color: #ebaeae;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                                
+                                            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                          </svg>
+                                    </div>
+                                    <div *ngIf="isLiked==0">
+                                        <svg style="color: #52d997;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                                                
+                                            <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                                          </svg>
+                                    </div>
+                                              
+                                              <div class="text">{{offer.nlike }}</div> Like</button>
+                                              <button id="btnGroupDrop1"(click)="commentShow(offer.id)" type="button" class="btn"
+                                              aria-haspopup="true" aria-expanded="false">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+                                                <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+                                              </svg><div class="text">{{offer.ncomment}}</div>
+                                                 Comment</button>
+                                               <button id="btnGroupDrop1" (click)="sharePub(offer.id)"type="button" class="btn"
+                                               aria-haspopup="true" aria-expanded="false">
+                                               <i class="mdi mdi-share"></i>
+                                              <div>{{offer.nshare}}</div> Share</button>
+            
+                                              <form (ngSubmit)="addComment(offer.id)">
+                                                <div class="form-group">
+                                                  <div class="container">
+                                                    <input type="text" class="form-control"[(ngModel)]="comm" name="comm" id="comm" placeholder="comment">
+                                                    <i class='attachment'
+                                          (click)="toggled = !toggled"
+                                          [(emojiPickerIf)]="toggled"
+                                          [emojiPickerDirection]="'top'"
+                                          (emojiPickerSelect)="handleSelection($event)">😄</i>
+                                                    </div><br>
+                                                  <emoji-mart class="emoji-mart" *ngIf="isEmojiPickerVisible" (emojiSelect)="addEmojiComm($event)" title="Choose your emoji"></emoji-mart>  
+                                                        
+                                                </div>
+                                          </form>
+                                          <div *ngFor="let p of idp">
+                                            <div *ngIf="p===offer.id">
+                                      
+                                          <div *ngFor="let com of comms;index as i;">
+                                            <div *ngIf="offer.id===com.pub.id">
+                                          <ul>      
+                                              <li >
+                                                <img src="{{com.user.image}}" alt="Photo of a Shiba Inu" width="8%"height="8%" style="border-radius: 100%;">
+                                                <span class="availability-status online"></span>
+                                                &nbsp;&nbsp;
+                                                <span class="badge badge-light" style="margin-left: auto; border-radius: 20px;   ">  
+                                                 
+                                                  <p style="text-align: left; padding-top: 10px; color: #6e6a6a;" ><b> {{com.user.lastName}} {{com.user.name}}</b> <br>
+                                                  {{com.content}}  </p> </span>
+                                               
+                                      
+                                                <br/>
+                                              </li>
+                                          </ul>
+                                        </div>
+                                      </div>  
+                                      </div>
+                                      </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                <!-- Post /////-->
+
+        </div>
+        </div>
+        <!-- right coloumn -->
+        <div class="col-md-3">
+            <div class="card gedf-card">
+                <div class="card-inner-content">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                        of the
+                        card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+            <div class="card gedf-card">
+                <div class="card-inner-content">
+                    <h5 class="card-title">Top Profiles</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <div class="mr-2">
+                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                    </div>
+                    <div class="ml-2">
+                        <div class="h5 m-0">@Name</div>
+                        <div class="h7 text-muted">NameName</div>
+                    </div>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #offer let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="text-align: center;">Create new Offer</h4>
+      <hr>
+      <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form class="forms-sample" (ngSubmit)="createOffer()"  >
+    <div class="modal-body" >
+     
+        <table ><tr><td style="padding-right: 40px;">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control"[(ngModel)]="title" name="title" id="title" placeholder="Title">
+        </div></td><td style="padding-right: 40px;">
+        <div class="form-group">
+          <label for="poste">Poste</label>
+          <input type="text" style="width: 200px;" name="poste" class="form-control"[(ngModel)]="poste" id="poste" placeholder="Poste">
+        </div></td>
+        <td>
+          <div class="form-group">
+            <label for="nofstune">Number of student</label>
+            <input type="number"  style="width: 200px;" name="nofstudent" [(ngModel)]="nofstudent" class="form-control" id="nofstudent" >
+          </div></td>
+      </tr>
+      <tr>
+          <td style="padding-right: 40px;">
+        <div class="form-group">
+          <label for="location">Location</label>
+          <select style="width: 80%;" class="form-control"name="loc" [(ngModel)]="location"#l id="loc"(change)="filtrer(l.value,t.value,c.value)">
+            <option *ngFor="let loc of locations">{{loc}}</option>
+          </select>
+        </div></td>
+        <td style="padding-right: 40px;">
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select class="form-control" name="type" id="type" [(ngModel)]="type">
+              <option *ngFor="let ty of typess">{{ty}}</option>
+              </select>
+            </div></td><td>
+          <div class="form-group">
+            <label for="categorie">Categorie</label>
+              <select class="form-control" name="categorie" id="categorie"[(ngModel)]="categorie">
+                <option *ngFor="let cat of categories">{{cat}}</option>
+                
+              </select>
+            </div>
+            </td>
+      </tr>
+        <tr>
+          <td style="padding-right: 40px;">
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" class="form-control" name="date" id="date">
+            </div></td>
+        <td style="padding-right: 40px;">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="supervision">Supervision</label>
+            &nbsp;&nbsp;&nbsp;
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]="supervised"id="supervised" name="supervised" >
+              <span class="slider round"></span>
+            </label>
+            
+  
+            <!-- don't include this please  -->
+            <!-- <label >Membership</label>
+            <div >
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
+                  Free
+                  <i class="input-helper"></i>
+                </label>
+              </div>
+            </div>
+            <div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
+                  Professional
+                  <i class="input-helper"></i>
+                </label>
+              </div>
+            </div> -->
+  
+            <!-- inculude this -->
+         </div>
+        </div>
+        </td>
+        <td *ngIf="checkSupervision()">
+          <div class="form-group">
+            <label for="cost">Cost Of Supervision</label>
+            <input type="number"[(ngModel)]="cost" name="cost" class="form-control" id="cost" >
+          </div>
+        </td>
+        </tr>
+          <tr><td colspan="3">
+        <div class="form-group">
+          <label>Upload File</label>
+          <input type="file" name="img[]" class="file-upload-default">
+          <div class="input-group col-xs-12">
+            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+            <span class="input-group-append">
+              <button class="file-upload-browse btn btn-gradient-success" type="button">Upload</button>
+            </span>
+          </div>
+        </div></td></tr>
+        <!-- <tr><td style="padding-right: 40px;">
+        <div class="form-group">
+          <label for="cname">Company Name</label>
+          <input type="text" [(ngModel)]="cname" class="form-control" id="cname" placeholder="Company Name">
+        </div></td> -->
+       
+        <tr>
+        <td colspan="3">
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description"name="description"[(ngModel)]="description" rows="4"></textarea>
+        </div></td></tr></table>
+        
+      
+    </div>
+    <div class="modal-footer" >
+      <button type="submit" class="btn btn-outline-dark">Save</button>
+    </div>
+  </form>
+  </ng-template>
+  
+    <ng-template #task let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="text-align: center;">Create new Task</h4>
+        
+        <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <form class="forms-sample"   >
+      <div class="modal-body" >
+       
+          <table ><tr><td style="padding-right: 40px;">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control"[(ngModel)]="title" name="title" id="title" placeholder="Title">
+          </div></td>
+          <!-- <td style="padding-right: 40px;">
+          <div class="form-group">
+            <label for="poste">Poste</label>
+            <input type="text" style="width: 200px;" class="form-control"[(ngModel)]="poste" name="poste" id="poste" placeholder="Poste">
+          </div>
+      </td> -->
+          <td>
+            <div class="form-group">
+              <label for="nofstune">Number of student</label>
+              <input type="number"  style="width: 200px;" [(ngModel)]="nofstudent" name="nofstudent" class="form-control" id="nofstudent" >
+            </div></td>
+        </tr>
+        <tr>
+            <td style="padding-right: 40px;">
+          <div class="form-group">
+            <label for="location">Location</label>
+            <select style="width: 80%;" class="form-control"name="loc" [(ngModel)]="location"#l id="loc"(change)="filtrer(l.value,t.value,c.value)">
+              <option *ngFor="let lo of locations">{{lo}}</option>
+            </select>
+          </div></td>
+         <td>
+            <div class="form-group">
+              <label for="categorie">Categorie</label>
+                <select class="form-control" id="categorie"name="categorie"[(ngModel)]="categorie">
+                  <option *ngFor="let cat of categories">{{cat}}</option>
+                  
+                </select>
+              </div>
+              </td>
+        </tr>
+        <tr>
+          
+            <td style="padding-right: 40px;">
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control"[(ngModel)]="date" name="date" id="date">
+              </div>
+          </td>
+         
+            <td style="padding-right: 40px;">
+              <div class="form-group">
+                <label>Skills Required</label>
+                <!-- <input type="file" name="img[]" class="file-upload-default"> -->
+                <div class="input-group col-xs-12">
+                  <input type="text" class="form-control file-upload-info"name="cmp"id="cmp"[(ngModel)]="cmp"  placeholder="java , Api dev , angular">
+                  <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-gradient-success" type="button" (click)="addcmp()"><i class="mdi mdi-plus"></i></button>
+                  </span>
+                </div>
+                <br>
+                <div *ngFor="let l of lcompetance;let index = index;" ><button (click)="removeone(index)"><i class="mdi mdi-close-box-outline"></i>{{l}}</button></div>
+                
+              </div>
+             </td>
+         
+        </tr>
+          <tr>
+            <!-- <td style="padding-right: 40px;">
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" name="date" id="date">
+              </div></td> -->
+          <td style="padding-right: 40px;">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label for="supervision">Supervision</label>
+              &nbsp;&nbsp;&nbsp;
+              <label class="switch">
+                <input type="checkbox" [(ngModel)]="supervised"id="supervised" name="supervised" >
+                <span class="slider round"></span>
+              </label>
+          </div>
+      </div>
+      </td>
+      <td *ngIf="checkSupervision()">
+        <div class="form-group">
+          <label for="cost">Cost Of Supervision</label>
+          <input type="number"[(ngModel)]="cost" name="cost" class="form-control" id="cost" >
+        </div>
+      </td>
+      </tr>
+        <tr><td colspan="2">
+      <div class="form-group">
+        <label>Upload File</label>
+        <input type="file" name="img[]" class="file-upload-default">
+        <div class="input-group col-xs-12">
+          <input type="text" class="form-control file-upload-info"  placeholder="Upload Image">
+          <span class="input-group-append">
+            <button class="file-upload-browse btn btn-gradient-success" disabled type="button">Upload File</button>
+          </span>
+        </div>
+      </div></td></tr>
+      <!-- <tr><td style="padding-right: 40px;">
+      <div class="form-group">
+        <label for="cname">Company Name</label>
+        <input type="text" [(ngModel)]="cname" class="form-control" id="cname" placeholder="Company Name">
+      </div></td> -->
+     
+      <tr>
+      <td colspan="2">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" [(ngModel)]="description" rows="4"></textarea>
+      </div></td></tr></table>
+      
+    
+  </div>
+  <div class="modal-footer" >
+    <button type="submit" class="btn btn-outline-dark" (click)="createTask()">Save</button>
+  </div>
+  </form>
+  </ng-template>
