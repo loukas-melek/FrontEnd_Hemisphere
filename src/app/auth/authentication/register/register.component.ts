@@ -25,8 +25,9 @@ export class RegisterComponent implements OnInit {
     this.registerReq.email=this.email;
     this.registerReq.password=this.password;
     this.registerReq.username=this.first+" "+this.last;
-    this.registerReq.roles="ROLE_USER"
+    this.registerReq.roles="student"
     console.log(this.registerReq);
+   
     
     this.authService.register(this.registerReq).subscribe(
       data => {
