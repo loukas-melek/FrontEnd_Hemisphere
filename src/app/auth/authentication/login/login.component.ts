@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
        this.isLoginFailed = true;
        }
     );
-    this.router.navigate(['front/home']);
+    this.router.navigate(['dashboard/workflow']);
   }
 
   reloadPage(): void {
