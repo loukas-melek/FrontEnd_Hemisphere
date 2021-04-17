@@ -13,6 +13,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Seekforoffers',
+    icon: 'shopping-cart-outline',
+    link: '/dashboard/seekforoffers',
+    home: true,
+  },
+  {
+    title: 'seekfortasks',
+    icon: 'shopping-cart-outline',
+    link: '/dashboard/seekfortasks',
+    home: true,
+  },
+  {
     title: 'FEATURES',
     group: true,
   },

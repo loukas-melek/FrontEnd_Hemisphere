@@ -1,4 +1,5 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { RequestRegister } from '../../../apps/entities/RequestRegister';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -13,14 +14,21 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-
+  registerReq=new RequestRegister();
+  password;username;email;first;last;
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    this.authService.register(this.form).subscribe(
+    this.registerReq.email=this.email;
+    this.registerReq.password=this.password;
+    this.registerReq.username=this.first+" "+this.last;
+    this.registerReq.roles="ROLE_USER"
+    console.log(this.registerReq);
+    
+    this.authService.register(this.registerReq).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;

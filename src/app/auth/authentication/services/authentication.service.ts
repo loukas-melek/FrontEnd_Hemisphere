@@ -35,20 +35,18 @@ export class AuthenticationService {
   }
 
   register(user): Observable<any> {
+    console.log("hana fl auth service");
+    console.log(user);
     
-    return this.httpClient.post(AUTH_API + 'signup', {
-      username: user.username,
-      email: user.email,
-      password: user.password
-    });
+    return this.httpClient.post(AUTH_API + 'signup',user)
   }
 
     isUserLoggedIn() {
-    let user = !!this.tokenService.getToken();
+    let user = !!this.tokenService.getUser();
     console.log(user);
     
-    console.log(!(user === null))
-    return !(user === null)
+    console.log((user === null))
+    return user;
     }
     logOut() {
     sessionStorage.removeItem('auth-user')
