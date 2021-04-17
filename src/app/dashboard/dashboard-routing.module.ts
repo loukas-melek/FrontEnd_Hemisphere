@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { SeekforoffersComponent } from './seekforoffers/seekforoffers.component';
+import { SeekfortasksComponent } from './seekfortasks/seekfortasks.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 
 const routes: Routes = [{
@@ -10,6 +12,14 @@ const routes: Routes = [{
     {
       path: 'workflow',
       component: WorkflowComponent,
+    },
+    {
+      path: 'seekfortasks',
+      component: SeekfortasksComponent,
+    },
+    {
+      path: 'seekforoffers',
+      component: SeekforoffersComponent,
     },
     {
       path: '',
