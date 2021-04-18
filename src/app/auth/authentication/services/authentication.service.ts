@@ -45,7 +45,7 @@ export class AuthenticationService {
   }
 
     isUserLoggedIn() {
-    let user = !!this.tokenService.getUser();
+    let user = !!this.tokenService.getToken();
     console.log(user);
     
     console.log((user === null))

@@ -22,11 +22,17 @@ import {
 } from '@nebular/theme';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestComponent } from './test/test.component';
+import { AuthenticationModule } from './auth/authentication/authentication.module';
+import { FrontModule } from './front/front.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
   imports: [
+    AuthenticationModule,
+    FrontModule,
+    DashboardModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
