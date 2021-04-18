@@ -6,6 +6,9 @@ import { TokenStorageService } from './token-storage.service';
 
 const AUTH_API = 'http://localhost:3000/users/';
 const USER_KEY = 'auth-user';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 
 @Injectable({

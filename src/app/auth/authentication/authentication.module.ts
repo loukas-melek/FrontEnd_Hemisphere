@@ -9,6 +9,9 @@ import { AuthenticationComponent } from './authentication.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { authInterceptorProviders } from './services/basic-auth-interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptorService } from './services/error-interceptor.service';
 
 
 @NgModule({
@@ -20,6 +23,9 @@ import { RegisterComponent } from './register/register.component';
     ThemeModule,
     NgbModule,
     FormsModule
+  ],
+  providers:[
+    authInterceptorProviders,{provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptorService , multi: true}
   ]
 })
 export class AuthenticationModule { }

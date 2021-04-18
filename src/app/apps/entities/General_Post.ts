@@ -1,23 +1,20 @@
 import { Comment } from "./Comment";
-import { Offer } from "./offer";
+import { OfferTaskSolution } from "./Offer_Task_Solution";
 import { Post } from "./Post";
-import { React } from "./react";
+    
 import { SharedPost } from "./SharedPost";
-import { Task } from "./Task";
-import { User } from "./user";
 
-export class Pub { 
+
+export class GeneralPost { 
     id: number;
     created_at:Date
     updated_at:Date
-    offer:Offer;
     nlike:number;
+    offertasksolution:OfferTaskSolution;
     ncomment:number;
     nshare:number;
     comment:Comment;
     post:Post;
-    task:Task;
-    user:User;
     affichedate:String;
     sharedpost:SharedPost
     public constructor() {

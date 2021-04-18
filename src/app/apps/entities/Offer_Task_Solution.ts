@@ -1,20 +1,22 @@
+import { CategorieOffer } from "./CategorieOffer";
 import { Competance } from "./Competance";
-import { User } from "./user";
+import { LocationsOffer } from "./LocationsOffer";
+import { TypeOffer } from "./TypeOffer";
 
-export class Offer { 
+
+export class OfferTaskSolution { 
     id: number;
     title: string;
     description: string;
-    categorie: string;
+    categorie: CategorieOffer;
     studentNumber: number;
     isSupervised: number;
-    type: string;
+    type: number;
+    TypeOffer:TypeOffer
     cost: number;
-    date: Date;
     poste:string;
-    cname:string;
     ipath:string;
-    location:string;
+    location:LocationsOffer;
     competance:Competance
     public constructor() {
      

@@ -14,7 +14,7 @@ const TOKEN_HEADER_KEY = 'Authorization';
 @Injectable()
 export class BasicAuthInterceptorInterceptor implements HttpInterceptor {
 
-  constructor(private token: TokenStorageService) {}
+  constructor(private token: TokenStorageService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
@@ -25,7 +25,7 @@ export class BasicAuthInterceptorInterceptor implements HttpInterceptor {
     return next.handle(authReq);
   }
 }
+
 export const authInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptorInterceptor, multi: true }
 ];
-
