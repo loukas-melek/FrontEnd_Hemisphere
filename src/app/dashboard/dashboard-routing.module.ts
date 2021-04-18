@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { MyoffersComponent } from './myoffers/myoffers.component';
+import { MytasksComponent } from './mytasks/mytasks.component';
 import { SeekforoffersComponent } from './seekforoffers/seekforoffers.component';
 import { SeekfortasksComponent } from './seekfortasks/seekfortasks.component';
 import { WorkflowComponent } from './workflow/workflow.component';
@@ -20,6 +22,14 @@ const routes: Routes = [{
     {
       path: 'seekforoffers',
       component: SeekforoffersComponent,
+    },
+    {
+      path: 'mytasks',
+      component: MytasksComponent,
+    },
+    {
+      path: 'myoffers',
+      component: MyoffersComponent,
     },
     {
       path: '',

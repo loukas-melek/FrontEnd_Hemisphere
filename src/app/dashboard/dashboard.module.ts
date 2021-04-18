@@ -6,7 +6,10 @@ import { ThemeModule } from '../@theme/theme.module';
 import { NbMenuModule } from '@nebular/theme';
 import { DashboardComponent } from './dashboard.component';
 import { SeekforoffersComponent } from './seekforoffers/seekforoffers.component';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MyoffersComponent } from './myoffers/myoffers.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResizableModule } from 'angular-resizable-element';
@@ -15,7 +18,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
-  declarations: [DashboardComponent, SeekforoffersComponent],
+  declarations: [DashboardComponent, SeekforoffersComponent, MyoffersComponent],
   imports: [
 
     DashboardRoutingModule,
