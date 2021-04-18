@@ -158,7 +158,7 @@
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="page-content container note-has-grid">
-    <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
+    <!-- <ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
         <li class="nav-item">
             <a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2 active" id="all-category">
                 <i class="icon-layers mr-1"></i><span class="d-none d-md-block">All Notes</span>
@@ -176,10 +176,54 @@
         <li class="nav-item ml-auto">
             <a href="javascript:void(0)" class="nav-link btn-primary rounded-pill d-flex align-items-center px-3" id="add-notes"> <i class="icon-note m-1"></i><span class="d-none d-md-block font-14">Add Notes</span></a>
         </li>
-    </ul>
+    </ul> -->
+    <form >
+        <table style="width: 100%;">
+          <tr>
+            <td>
+              <div class="form-group">
+                <label for="type">Type</label>
+                  <select style="width: 80%;" class="form-control"name="type" #t id="type">
+                    <option>All</option>
+                    <option *ngFor="let type of types">{{type}}</option>
+                  </select>
+                </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label for="categorie">Categorie</label>
+                  <select style="width: 80%;" class="form-control" #c name="cat" id="cat">
+                    <option>All</option>
+                    <option *ngFor="let cat of categories">{{cat}}</option>
+                    
+                  </select>
+                </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label for="type">Location</label>
+                  <select style="width: 80%;" class="form-control"name="loc" #l id="loc">
+                    <option>All</option>
+                    <option *ngFor="let loc of location">{{loc}}</option>
+                    
+                  </select>
+                </div>
+            </td>
+          </tr>
+          <!-- <tr>
+            <td colspan="3"> 
+              <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input style="width: 100%;">
+              </mat-form-field>
+          </td>
+          </tr> -->
+        </table>
+    
+      </form>
     <div class="tab-content bg-transparent">
         <div id="note-full-container" class="note-has-grid row">
-            <div class="col-md-4 single-note-item all-category" style="">
+            <div class="col-md-4 single-note-item all-category" >
                 <div class="card card-body">
                     <span class="side-stick"></span>
                     <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie">Book a Ticket for Movie <i class="point fa fa-circle ml-1 font-10"></i></h5>
@@ -216,7 +260,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 single-note-item all-category note-important" style="">
+            <div class="col-md-4 single-note-item all-category note-important" >
                 <div class="card card-body">
                     <span class="side-stick"></span>
                     <h5 class="note-title text-truncate w-75 mb-0" data-noteheading="Go for lunch">Go for lunch <i class="point fa fa-circle ml-1 font-10"></i></h5>

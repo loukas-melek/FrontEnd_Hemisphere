@@ -1,4 +1,22 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+<div >
+  
+  <div class="middle">
+    <h1>COMING SOON</h1>
+    <h4> IN </h4>
+    <hr>  
+    <div class="timer">
+      <br>
+      <span id="days"> {{daysToDday}} </span>d
+      <span id="hours"> {{hoursToDday}} </span>h
+      <span id="minutes"> {{minutesToDday}} </span>m
+      <span id="seconds"> {{secondsToDday}} </span>s
+  </div>
+  </div>
+  
+</div>
+
+
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
 <script src="https://kit.fontawesome.com/95d8d80a38.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -11,9 +29,9 @@ crossorigin="anonymous"></script>
 integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 crossorigin="anonymous"></script>
 
-<div class="container main-wrapper">
+<div class="container main-wrapper"> -->
     <!-- Three columns layout -->
-    <div class="row">
+    <!-- <div class="row">
         <nav class='col-md-3 d-none d-md-block sidebar' style="padding:0;">
             <div class="sidebar-sticky offset-fixed">
                 <div class="side-left" >
@@ -97,13 +115,13 @@ crossorigin="anonymous"></script>
                         </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
         
         <!-- middle column -->
-        <div class="col-md-6 gedf-main">
+        <!-- <div class="col-md-6 gedf-main"> -->
 
             <!--- \\\\\\\Create Post-->
-            <div class="card gedf-card">
+            <!-- <div class="card gedf-card">
               <div class="form-group">
                 <div class="custom-file">
                     <input type="file" (change)="onSelectFile($event.target.files)" class="custom-file-input" id="customFile">
@@ -181,7 +199,7 @@ crossorigin="anonymous"></script>
                                   </svg>
                                 
                                 <span style="margin-left: 0.5em;">Solution</span>
-                                </button>
+                                </button> -->
                             <!-- <div class="btn-group">
                                 <button type="submit" class="btn btn-info">Task</button>
                             </div>
@@ -191,7 +209,7 @@ crossorigin="anonymous"></script>
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-info">Soltion</button>
                             </div> -->
-                        </div>
+                        <!-- </div>
                         <div class="btn-group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -206,7 +224,7 @@ crossorigin="anonymous"></script>
 
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="card gedf-card">
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
@@ -263,7 +281,7 @@ crossorigin="anonymous"></script>
             <!-- Post /////-->
 
             <!--- \\\\\\\Post-->
-            <div *ngFor="let offer of Pubs">
+            <!-- <div *ngFor="let offer of Pubs">
                 <div *ngIf="offer.post!=null">
             <div class="card gedf-card">
                 <div class="card-header">
@@ -338,11 +356,11 @@ crossorigin="anonymous"></script>
                                   </svg><div class="text">{{offer.ncomment }}</div>
                                     Comment</button>
                                    <button id="btnGroupDrop1" (click)="sharePub(offer.id)"type="button" class="btn"
-                                   aria-haspopup="true" aria-expanded="false">
+                                   aria-haspopup="true" aria-expanded="false"> -->
                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                                   </svg> -->
-                                  <i class="mdi mdi-share"></i><div class="text">{{offer.nshare }}</div> Share</button>
+                                  <!-- <i class="mdi mdi-share"></i><div class="text">{{offer.nshare }}</div> Share</button>
 
                                   <form (ngSubmit)="addComment(offer.id)">
                                     <div class="form-group">
@@ -383,13 +401,13 @@ crossorigin="anonymous"></script>
                           </div>
                 </div>
             </div>
-            </div>
+            </div> -->
             
             <!-- Post /////-->
 
 
             <!--- \\\\\\\Post-->
-            <div *ngIf="offer.offer!=null">
+            <!-- <div *ngIf="offer.offer!=null">
             <div class="card gedf-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
@@ -504,12 +522,12 @@ crossorigin="anonymous"></script>
                           </div>
                 </div>
             </div>
-            </div>
+            </div> -->
             <!-- Post /////-->
 
 
             <!--- \\\\\\\Post-->
-            <div *ngIf="offer.task!=null">
+            <!-- <div *ngIf="offer.task!=null">
             <div class="card gedf-card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
@@ -626,11 +644,11 @@ crossorigin="anonymous"></script>
                           </div>
                 </div>
             </div>
-            </div>
+            </div> -->
             <!-- Post /////-->
 
             <!--- \\\\\\\Post-->
-            <div *ngIf="offer.sharedpost!=null">
+            <!-- <div *ngIf="offer.sharedpost!=null">
                 <div *ngIf="offer.sharedpost.pub.post!=null">
                     <div class="card gedf-card">
                         <div class="card-header">
@@ -678,9 +696,9 @@ crossorigin="anonymous"></script>
                                     </div>
                                     </div>
                                     </div>
-                                    <div class="card-inner-content">
+                                    <div class="card-inner-content"> -->
                                 <!-- <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{offer.affichedate}}</div> -->
-                                <a class="card-link" href="#">
+                                <!-- <a class="card-link" href="#">
                                 <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
                                 </a>
         
@@ -1037,13 +1055,13 @@ crossorigin="anonymous"></script>
                             </div>
                         </div>
                         </div>
-                    </div>
+                    </div> -->
                 <!-- Post /////-->
 
-        </div>
-        </div>
+        <!-- </div>
+        </div> -->
         <!-- right coloumn -->
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <div class="card gedf-card">
                 <div class="card-inner-content">
                     <h5 class="card-title">Card title</h5>
@@ -1138,7 +1156,7 @@ crossorigin="anonymous"></script>
             <label class="switch">
               <input type="checkbox" [(ngModel)]="supervised"id="supervised" name="supervised" >
               <span class="slider round"></span>
-            </label>
+            </label> -->
             
   
             <!-- don't include this please  -->
@@ -1163,7 +1181,7 @@ crossorigin="anonymous"></script>
             </div> -->
   
             <!-- inculude this -->
-         </div>
+         <!-- </div>
         </div>
         </td>
         <td *ngIf="checkSupervision()">
@@ -1183,14 +1201,14 @@ crossorigin="anonymous"></script>
               <button class="file-upload-browse btn btn-gradient-success" type="button">Upload</button>
             </span>
           </div>
-        </div></td></tr>
+        </div></td></tr> -->
         <!-- <tr><td style="padding-right: 40px;">
         <div class="form-group">
           <label for="cname">Company Name</label>
           <input type="text" [(ngModel)]="cname" class="form-control" id="cname" placeholder="Company Name">
         </div></td> -->
        
-        <tr>
+        <!-- <tr>
         <td colspan="3">
         <div class="form-group">
           <label for="description">Description</label>
@@ -1221,14 +1239,14 @@ crossorigin="anonymous"></script>
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control"[(ngModel)]="title" name="title" id="title" placeholder="Title">
-          </div></td>
+          </div></td> -->
           <!-- <td style="padding-right: 40px;">
           <div class="form-group">
             <label for="poste">Poste</label>
             <input type="text" style="width: 200px;" class="form-control"[(ngModel)]="poste" name="poste" id="poste" placeholder="Poste">
           </div>
       </td> -->
-          <td>
+          <!-- <td>
             <div class="form-group">
               <label for="nofstune">Number of student</label>
               <input type="number"  style="width: 200px;" [(ngModel)]="nofstudent" name="nofstudent" class="form-control" id="nofstudent" >
@@ -1263,9 +1281,9 @@ crossorigin="anonymous"></script>
          
             <td style="padding-right: 40px;">
               <div class="form-group">
-                <label>Skills Required</label>
+                <label>Skills Required</label> -->
                 <!-- <input type="file" name="img[]" class="file-upload-default"> -->
-                <div class="input-group col-xs-12">
+                <!-- <div class="input-group col-xs-12">
                   <input type="text" class="form-control file-upload-info"name="cmp"id="cmp"[(ngModel)]="cmp"  placeholder="java , Api dev , angular">
                   <span class="input-group-append">
                     <button class="file-upload-browse btn btn-gradient-success" type="button" (click)="addcmp()"><i class="mdi mdi-plus"></i></button>
@@ -1278,13 +1296,13 @@ crossorigin="anonymous"></script>
              </td>
          
         </tr>
-          <tr>
+          <tr> -->
             <!-- <td style="padding-right: 40px;">
               <div class="form-group">
                 <label for="date">Date</label>
                 <input type="date" class="form-control" name="date" id="date">
               </div></td> -->
-          <td style="padding-right: 40px;">
+          <!-- <td style="padding-right: 40px;">
           <div class="col-md-6">
             <div class="form-group row">
               <label for="supervision">Supervision</label>
@@ -1313,14 +1331,14 @@ crossorigin="anonymous"></script>
             <button class="file-upload-browse btn btn-gradient-success" disabled type="button">Upload File</button>
           </span>
         </div>
-      </div></td></tr>
+      </div></td></tr> -->
       <!-- <tr><td style="padding-right: 40px;">
       <div class="form-group">
         <label for="cname">Company Name</label>
         <input type="text" [(ngModel)]="cname" class="form-control" id="cname" placeholder="Company Name">
       </div></td> -->
      
-      <tr>
+      <!-- <tr>
       <td colspan="2">
       <div class="form-group">
         <label for="description">Description</label>
@@ -1333,4 +1351,4 @@ crossorigin="anonymous"></script>
     <button type="submit" class="btn btn-outline-dark" (click)="createTask()">Save</button>
   </div>
   </form>
-  </ng-template>
+  </ng-template> -->

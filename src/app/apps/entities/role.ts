@@ -1,7 +1,3 @@
-export class Role { 
-    id: number;
-    role: string;
-    public constructor() {
-       ;}
-
-    }
+export enum Role {
+   ROLE_ADMIN, ROLE_STUDENT, ROLE_PREMIUM_STUDENT, ROLE_COMPANY, ROLE_PREMIUM_COMPANY,
+ }

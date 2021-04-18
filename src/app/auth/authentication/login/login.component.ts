@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
+    if(this.authService.isUserLoggedIn){
+      
+      this.router.navigate(['dashboard/seekforoffers']);
+    }
   }
   onSubmit() {
     console.log("test aal form chfih bedhabt");
@@ -53,7 +57,7 @@ export class LoginComponent implements OnInit {
        this.isLoginFailed = true;
        }
     );
-    this.router.navigate(['dashboard/workflow']);
+    //this.router.navigate(['dashboard/workflow']);
   }
 
   reloadPage(): void {

@@ -1,9 +1,9 @@
-import { Pub } from "./Pub";
+import { GeneralPost } from "./General_Post";
 import { User } from "./user";
 
 export class SharedPost { 
     id: number;
-    pub:Pub
+    pub:GeneralPost
     public constructor() {}
      
   }

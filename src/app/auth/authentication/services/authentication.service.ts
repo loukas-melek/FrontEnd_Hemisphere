@@ -6,6 +6,9 @@ import { TokenStorageService } from './token-storage.service';
 
 const AUTH_API = 'http://localhost:3000/users/';
 const USER_KEY = 'auth-user';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 
 @Injectable({
@@ -42,7 +45,7 @@ export class AuthenticationService {
   }
 
     isUserLoggedIn() {
-    let user = !!this.tokenService.getUser();
+    let user = !!this.tokenService.getToken();
     console.log(user);
     
     console.log((user === null))

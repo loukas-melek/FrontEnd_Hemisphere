@@ -1,5 +1,5 @@
 import { Post } from "./Post";
-import { Pub } from "./Pub";
+import { GeneralPost } from "./General_Post";
 import { User } from "./user";
 
 export class Comment { 
@@ -7,7 +7,8 @@ export class Comment {
     content: string;
     created_at:Date;
     updated_at	:Date;
-    pub:Pub;
+    pub:GeneralPost;
+;
     user:User;
     public constructor() {
      
