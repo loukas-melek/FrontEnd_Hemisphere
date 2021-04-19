@@ -25,11 +25,16 @@ import { TestComponent } from './test/test.component';
 import { AuthenticationModule } from './auth/authentication/authentication.module';
 import { FrontModule } from './front/front.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { CompanyviewModule } from './companyview/companyview.module';
+import { StudentviewModule } from './studentview/studentview.module';
+
 
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
   imports: [
+    CompanyviewModule,
+    StudentviewModule,
     AuthenticationModule,
     FrontModule,
     DashboardModule,

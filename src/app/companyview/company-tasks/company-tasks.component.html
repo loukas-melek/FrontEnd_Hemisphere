@@ -84,7 +84,7 @@ aria-haspopup="true" aria-expanded="false">
     </div>
 </div>
 <ng-template #task let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
-    <div class="modal-header">
+    <div class="modal-header bg-info text-white" >
       <h4 class="modal-title" id="modal-basic-title" style="text-align: center;">Create new Task</h4>
       
       <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
@@ -92,7 +92,7 @@ aria-haspopup="true" aria-expanded="false">
       </button>
     </div>
     
-    <form class="forms-sample"   >
+    <form class="forms-sample"  (ngSubmit)="createtask()" >
     <div class="modal-body" >
      
         <table ><tr><td style="padding-right: 40px;">
@@ -208,9 +208,9 @@ aria-haspopup="true" aria-expanded="false">
   
 </div>
 <div class="modal-footer">
-    <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+    <button id="btn-n-save" type="submit" class="float-left btn btn-success" style="display: none;">Save</button>
     <button class="btn btn-danger" data-dismiss="modal">Discard</button>
-    <button id="btn-n-add" class="btn btn-info" disabled="disabled">Add</button>
+    <button id="btn-n-add" type="submit" class="btn btn-info" disabled="disabled">Add</button>
 </div>
 </form>
 </ng-template>

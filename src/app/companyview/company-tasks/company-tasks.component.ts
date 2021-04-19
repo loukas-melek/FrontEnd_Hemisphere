@@ -1,22 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 import { Competance } from '../../apps/entities/Competance';
 import { GeneralPost } from '../../apps/entities/General_Post';
+import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Profile } from '../../apps/entities/Profile';
 import { User } from '../../apps/entities/user';
 import { TokenStorageService } from '../../auth/authentication/services/token-storage.service';
+import { CompetanceService } from '../../services/CompetanceService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { OfferService } from '../../services/OfferTaskSolutionService';
 import { ProfileService } from '../../services/ProfileService';
 import { UserService } from '../../services/userService';
 
 @Component({
-  selector: 'ngx-seekfortasks',
-  templateUrl: './seekfortasks.component.html',
-  styleUrls: ['./seekfortasks.component.scss']
+  selector: 'ngx-company-tasks',
+  templateUrl: './company-tasks.component.html',
+  styleUrls: ['./company-tasks.component.scss']
 })
-export class SeekfortasksComponent implements OnInit {
+export class CompanyTasksComponent implements OnInit {
+
   user:User
   profile:Profile
   mylist=new Array<GeneralPost>();
@@ -29,10 +33,11 @@ export class SeekfortasksComponent implements OnInit {
   closeResult: string;
   title;poste;location;nofstudent;type;categorie;cname;description;date;cost;supervised=false;
 
-  constructor(private modalService: NgbModal,private userService:UserService,private profileSerivce:ProfileService,private offerService:OfferService,private generalpostservice:GeneralPostService,private router: Router,private tokenStorage: TokenStorageService) { }
+  constructor(private competanceService: CompetanceService ,private modalService: NgbModal,private userService:UserService,private profileSerivce:ProfileService,private offerService:OfferService,private generalpostservice:GeneralPostService,private router: Router,private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
      this.bringmylist();
+     this.getMyprofile();
   }
 bringmylist(){
   this.generalpostservice.listPubs().subscribe(res=>{
@@ -44,6 +49,8 @@ bringmylist(){
       }
     })
     this.mylist=transferList;
+    console.log(this.mylist);
+    
   })
 }
 addcmp(){
@@ -71,6 +78,60 @@ getMyprofile(){
     })
   })
 }
+    createTask() {
+    
+   
+     let competance = new Competance();
+     let task=new OfferTaskSolution();
+     console.log("just testing the toogle value");
+     console.log(this.supervised);
+     task.categorie=this.categorie;
+     console.log(this.categorie);
+     task.title=this.title;
+     console.log(this.title);
+     this.lcompetance.forEach(element=>{
+       console.log("dkhalna lel for each");
+       
+       
+       competance.competance=element;
+       console.log(element);
+       
+       this.competanceService.createCompetance(competance).subscribe(res=>{
+         console.log(competance.competance);
+         console.log(task.competance);
+         
+         
+       })
+       
+     })
+     console.log(task.competance);
+     
+     
+     
+     task.description=this.description;
+     console.log(this.description);
+     task.location=this.location;
+    
+     task.cost=this.cost;
+     if(this.supervised){
+       task.isSupervised=1;
+     }
+     if(this.supervised==false){
+       task.isSupervised=0;
+     }
+     
+     console.log("we start to create offer and this is the value");
+     console.log(task);
+     this.offerService.createOfferTaskSolution(task,this.profile.id).subscribe(
+       res=>{
+         console.log(res);
+         this.modalService.dismissAll();
+         this.ngOnInit();
+       }
+     )
+ 
+  
+   }
 checkSupervision(){
        console.log("we try it here!!")
        console.log(this.supervised)

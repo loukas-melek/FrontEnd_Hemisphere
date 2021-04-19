@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CompanyOffersComponent } from '../companyview/company-offers/company-offers.component';
+import { CompanyTasksComponent } from '../companyview/company-tasks/company-tasks.component';
+import { StudentOffersComponent } from '../studentview/student-offers/student-offers.component';
+import { StudentTasksComponent } from '../studentview/student-tasks/student-tasks.component';
+
 import { DashboardComponent } from './dashboard.component';
-import { SeekforoffersComponent } from './seekforoffers/seekforoffers.component';
-import { SeekfortasksComponent } from './seekfortasks/seekfortasks.component';
+
 import { WorkflowComponent } from './workflow/workflow.component';
 
 const routes: Routes = [{
@@ -14,12 +18,20 @@ const routes: Routes = [{
       component: WorkflowComponent,
     },
     {
-      path: 'seekfortasks',
-      component: SeekfortasksComponent,
+      path: 'company/offers',
+      component: CompanyOffersComponent,
     },
     {
-      path: 'seekforoffers',
-      component: SeekforoffersComponent,
+      path: 'company/tasks',
+      component: CompanyTasksComponent,
+    },
+    {
+      path: 'student/offers',
+      component: StudentOffersComponent,
+    },
+    {
+      path: 'student/tasks',
+      component: StudentTasksComponent,
     },
     {
       path: '',

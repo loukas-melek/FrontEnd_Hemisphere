@@ -9,31 +9,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'WorkFlow',
     icon: 'shopping-cart-outline',
-    link: '/dashboard/workflow',
+    link: '/student/workflow',
     home: true,
   },
   {
-    title: 'OffersC',
+    title: 'Tasks',
     icon: 'shopping-cart-outline',
-    link: '/dashboard/company/offers',
+    link: '/student/tasks',
     home: true,
   },
   {
-    title: 'TasksC',
+    title: 'Offers',
     icon: 'shopping-cart-outline',
-    link: '/dashboard/company/tasks',
-    home: true,
-  },
-  {
-    title: 'TasksS',
-    icon: 'shopping-cart-outline',
-    link: '/dashboard/student/tasks',
-    home: true,
-  },
-  {
-    title: 'OffersS',
-    icon: 'shopping-cart-outline',
-    link: '/dashboard/student/offers',
+    link: '/student/offers',
     home: true,
   },
   {

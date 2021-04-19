@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestLogin } from '../../../apps/entities/RequestLogin';
+import { Role } from '../../../apps/entities/role';
+import { User } from '../../../apps/entities/user';
+import { UserService } from '../../../services/userService';
 import { AuthenticationService } from '../services/authentication.service';
 import { TokenStorageService } from '../services/token-storage.service';
 
@@ -11,22 +14,49 @@ import { TokenStorageService } from '../services/token-storage.service';
 })
 export class LoginComponent implements OnInit {
   form: any = {};
+  user:User;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  role:Role
+  test:string;
   roles: string[] = [];
   credentiels=new RequestLogin();
-  constructor(private authService:AuthenticationService, private tokenStorage: TokenStorageService,private router:Router) { }
+  constructor(private userService:UserService,private authService:AuthenticationService, private tokenStorage: TokenStorageService,private router:Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
-    }
-    if(this.authService.isUserLoggedIn){
+    // if (this.tokenStorage.getToken()) {
+    //   this.isLoggedIn = true;
+    //   this.roles = this.tokenStorage.getUser().roles;
+    // }
+    
+    if(this.authService.isUserLoggedIn()){
+      console.log("f west el if");
       
-      this.router.navigate(['dashboard/seekforoffers']);
+      console.log(this.test);
+      
+      // console.log(this.user.roles.toString());
+      // console.log(this.test);
+      
+      //this.router.navigate(['front/home']);
     }
+  }
+  RedirectMe(){
+    this.userService.whoami().subscribe(res=>{
+      this.user=res;
+      console.log(this.user.roles);
+      this.test=this.user.roles.toString()
+      console.log(this.test);
+      if(this.test.includes("STUDENT")){
+        this.router.navigate(['student/tasks']);
+      }else
+      if(this.test.includes("COMPANY")){
+        this.router.navigate(['company/offers']);
+      }else
+      if(this.test=="ROLE_ADMIN"){
+        this.router.navigate(['dashboard/workflow']);
+      }
+    })
   }
   onSubmit() {
     console.log("test aal form chfih bedhabt");
@@ -50,7 +80,7 @@ export class LoginComponent implements OnInit {
          this.isLoginFailed = false;
          this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-         
+         this.RedirectMe();
       },
        err => {
         this.errorMessage = err.error.message;

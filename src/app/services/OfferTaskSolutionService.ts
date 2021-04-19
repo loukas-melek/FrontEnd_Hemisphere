@@ -16,10 +16,7 @@ export class OfferService {
     headers: HttpHeaders;
 
    constructor(private Http: HttpClient) { }
-   listOfferTaskSolution(token) {
-     console.log(token);
-       
-
+   listOfferTaskSolution() {
 return this.Http.get<OfferTaskSolution[]>(this.urlOffers + '/list');
 }
  
