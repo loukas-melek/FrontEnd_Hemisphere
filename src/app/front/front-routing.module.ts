@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { FrontComponent } from './front.component';
 import { HomeComponent } from './home/home.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 
@@ -14,7 +15,10 @@ const routes: Routes = [{
       path: 'home',
       component: HomeComponent,
     },
-    
+    {
+      path: 'landing',
+      component: LandingComponent,
+    },
     {
       path: '',
       redirectTo: 'home',

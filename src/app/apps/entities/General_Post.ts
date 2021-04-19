@@ -1,6 +1,7 @@
 import { Comment } from "./Comment";
 import { OfferTaskSolution } from "./Offer_Task_Solution";
 import { Post } from "./Post";
+import { Profile } from "./Profile";
     
 import { SharedPost } from "./SharedPost";
 
@@ -16,7 +17,8 @@ export class GeneralPost {
     comment:Comment;
     post:Post;
     affichedate:String;
-    sharedpost:SharedPost
+    sharedpost:SharedPost;
+    profile:Profile;
     public constructor() {
     this.post=null;
      

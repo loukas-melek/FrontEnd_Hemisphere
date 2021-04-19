@@ -5,7 +5,7 @@ import { GeneralPost } from "../apps/entities/General_Post";
 @Injectable({
     providedIn: 'root'
   })
-export class PubService {
+export class GeneralPostService {
     urlPub = 'http://localhost:3000/pub';
     constructor(private Http: HttpClient) { }
 

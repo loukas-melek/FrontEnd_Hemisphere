@@ -37,12 +37,13 @@ import { ThemeModule } from '../@theme/theme.module';
 import { FrontRoutingModule } from './front-routing.module';
 import { FrontComponent } from './front.component';
 import { HomeModule } from './home/home.module';
+import { LandingComponent } from './landing/landing.component';
 
 
 
 
 @NgModule({
-  declarations: [FrontComponent
+  declarations: [FrontComponent, LandingComponent
     ],
   imports: [
     FrontRoutingModule,

@@ -14,7 +14,6 @@ import { User } from '../../apps/entities/user';
 import { SharedPostService } from '../../services/SharedPostService';
 import { LikeService } from '../../services/likeService';
 import { CommentService } from '../../services/CommentService';
-import { PubService } from '../../services/PubService';
 import { OfferService } from '../../services/OfferTaskSolutionService';
 import { CompetanceService } from '../../services/CompetanceService';
 import { UserService } from '../../services/userService';
@@ -85,7 +84,7 @@ export class HomeComponent implements OnInit {
     public minutesToDday;
     public hoursToDday;
     public daysToDday;
-   constructor(private sharePostService:SharedPostService,private likeService:LikeService,private commentService:CommentService,private pubService:PubService,private offerservice:OfferService,private competanceService: CompetanceService ,
+   constructor(private sharePostService:SharedPostService,private likeService:LikeService,private commentService:CommentService,private offerservice:OfferService,private competanceService: CompetanceService ,
     private modalService: NgbModal,private router: Router,private userService:UserService,private postService:PostService) { }
     private getTimeDifference () {
       this.timeDifference = this.dDay.getTime() - new  Date().getTime();
