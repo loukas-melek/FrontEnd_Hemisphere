@@ -28,6 +28,18 @@ export const routes: Routes = [
       ,canActivate: [AuthGuardGuard],
   },
   {
+    path: 'company',
+    loadChildren: () => import('./companyview/companyview.module')
+      .then(m => m.CompanyviewModule)
+      ,canActivate: [AuthGuardGuard],
+  },
+  {
+    path: 'student',
+    loadChildren: () => import('./studentview/studentview.module')
+      .then(m => m.StudentviewModule)
+      ,canActivate: [AuthGuardGuard],
+  },
+  {
     path: 'apps',
     loadChildren: () => import('./apps/apps.module')
       .then(m => m.AppsModule)

@@ -20,7 +20,7 @@
         <a class="logo" href="/front/home" >home</a>
       </div>
       <div *ngIf="isFrontRoute()">
-        <a class="logo" href="/dashboard/workflow" >dashboard</a>
+        <a class="logo" (click)="RedirectMe()" >dashboard</a>
       </div>
      
       <nb-search type="rotate-layout"></nb-search>

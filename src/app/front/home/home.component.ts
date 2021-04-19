@@ -96,7 +96,15 @@ export class HomeComponent implements OnInit {
     this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
     this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
 }
+getMyRole(){
+  this.userService.whoami().subscribe(res=>{
+    this.user=res;
+    console.log(this.user.roles);
+    
+  })
+}
    ngOnInit(): void {
+     this.getMyRole();
     this.subscription = interval(1000)
     .subscribe(x => { this.getTimeDifference(); });
 

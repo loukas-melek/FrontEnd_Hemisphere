@@ -9,45 +9,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'WorkFlow',
     icon: 'shopping-cart-outline',
-    link: '/dashboard/workflow',
+    link: '/student/workflow',
     home: true,
   },
   {
-
-    title: 'OffersC',
+    title: 'Tasks',
     icon: 'shopping-cart-outline',
-    link: '/dashboard/company/offers',
+    link: '/student/tasks',
     home: true,
   },
   {
-
-    title: 'TasksC',
+    title: 'Offers',
     icon: 'shopping-cart-outline',
-    link: '/dashboard/company/tasks',
-    home: true,
-  },
-  {
-    title: 'TasksS',
-    icon: 'shopping-cart-outline',
-    link: '/dashboard/student/tasks',
-    home: true,
-  },
-  {
-    title: 'OffersS',
-    icon: 'shopping-cart-outline',
-    link: '/dashboard/student/offers',
-    home: true,
-  },
-  {
-    title: 'MyOffers',
-    icon: 'shopping-cart-outline',
-    link: '/dashboard/myoffers',
-    home: true,
-  },
-  {
-    title: 'MyTasks',
-    icon: 'shopping-cart-outline',
-    link: '/dashboard/mytasks',
+    link: '/student/offers',
     home: true,
   },
   {
