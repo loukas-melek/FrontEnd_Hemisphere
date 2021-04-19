@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { User } from "../apps/entities/user";
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +11,9 @@ import { Observable } from "rxjs";
     user: any;
     role_id:any;
    constructor(private Http: HttpClient) { }
+   whoami(){
+     return this.Http.get<User>(this.url+'/me')
+   }
    listUsers() {
     return this.Http.get<any[]>(this.url + '/list');
     }

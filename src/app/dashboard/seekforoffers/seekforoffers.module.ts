@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SeekforoffersComponent } from './seekforoffers.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [SeekforoffersComponent],
   imports: [
     CommonModule
   ]
