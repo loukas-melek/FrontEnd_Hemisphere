@@ -34,6 +34,14 @@ const routes: Routes = [{
       component: StudentTasksComponent,
     },
     {
+      path: 'mytasks',
+      component: MytasksComponent,
+    },
+    {
+      path: 'myoffers',
+      component: MyoffersComponent,
+    },
+    {
       path: '',
       redirectTo: 'workflow',
       pathMatch: 'full',

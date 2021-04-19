@@ -13,12 +13,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+
     title: 'OffersC',
     icon: 'shopping-cart-outline',
     link: '/dashboard/company/offers',
     home: true,
   },
   {
+
     title: 'TasksC',
     icon: 'shopping-cart-outline',
     link: '/dashboard/company/tasks',
@@ -34,6 +36,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'OffersS',
     icon: 'shopping-cart-outline',
     link: '/dashboard/student/offers',
+    home: true,
+  },
+  {
+    title: 'MyOffers',
+    icon: 'shopping-cart-outline',
+    link: '/dashboard/myoffers',
+    home: true,
+  },
+  {
+    title: 'MyTasks',
+    icon: 'shopping-cart-outline',
+    link: '/dashboard/mytasks',
     home: true,
   },
   {
