@@ -5,20 +5,33 @@ import { map } from 'rxjs/operators';
 import { User } from '../../../apps/entities/user';
 import { UserService } from '../../../services/userService';
 import { TokenStorageService } from './token-storage.service';
+import decode from 'jwt-decode';
 
 const AUTH_API = 'http://localhost:3000/users/';
+const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+interface auth {
+  id:number;
+  authority:string;
+}
+interface Userr{
+  Id: number;
+  FullName: string;
+  Email: string;
+  auth:[auth];
 
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   user=new User();
   myRole= new String();
+  state:boolean;
   constructor(private httpClient: HttpClient,private tokenService:TokenStorageService,private userService:UserService) { }
 
 
@@ -54,54 +67,19 @@ export class AuthenticationService {
     console.log((user === null))
     return user;
     }
-    async isAdminLoggedIn() {
-      if(this.isUserLoggedIn()){
-      this.user=await this.getMyRole();
-      console.log(this.user);
-      this.myRole=this.user.roles.toString()
-      console.log(this.myRole);
-        if(this.myRole=="ROLE_ADMIN"){
-          console.log(this.user);
-          console.log(this.myRole);
-          
-          
-          return true;
-        }
-      }
-       return false;
-     
-    }
-    async isStudentLoggedIn() {
-      if(this.isUserLoggedIn()){
-      this.user=await this.getMyRole();
-      console.log(this.user);
-      this.myRole=this.user.roles.toString()
-      console.log(this.myRole);
-        if( this.myRole=="ROLE_STUDENT"|| this.myRole=="ROLE_PREMIUM_STUDENT"){
-          return  true;
-        }
-      }
-       
-        return false;
-      }
-      async isCompanyLoggedIn() {
-        if(this.isUserLoggedIn()){
-        this.user=await this.getMyRole();
-        console.log(this.user);
-        this.myRole=this.user.roles.toString()
-        console.log(this.myRole);
-          if( this.myRole=="ROLE_COMPANY"|| this.myRole=="ROLE_PREMIUM_COMPANY"){
-            return  true;
-          }
-        }
-        
-          return false;
-        }
-          
-    public  getMyRole():Promise<User>{
-      return this.userService.whoami().toPromise();
    
+
+    decode():Userr{
+      console.log(this.tokenService.getToken());
+      
+      console.log(decode(this.tokenService.getToken()));
+      
+      return decode(this.tokenService.getToken());
     }
+
+    
+          
+    
     logOut() {
     sessionStorage.removeItem('auth-user')
     }

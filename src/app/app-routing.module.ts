@@ -1,9 +1,8 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuardGuard } from './auth/authentication/services/auth-guard.guard';
-import { AuthGuardAdmin } from './auth/authentication/services/auth-guard-admin.guard';
-import { AuthGuardCompany } from './auth/authentication/services/auth-guard-company.guard';
-import { AuthGuardStudent } from './auth/authentication/services/auth-guard-student.guard';
+import { RoleGuard } from './auth/authentication/services/role-guard.guard';
+
 
 //import { NbAuthComponent, NbLoginComponent, NbLogoutComponent, NbRegisterComponent, NbRequestPasswordComponent, NbResetPasswordComponent } from '@nebular/auth';
 
@@ -28,19 +27,22 @@ export const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module')
       .then(m => m.DashboardModule) 
-      ,canActivate: [AuthGuardAdmin],
+      ,canActivate: [RoleGuard,AuthGuardGuard],
+      data: {role: 'ROLE_ADMIN'}
   },
   {
     path: 'company',
     loadChildren: () => import('./companyview/companyview.module')
       .then(m => m.CompanyviewModule)
-      ,canActivate: [AuthGuardCompany],
+      ,canActivate: [RoleGuard,AuthGuardGuard],
+      data: {role: 'ROLE_COMPANY'}
   },
   {
     path: 'student',
     loadChildren: () => import('./studentview/studentview.module')
       .then(m => m.StudentviewModule)
-      ,canActivate: [AuthGuardStudent],
+      ,canActivate: [RoleGuard,AuthGuardGuard],
+      data: {role: 'ROLE_STUDENT'}
   },
   {
     path: 'apps',

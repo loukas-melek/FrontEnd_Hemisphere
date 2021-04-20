@@ -136,59 +136,61 @@ export class CompanyOffersComponent implements OnInit {
       this.offers=foffer;
       this.saved=foffer
       console.log(this.offers);
-      this.offers.forEach(element=>{
-        if(new Date().getMonth()-new Date(element.updated_at).getMonth()==0){
-     
-          if(new Date().getDay()-new Date(element.updated_at).getDay()==0){
-  
-            if(new Date().getHours()-new Date(element.updated_at).getHours()==0){
-  
-              if(new Date().getMinutes()-new Date(element.updated_at).getMinutes()==0){
-  
-                this.afficheDate=new String(new Date().getSeconds()-new Date(element.updated_at).getSeconds()+ " Secounds Ago")
-                console.log("test unitaire1 !!!!");
-                console.log(this.afficheDate);
-                
-                
-                
-  
-              }else{
-                this.afficheDate=new String(new Date().getMinutes()-new Date(element.updated_at).getMinutes()+" Minutes Ago")
-                console.log("test unitaire2 !!!!");
-               console.log(this.afficheDate);
-               
-              }
-  
-            }else{
-              console.log("test unitaire3 !!!!");
-              this.afficheDate=new String(new Date().getHours()-new Date(element.updated_at).getHours()+1+" Hours Ago")
-              console.log(this.afficheDate);
-              
-            }
-  
-          }else{
-            console.log("test unitaire4!!!!");
-            this.afficheDate=new String(new Date().getDay()-new Date(element.updated_at).getDay()+" Days Ago")
-          console.log(this.afficheDate);
-          
-          }
-  
-        }else{
-          console.log("test unitaire5 !!!!");
-          this.afficheDate=new String(new Date().getMonth()-new Date(element.updated_at).getMonth()+" Months Ago")
-          console.log(this.afficheDate);
-          
-        }
-          console.log("we log here the results");
-          
-          console.log(this.afficheDate);
-        
-      }
-       
-      )
+    
+      
+      
       })
     })
   })
+}
+changeDate(date:Date):String{
+  let retour ;
+  if(new Date().getMonth()-new Date(date).getMonth()==0){
+     
+    if(new Date().getDay()-new Date(date).getDay()==0){
+
+      if(new Date().getHours()-new Date(date).getHours()==0){
+
+        if(new Date().getMinutes()-new Date(date).getMinutes()==0){
+
+          retour=new String(new Date().getSeconds()-new Date(date).getSeconds()+ " Secounds Ago")
+          console.log("test unitaire1 !!!!");
+          console.log(retour);
+          
+          
+          
+
+        }else{
+          retour=new String(new Date().getMinutes()-new Date(date).getMinutes()+" Minutes Ago")
+          console.log("test unitaire2 !!!!");
+         console.log(retour);
+         
+        }
+
+      }else{
+        console.log("test unitaire3 !!!!");
+        retour=new String(new Date().getHours()-new Date(date).getHours()+1+" Hours Ago")
+        console.log(retour);
+        
+      }
+
+    }else{
+      console.log("test unitaire4!!!!");
+      retour=new String(new Date().getDay()-new Date(date).getDay()+" Days Ago")
+    console.log(retour);
+    
+    }
+
+  }else{
+    console.log("test unitaire5 !!!!");
+    retour=new String(new Date().getMonth()-new Date(date).getMonth()+" Months Ago")
+    console.log(retour);
+    
+  }
+    console.log("we log here the results");
+    
+    console.log(retour);
+    return retour;
 }
   applyFilter(event: Event) {
 

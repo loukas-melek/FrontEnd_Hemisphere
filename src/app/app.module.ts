@@ -28,6 +28,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { CompanyviewModule } from './companyview/companyview.module';
 import { StudentviewModule } from './studentview/studentview.module';
 import { AppMaterialModule } from './app-material/app-material/app-material.module';
+import { RoleGuard } from './auth/authentication/services/role-guard.guard';
 
 
 
@@ -62,6 +63,7 @@ import { AppMaterialModule } from './app-material/app-material/app-material.modu
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent],
+  providers:[RoleGuard],
 })
 export class AppModule {
 }

@@ -104,6 +104,55 @@ export class StudentOffersComponent implements OnInit {
      
     )
   }
+  changeDate(date:Date):String{
+    let retour ;
+    if(new Date().getMonth()-new Date(date).getMonth()==0){
+       
+      if(new Date().getDay()-new Date(date).getDay()==0){
+  
+        if(new Date().getHours()-new Date(date).getHours()==0){
+  
+          if(new Date().getMinutes()-new Date(date).getMinutes()==0){
+  
+            retour=new String(new Date().getSeconds()-new Date(date).getSeconds()+ " Secounds Ago")
+            console.log("test unitaire1 !!!!");
+            console.log(retour);
+            
+            
+            
+  
+          }else{
+            retour=new String(new Date().getMinutes()-new Date(date).getMinutes()+" Minutes Ago")
+            console.log("test unitaire2 !!!!");
+           console.log(retour);
+           
+          }
+  
+        }else{
+          console.log("test unitaire3 !!!!");
+          retour=new String(new Date().getHours()-new Date(date).getHours()+1+" Hours Ago")
+          console.log(retour);
+          
+        }
+  
+      }else{
+        console.log("test unitaire4!!!!");
+        retour=new String(new Date().getDay()-new Date(date).getDay()+" Days Ago")
+      console.log(retour);
+      
+      }
+  
+    }else{
+      console.log("test unitaire5 !!!!");
+      retour=new String(new Date().getMonth()-new Date(date).getMonth()+" Months Ago")
+      console.log(retour);
+      
+    }
+      console.log("we log here the results");
+      
+      console.log(retour);
+      return retour;
+  }
   filtrer(location,type,categorie){
   console.log("we are in the new filtre");
   console.log(this.offers);
