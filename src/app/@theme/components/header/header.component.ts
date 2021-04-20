@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 import { exists } from 'fs';
 import { UserService } from '../../../services/userService';
 import { User } from '../../../apps/entities/user';
+import { TokenStorageService } from '../../../auth/authentication/services/token-storage.service';
+import { ProfileService } from '../../../services/ProfileService';
+import { Profile } from '../../../apps/entities/Profile';
 
 @Component({
   selector: 'ngx-header',
@@ -44,17 +47,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
 myRole;
+fullname;
+profile:Profile;
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
-              public router: Router,
-              private userrService:UserService,) {
+              public router: Router,private profileSerivce:ProfileService,
+              private userrService:UserService,
+              private tokenStorageService:TokenStorageService) {
   }
-
+  getMyprofile(){
+    this.userrService.whoami().subscribe(res=>{
+      this.user=res;
+      this.profileSerivce.getProfileByUserId(this.user.id).subscribe(res=>{
+        this.profile=res;
+        console.log("hetha profilna");
+        console.log(this.profile);
+        console.log(this.profile.name);
+        console.log(this.profile.lastname);
+        this.fullname=this.profile.lastname+" "+this.profile.name
+      })
+    })
+  }
   ngOnInit() {
+    this.getMyprofile();
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
@@ -75,6 +94,11 @@ myRole;
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+      this.menuService.onItemClick().subscribe(( event ) => {
+        this.onItemSelection(event.item.title);
+      })
+
   }
 
   ngOnDestroy() {
@@ -98,6 +122,21 @@ myRole;
   }
   isFrontRoute() {
     return this.router.url.includes("/front");
+}
+onItemSelection( title ) {
+  if ( title === 'Log out' ) {
+    // Do something on Log out
+    console.log('Log out Clicked ')
+    this.tokenStorageService.signOut();
+    this.reloadPage();
+  } else if ( title === 'Profile' ) {
+    // Do something on Profile
+    console.log('Profile Clicked ')
+    this.router.navigate(['front/profile']);
+  }
+}
+reloadPage(): void {
+  window.location.reload();
 }
 RedirectMe(){
   this.userrService.whoami().subscribe(res=>{

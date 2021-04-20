@@ -2,20 +2,37 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../../../apps/entities/user';
+import { UserService } from '../../../services/userService';
 import { TokenStorageService } from './token-storage.service';
+import decode from 'jwt-decode';
 
 const AUTH_API = 'http://localhost:3000/users/';
+const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+interface auth {
+  id:number;
+  authority:string;
+}
+interface Userr{
+  Id: number;
+  FullName: string;
+  Email: string;
+  auth:[auth];
 
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient,private tokenService:TokenStorageService) { }
+  user=new User();
+  myRole= new String();
+  state:boolean;
+  constructor(private httpClient: HttpClient,private tokenService:TokenStorageService,private userService:UserService) { }
 
 
   login(credentials):Observable<any> {
@@ -43,15 +60,31 @@ export class AuthenticationService {
     
     return this.httpClient.post(AUTH_API + 'signup',user)
   }
-
-    isUserLoggedIn() {
+  isUserLoggedIn() {
     let user = !!this.tokenService.getToken();
     console.log(user);
     
     console.log((user === null))
     return user;
     }
+   
+
+    decode():Userr{
+      console.log(this.tokenService.getToken());
+      
+      console.log(decode(this.tokenService.getToken()));
+      
+      return decode(this.tokenService.getToken());
+    }
+
+    
+          
+    
     logOut() {
     sessionStorage.removeItem('auth-user')
     }
 }
+function role(role: any) {
+    
+}
+

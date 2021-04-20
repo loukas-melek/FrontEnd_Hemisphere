@@ -48,13 +48,13 @@ export class LoginComponent implements OnInit {
       this.test=this.user.roles.toString()
       console.log(this.test);
       if(this.test.includes("STUDENT")){
-        this.router.navigate(['student/tasks']);
+        this.router.navigate(['front/home']);
       }else
       if(this.test.includes("COMPANY")){
-        this.router.navigate(['company/offers']);
+        this.router.navigate(['front/home']);
       }else
       if(this.test=="ROLE_ADMIN"){
-        this.router.navigate(['dashboard/workflow']);
+        this.router.navigate(['front/home']);
       }
     })
   }

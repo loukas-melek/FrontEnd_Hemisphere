@@ -30,11 +30,11 @@ export class CompanyOffersComponent implements OnInit {
   types=["PFE","PFA","STAGE","EMPLOIS","OTHER"];
   categories=["INFORMATIQUE","FINANCE","MANAGEMENT","SECURITY","COMMERCE","ELECTRIQUE","ENERGITIQUE","MECANIQUE","CHIMIE","OTHER"];
   locations=["Tunis","Bizert","HomeWorking","Online","BenArous","Siliana","SidBouzid","Monastir","Mednine","Ariana","Gafsa","Gabes","Sousse","Nabel","Manouba","Beja","Zaghouan","Kbili","Kasserine","Mahdia","Sfax","Karouane","Tozeur","Kef","Jendouba","Tatouine","Other"];
+  saved: GeneralPost[];
   constructor(private modalService: NgbModal,private userService:UserService,private profileSerivce:ProfileService,private offerService:OfferService,private generalpostservice:GeneralPostService,private router: Router,private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     this.listoffers();
-    this.getMyprofile();
     
   }
   getMyprofile(){
@@ -110,10 +110,17 @@ export class CompanyOffersComponent implements OnInit {
      )
      }
   listoffers(){
-    this.token=this.tokenStorage.getToken();
-    console.log(this.token);
+    this.userService.whoami().subscribe(res=>{
+      this.user=res;
+      this.profileSerivce.getProfileByUserId(this.user.id).subscribe(res=>{
+        this.profile=res;
+        console.log("hetha profilna");
+        
+        console.log(this.profile);
+        
     
-    this.generalpostservice.listPubs().subscribe(res=>{
+    
+    this.generalpostservice.listPubsByUser(this.profile.id).subscribe(res=>{
       
       this.offers=res;
       
@@ -127,60 +134,63 @@ export class CompanyOffersComponent implements OnInit {
         }
       })
       this.offers=foffer;
-
+      this.saved=foffer
       console.log(this.offers);
-      this.offers.forEach(element=>{
-        if(new Date().getMonth()-new Date(element.updated_at).getMonth()==0){
+    
+      
+      
+      })
+    })
+  })
+}
+changeDate(date:Date):String{
+  let retour ;
+  if(new Date().getMonth()-new Date(date).getMonth()==0){
      
-          if(new Date().getDay()-new Date(element.updated_at).getDay()==0){
-  
-            if(new Date().getHours()-new Date(element.updated_at).getHours()==0){
-  
-              if(new Date().getMinutes()-new Date(element.updated_at).getMinutes()==0){
-  
-                this.afficheDate=new String(new Date().getSeconds()-new Date(element.updated_at).getSeconds()+ " Secounds Ago")
-                console.log("test unitaire1 !!!!");
-                console.log(this.afficheDate);
-                
-                
-                
-  
-              }else{
-                this.afficheDate=new String(new Date().getMinutes()-new Date(element.updated_at).getMinutes()+" Minutes Ago")
-                console.log("test unitaire2 !!!!");
-               console.log(this.afficheDate);
-               
-              }
-  
-            }else{
-              console.log("test unitaire3 !!!!");
-              this.afficheDate=new String(new Date().getHours()-new Date(element.updated_at).getHours()+1+" Hours Ago")
-              console.log(this.afficheDate);
-              
-            }
-  
-          }else{
-            console.log("test unitaire4!!!!");
-            this.afficheDate=new String(new Date().getDay()-new Date(element.updated_at).getDay()+" Days Ago")
-          console.log(this.afficheDate);
+    if(new Date().getDay()-new Date(date).getDay()==0){
+
+      if(new Date().getHours()-new Date(date).getHours()==0){
+
+        if(new Date().getMinutes()-new Date(date).getMinutes()==0){
+
+          retour=new String(new Date().getSeconds()-new Date(date).getSeconds()+ " Secounds Ago")
+          console.log("test unitaire1 !!!!");
+          console.log(retour);
           
-          }
-  
+          
+          
+
         }else{
-          console.log("test unitaire5 !!!!");
-          this.afficheDate=new String(new Date().getMonth()-new Date(element.updated_at).getMonth()+" Months Ago")
-          console.log(this.afficheDate);
-          
+          retour=new String(new Date().getMinutes()-new Date(date).getMinutes()+" Minutes Ago")
+          console.log("test unitaire2 !!!!");
+         console.log(retour);
+         
         }
-          console.log("we log here the results");
-          
-          console.log(this.afficheDate);
+
+      }else{
+        console.log("test unitaire3 !!!!");
+        retour=new String(new Date().getHours()-new Date(date).getHours()+1+" Hours Ago")
+        console.log(retour);
         
       }
-       
-      )
-      })
+
+    }else{
+      console.log("test unitaire4!!!!");
+      retour=new String(new Date().getDay()-new Date(date).getDay()+" Days Ago")
+    console.log(retour);
     
+    }
+
+  }else{
+    console.log("test unitaire5 !!!!");
+    retour=new String(new Date().getMonth()-new Date(date).getMonth()+" Months Ago")
+    console.log(retour);
+    
+  }
+    console.log("we log here the results");
+    
+    console.log(retour);
+    return retour;
 }
   applyFilter(event: Event) {
 
@@ -215,5 +225,70 @@ export class CompanyOffersComponent implements OnInit {
         return true
       }else return false;
     }
-
+    filtrer(location,type,categorie){
+  
+      let   retour=new Array<GeneralPost>();
+      this.offers=this.saved;
+      if (location == 'All' && type == 'All' && categorie == 'All') {
+        this.listoffers();
+    
+      }
+      if (location != 'All' && type == 'All' && categorie == 'All') {
+        this.offers.forEach(offer=>{
+          if(offer.offertasksolution.location==location){
+            retour.push(offer);
+          }
+        })
+    
+      }
+      if (location == 'All' && type != 'All' && categorie == 'All') {
+        this.offers.forEach(offer=>{
+          if(offer.offertasksolution.type==type){
+            retour.push(offer);
+          }
+        })
+    
+      }
+      if (location == 'All' && type == 'All' && categorie != 'All') {
+        this.offers.forEach(offer=>{
+          if(offer.offertasksolution.categorie==categorie){
+            retour.push(offer);
+          }
+        })
+    
+      }
+      if (location != 'All' && type != 'All' && categorie == 'All') {
+        this.offers.forEach(offer=>{
+          if(offer.offertasksolution.location==location&&offer.offertasksolution.type==type){
+            retour.push(offer);
+          }
+        })
+    
+      }
+      if (location != 'All' && type == 'All' && categorie != 'All') {
+        this.offers.forEach(offer=>{
+          if(offer.offertasksolution.location==location&&offer.offertasksolution.categorie==categorie){
+            retour.push(offer);
+          }
+        })
+    
+      }
+      if (location == 'All' && type != 'All' && categorie != 'All') {
+        this.offers.forEach(offer=>{
+          if(offer.offertasksolution.type==type&&offer.offertasksolution.categorie==categorie){
+            retour.push(offer);
+          }
+        })
+    
+      }
+      if (location != 'All' && type != 'All' && categorie != 'All') {
+        this.offers.forEach(offer=>{
+          if(offer.offertasksolution.type==type&&offer.offertasksolution.categorie==categorie&&offer.offertasksolution.location==location){
+            retour.push(offer);
+          }
+        })
+    
+      }
+      this.offers=retour;
+    }
 }
