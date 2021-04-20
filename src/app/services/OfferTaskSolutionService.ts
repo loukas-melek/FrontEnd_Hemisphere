@@ -2,6 +2,7 @@ import { HttpClient, HttpEvent, HttpParams,HttpHeaders } from "@angular/common/h
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { GeneralPost } from "../apps/entities/General_Post";
 import { OfferTaskSolution } from "../apps/entities/Offer_Task_Solution";
 import { TokenStorageService } from "../auth/authentication/services/token-storage.service";
 

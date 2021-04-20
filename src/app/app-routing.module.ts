@@ -1,6 +1,9 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuardGuard } from './auth/authentication/services/auth-guard.guard';
+import { AuthGuardAdmin } from './auth/authentication/services/auth-guard-admin.guard';
+import { AuthGuardCompany } from './auth/authentication/services/auth-guard-company.guard';
+import { AuthGuardStudent } from './auth/authentication/services/auth-guard-student.guard';
 
 //import { NbAuthComponent, NbLoginComponent, NbLogoutComponent, NbRegisterComponent, NbRequestPasswordComponent, NbResetPasswordComponent } from '@nebular/auth';
 
@@ -24,20 +27,20 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module')
-      .then(m => m.DashboardModule)
-      ,canActivate: [AuthGuardGuard],
+      .then(m => m.DashboardModule) 
+      ,canActivate: [AuthGuardAdmin],
   },
   {
     path: 'company',
     loadChildren: () => import('./companyview/companyview.module')
       .then(m => m.CompanyviewModule)
-      ,canActivate: [AuthGuardGuard],
+      ,canActivate: [AuthGuardCompany],
   },
   {
     path: 'student',
     loadChildren: () => import('./studentview/studentview.module')
       .then(m => m.StudentviewModule)
-      ,canActivate: [AuthGuardGuard],
+      ,canActivate: [AuthGuardStudent],
   },
   {
     path: 'apps',

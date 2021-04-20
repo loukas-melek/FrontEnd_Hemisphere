@@ -9,7 +9,7 @@ import { DashboardComponent } from './dashboard.component';
 
 import { WorkflowComponent } from './workflow/workflow.component';
 
-const routes: Routes = [{
+ const routes: Routes = [{
   path: '',
   component: DashboardComponent,
   children: [
@@ -17,29 +17,24 @@ const routes: Routes = [{
       path: 'workflow',
       component: WorkflowComponent,
     },
-    {
-      path: 'company/offers',
-      component: CompanyOffersComponent,
-    },
-    {
-      path: 'company/tasks',
-      component: CompanyTasksComponent,
-    },
-    {
-      path: 'student/offers',
-      component: StudentOffersComponent,
-    },
-    {
-      path: 'student/tasks',
-      component: StudentTasksComponent,
-    },
-    {
-      path: '',
-      redirectTo: 'workflow',
-      pathMatch: 'full',
-    },
+    // {
+    //   path: 'company/offers',
+    //   component: CompanyOffersComponent,
+    // },
+    // {
+    //   path: 'company/tasks',
+    //   component: CompanyTasksComponent,
+    // },
+    // {
+    //   path: 'student/offers',
+    //   component: StudentOffersComponent,
+    // },
+    // {
+    //   path: 'student/tasks',
+    //   component: StudentTasksComponent,
+    // },
   ],
-}];
+ }];
 
 
 @NgModule({

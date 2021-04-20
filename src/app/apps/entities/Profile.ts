@@ -10,6 +10,10 @@ export class Profile {
     interests:string;
     languages:string;
     user:User;
+    name:string;
+    lastname:string;
+    phone:string;
+    city:string;
     
     public constructor() {
      

@@ -5,7 +5,7 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
@@ -27,12 +27,14 @@ import { FrontModule } from './front/front.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CompanyviewModule } from './companyview/companyview.module';
 import { StudentviewModule } from './studentview/studentview.module';
+import { AppMaterialModule } from './app-material/app-material/app-material.module';
 
 
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
   imports: [
+    AppMaterialModule,
     CompanyviewModule,
     StudentviewModule,
     AuthenticationModule,
@@ -55,6 +57,10 @@ import { StudentviewModule } from './studentview/studentview.module';
     ThemeModule.forRoot(),
     NgbModule,
   ],
+  exports: [
+    AppMaterialModule,
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

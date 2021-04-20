@@ -38,14 +38,17 @@ import { FrontRoutingModule } from './front-routing.module';
 import { FrontComponent } from './front.component';
 import { HomeModule } from './home/home.module';
 import { LandingComponent } from './landing/landing.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileModule } from './profile/profile.module';
 
 
 
 
 @NgModule({
-  declarations: [FrontComponent, LandingComponent
+  declarations: [FrontComponent
     ],
   imports: [
+    ProfileModule,
     FrontRoutingModule,
     ThemeModule,
     HomeModule,

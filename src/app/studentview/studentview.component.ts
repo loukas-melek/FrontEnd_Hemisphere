@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MENU_ITEMS } from './pages-menu';
+import { MENU_ITEMS_STUDENT } from './pages-menu';
 
 @Component({
   selector: 'ngx-studentview',
@@ -13,6 +13,6 @@ import { MENU_ITEMS } from './pages-menu';
 })
 export class StudentviewComponent  {
 
-  menu = MENU_ITEMS;
+  menu = MENU_ITEMS_STUDENT;
 
 }

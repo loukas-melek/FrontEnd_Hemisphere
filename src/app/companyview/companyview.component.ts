@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MENU_ITEMS } from './pages-menu';
+import { MENU_ITEMS_COMPANY } from './pages-menu';
 
 @Component({
   selector: 'ngx-companyview',
@@ -12,6 +12,6 @@ import { MENU_ITEMS } from './pages-menu';
 `,
 })
 export class CompanyviewComponent  {
-  menu = MENU_ITEMS;
+  menu = MENU_ITEMS_COMPANY;
 
 }

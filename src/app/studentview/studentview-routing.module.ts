@@ -21,11 +21,7 @@ const routes: Routes = [{
       path: 'tasks',
       component: StudentTasksComponent,
     },
-    {
-      path: '',
-      redirectTo: 'workflow',
-      pathMatch: 'full',
-    },
+    
   ],
 }];
 

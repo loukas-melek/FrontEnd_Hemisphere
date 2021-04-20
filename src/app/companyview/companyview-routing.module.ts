@@ -22,11 +22,7 @@ const routes: Routes = [{
       path: 'offers',
       component: CompanyOffersComponent,
     },
-    {
-      path: '',
-      redirectTo: 'workflow',
-      pathMatch: 'full',
-    },
+    
   ],
 }];
 
