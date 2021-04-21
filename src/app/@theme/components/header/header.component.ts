@@ -117,8 +117,7 @@ profile:Profile;
   }
 
   navigateHome() {
-    this.menuService.navigateHome();
-    return false;
+    this.router.navigate(['front/home']);
   }
   isFrontRoute() {
     return this.router.url.includes("/front");

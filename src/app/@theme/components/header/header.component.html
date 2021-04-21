@@ -5,7 +5,7 @@
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
   </div>
-  <a class="logo" href="#" (click)="navigateHome()"><span style="font-family:Arial, Helvetica, sans-serif">Hemisphere</span></a>
+  <a class="logo" (click)="navigateHome()"><span style="font-family:Arial, Helvetica, sans-serif">Hemisphere</span></a>
   </div>
   <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>

@@ -89,7 +89,9 @@ export class LoginComponent implements OnInit {
     );
     //this.router.navigate(['dashboard/workflow']);
   }
-
+  navigate(){
+    this.router.navigate(['auth/register']);
+  }
   reloadPage(): void {
     window.location.reload();
   }

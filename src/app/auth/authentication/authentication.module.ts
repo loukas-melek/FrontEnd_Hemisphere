@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { authInterceptorProviders } from './services/basic-auth-interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { AppMaterialModule } from '../../app-material/app-material/app-material.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ErrorInterceptorService } from './services/error-interceptor.service';
     AuthenticationRoutingModule,
     ThemeModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    AppMaterialModule
   ],
   providers:[
     authInterceptorProviders,{provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptorService , multi: true}

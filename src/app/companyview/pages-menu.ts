@@ -7,7 +7,7 @@ export const MENU_ITEMS_COMPANY: NbMenuItem[] = [
     link: '/front/home',
   },
   {
-    title: 'WorkFlow',
+    title: 'Project Management',
     icon: 'calendar-outline',
     link: '/company/workflow',
     
