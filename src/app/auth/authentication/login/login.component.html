@@ -1,62 +1,133 @@
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <div class="login100-form-title" style="background-image: url(assets/bg-01.jpg);">
-                <span class="login100-form-title-1">
-                    Sign In
-                </span>
+<!-- <div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign In</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" placeholder="username">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="password">
+					</div>
+					<div class="row align-items-center remember">
+						<input type="checkbox">Remember Me
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Login" class="btn float-right login_btn">
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Don't have an account?<a href="#">Sign Up</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="#">Forgot your password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="sidenav">
+ 
+        
+         <div class="login-main-text">
+            
+            <img src="../../../../assets//images/Asset 1.png"   alt="">
+
+            <h3 style="color: aliceblue;">Hemisphere</h3>
+     
+            <h2 class="text-white">Application<br> Login Page</h2>
+            
+         </div>
+      </div>
+      <div class="main" >
+         <!-- <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+               <form>
+                  <div class="form-group">
+                     <label>User Name</label>
+                     <input type="text" class="form-control" placeholder="User Name">
+                  </div>
+                  <div class="form-group">
+                     <label>Password</label>
+                     <input type="password" class="form-control" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-black">Login</button>&nbsp;&nbsp;
+                  <button type="submit" class="btn btn-secondary">Register</button>
+               </form>
             </div>
-            <form class="login100-form validate-form"
-      *ngIf="!isLoggedIn"
-      name="form"
-      (ngSubmit)="onSubmit()"
-      #f="ngForm"
-      novalidate
-    >
-          
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    <span class="label-input100">Username</span>
-                    <input class="input100" type="text"   name="username"
-                    [(ngModel)]="form.username"
-                    required
-                    #username="ngModel" placeholder="Enter username">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100" type="password"  name="password"
-                    [(ngModel)]="form.password"
-                    required
-                    #password="ngModel" placeholder="Enter password">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="flex-sb-m w-full p-b-30">
-                    <!-- <div class="contact100-form-checkbox">
-                        <input class="input" id="ckb1" type="checkbox" name="remember-me">
-                        <label class="label-checkbox100" for="ckb1">
-                            Remember me
-                        </label>
-                    </div> -->
-                    <input class="input" id="ckb1" type="checkbox" name="remember-me">
-                    <label  for="ckb1">
-                        Remember me
-                    </label>
-                    <div>
-                        <a href="#" class="txt1">
-                            Forgot Password?
-                        </a>
-                    </div>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" type="submit">
-                        Login
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
+         </div> -->
+         <div class="card">
+			<div class="card-header" style="background-color:rgb(237, 241, 247) !important;">
+				<h3 style="color:rgb(45, 55, 76)">Sign In</h3>
+				<!-- <div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div> -->
+			</div>
+			<div class="card-body">
+                <form class="login100-form validate-form"
+                *ngIf="!isLoggedIn"
+                name="form"
+                (ngSubmit)="onSubmit()"
+                #f="ngForm"
+                novalidate
+              >
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control"name="username"
+                        [(ngModel)]="form.username"required
+                        #username="ngModel" placeholder="username">
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password"name="password"
+                        [(ngModel)]="form.password"
+                        required
+                        #password="ngModel" class="form-control" placeholder="password">
+					</div>
+					<div class="row align-items-center remember">
+						<input type="checkbox">Remember Me
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Login" class="btn float-right login_btn">
+					</div>
+				</form>
+			</div>
+			<div class="">
+				<div class="d-flex justify-content-center links" style="color: rgb(45, 55, 76);"routerLinkActive="active">
+					Don't have an account?<a (click)="navigate()"><u style="color: royalblue;">Sign Up</u></a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="#">Forgot your password?</a>
+				</div>
+			</div>
+		</div>
+      </div>

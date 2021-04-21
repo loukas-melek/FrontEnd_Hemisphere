@@ -1,5 +1,7 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { RequestRegister } from '../../../apps/entities/RequestRegister';
+import { Role } from '../../../apps/entities/role';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -15,20 +17,31 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   registerReq=new RequestRegister();
-  password;username;email;first;last;
-  constructor(private authService: AuthenticationService) { }
+  password;username;email;first;last;pwdc;firstc;lastc;emailc;location;city;phone;cpass;cityc;locationc;phonec;passc;companyname;genderc;gender;
+  constructor(private authService: AuthenticationService,private router:Router) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+  onSubmitUser(): void {
     this.registerReq.email=this.email;
     this.registerReq.password=this.password;
-    this.registerReq.username=this.first+" "+this.last;
-    this.registerReq.roles="student"
+    this.registerReq.username=this.first+""+this.last;
+  
+   this.registerReq.roles=1;
+    console.log(this.registerReq.roles);
+    this.registerReq.name=this.first;
+    this.registerReq.lastname=this.last;
+    this.registerReq.phone=this.phone;
+    this.registerReq.city=this.city;
+    this.registerReq.location=this.location;
+    if(this.gender=="Male"){
+      this.registerReq.gender=false;
+    }
+    if(this.gender=="Female"){
+      this.registerReq.gender=true;
+    }
     console.log(this.registerReq);
-   
-    
     this.authService.register(this.registerReq).subscribe(
       data => {
         console.log(data);
@@ -40,5 +53,50 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+    window.alert("Registration Success ! ")
+    window.alert("Log Yourself In !");
+    this.router.navigate(['auth/login']);
+  }
+  routme(){
+    this.router.navigate(['auth/login']);
+  }
+  onSubmitCompany(): void {
+    // let Role=Role[];
+    // Role.push(3);
+    console.log("compayy role trah");
+    
+    console.log(Role);
+    this.registerReq.email=this.emailc;
+    this.registerReq.password=this.pwdc;
+    this.registerReq.username=this.firstc+""+this.lastc;
+    this.registerReq.roles=3;
+    this.registerReq.name=this.firstc;
+    this.registerReq.lastname=this.lastc;
+    this.registerReq.city=this.cityc;
+    this.registerReq.location=this.locationc;
+    this.registerReq.city=this.cityc;
+    if(this.genderc=="Male"){
+      this.registerReq.gender=false;
+    }
+    if(this.genderc=="Female"){
+      this.registerReq.gender=true;
+    }
+    console.log(this.registerReq);
+
+
+    this.authService.register(this.registerReq).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+      window.alert("Registration Success ! ")
+      window.alert("Log Yourself In !");
+      this.router.navigate(['auth/login']);
   }
 }

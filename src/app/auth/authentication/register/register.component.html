@@ -5,7 +5,7 @@
             <img src="../../../../assets//images/Asset 1.png" alt="">
             <h3 style="color: aliceblue;">Hemisphere</h3>
             <p style="color: aliceblue;">You are 30 seconds away from earning your own money!</p>
-            <input type="submit" name="" value="Login"><br>
+            <input type="submit" name="" value="Login"(click)="routme()"><br>
         </div>
         <div class="col-md-9 register-right">
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -22,38 +22,44 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" [(ngModel)]="first" placeholder="First Name *" value="">
+                                <input type="text" class="form-control"name="first" [(ngModel)]="first" placeholder="First Name *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" [(ngModel)]="last" placeholder="Last Name *" value="">
+                                <input type="text" class="form-control"name="last" [(ngModel)]="last" placeholder="Last Name *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password *" value="">
+                                <input type="password" class="form-control"name="password" [(ngModel)]="password" placeholder="Password *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password *" value="">
+                                <input type="password" class="form-control"[(ngModel)]="passc"name="passc" placeholder="Confirm Password *" value="">
                             </div>
                             <div class="form-group">
                                 <div class="maxl">
                                     <label class="radio inline"> 
-                                        <input type="radio" name="gender" value="male" checked="">
+                                        <input type="radio" name="gender"[(ngModel)]="gender" value="male" checked="">
                                         <span> Male </span> 
                                     </label>
                                     <label class="radio inline"> 
-                                        <input type="radio" name="gender" value="female">
-                                        <span>Female </span> 
+                                        <input type="radio" name="gender"[(ngModel)]="gender" value="female">
+                                        <span> Female </span> 
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="email" class="form-control" [(ngModel)]="email" placeholder="Your Email *" value="">
+                                <input type="email" class="form-control"name="email" [(ngModel)]="email" placeholder="Your Email *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="">
+                                <input type="text" minlength="10" maxlength="10"[(ngModel)]="phone" name="phone" class="form-control" placeholder="Your Phone " value="">
                             </div>
                             <div class="form-group">
+                                <input type="text" class="form-control"name="location" [(ngModel)]="location" placeholder="Your Location" value="">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control"name="city" [(ngModel)]="city" placeholder="Your City" value="">
+                            </div>
+                            <!-- <div class="form-group">
                                 <select class="form-control">
                                     <option class="hidden" selected="" disabled="">Please select your Sequrity Question</option>
                                     <option>What is your Birthdate?</option>
@@ -63,8 +69,8 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Enter Your Answer *" value="">
-                            </div>
-                            <input type="submit" class="btnRegister" (click)="onSubmit()" value="Register">
+                            </div> -->
+                            <input type="submit" class="btnRegister" (click)="onSubmitUser()" value="Register">
                         </div>
                     </div>
                 </div>
@@ -73,39 +79,48 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="First Name *" value="">
+                                <input type="text" class="form-control"name="firstc" [(ngModel)]="firstc" placeholder="First Name *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Last Name *" value="">
+                                <input type="text" class="form-control"name="lastc" [(ngModel)]="lastc" placeholder="Last Name *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email *" value="">
+                                <input type="email" class="form-control"name="emailc" [(ngModel)]="emailc" placeholder="Email *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="">
+                                <input type="text" maxlength="10" minlength="10"name="phonec"[(ngModel)]="phonec" class="form-control" placeholder="Phone *" value="">
                             </div>
-
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="genderc"[(ngModel)]="genderc" value="male" checked="">
+                                        <span> Male </span> 
+                                    </label>
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="genderc"[(ngModel)]="genderc" value="female">
+                                        <span> Female </span> 
+                                    </label>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password *" value="">
+                                <input type="password" class="form-control"name="pwdc" [(ngModel)]="pwdc" placeholder="Password *" value="">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password *" value="">
+                                <input type="password" class="form-control"name="cpass"[(ngModel)]="cpass" placeholder="Confirm Password *" value="">
                             </div>
                             <div class="form-group">
-                                <select class="form-control">
-                                    <option class="hidden" selected="" disabled="">Please select your Security Question</option>
-                                    <option>What is your Birthdate?</option>
-                                    <option>What is Your old Phone Number</option>
-                                    <option>What is your Pet Name?</option>
-                                </select>
+                                <input type="text" class="form-control"name="locationc" [(ngModel)]="locationc" placeholder="Your Location" value="">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="`Answer *" value="">
+                                <input type="text" class="form-control" name="cityc"[(ngModel)]="cityc" placeholder="Your City" value="">
                             </div>
-                            <input type="submit" class="btnRegister" (click)="onSubmit()" value="Register">
+                            <div class="form-group">
+                                <input type="text" class="form-control"name="companyname" [(ngModel)]="companyname" placeholder="Your Company Name *" value="">
+                            </div>
+                            <input type="submit" class="btnRegister" (click)="onSubmitCompany()" value="Register">
                         </div>
                     </div>
                 </div>
