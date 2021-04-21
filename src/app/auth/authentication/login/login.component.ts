@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RequestLogin } from '../../../apps/entities/RequestLogin';
 import { Role } from '../../../apps/entities/role';
 import { User } from '../../../apps/entities/user';
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   test:string;
   roles: string[] = [];
   credentiels=new RequestLogin();
-  constructor(private userService:UserService,private authService:AuthenticationService, private tokenStorage: TokenStorageService,private router:Router) { }
+  path;
+  constructor(private userService:UserService,private route: ActivatedRoute,private authService:AuthenticationService, private tokenStorage: TokenStorageService,private router:Router) { }
 
   ngOnInit(): void {
     // if (this.tokenStorage.getToken()) {
@@ -32,13 +33,15 @@ export class LoginComponent implements OnInit {
     
     if(this.authService.isUserLoggedIn()){
       console.log("f west el if");
-      
-      console.log(this.test);
-      
-      // console.log(this.user.roles.toString());
-      // console.log(this.test);
-      
-      //this.router.navigate(['front/home']);
+    // this.path =this.route.snapshot.url.toString()
+    // console.log(this.path);
+    window.alert("Already Logged In !")
+    this.router.navigate(['front/home']);
+    // if(this.path=="login"){
+    //   window.alert("Already Logged In !")
+    //   this.router.navigate(['front/home']);
+    // }
+     
     }
   }
   RedirectMe(){

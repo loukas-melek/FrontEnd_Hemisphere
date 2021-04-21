@@ -21,6 +21,10 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthenticationService,private router:Router) { }
 
   ngOnInit(): void {
+    if(this.authService.isUserLoggedIn()){
+      window.alert("Already Logged In !")
+      this.router.navigate(['front/home']);
+    }
   }
 
   onSubmitUser(): void {

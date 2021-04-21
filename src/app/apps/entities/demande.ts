@@ -1,23 +1,15 @@
-import { Offer } from "./offer";
-import { Task } from "./Task";
-import { User } from "./user";
+import { OfferTaskSolution } from "./Offer_Task_Solution";
+import { Profile } from "./Profile";
+
 
 export class Demande { 
     id: number;
-    date: Date;
-    user: User;
+    profile: Profile;
     motivation:string;
-    offer:Offer;
-    task:Task;
+    offer_Task_Solution:OfferTaskSolution;
     bidprice:number;
     deliverytime:string;
- 
+    isvalide:boolean;
     public constructor() {
-     
-        this.date=new Date();
-        this.motivation="";
-        this.bidprice=0;
-        this.deliverytime="";
-     
     }
 }

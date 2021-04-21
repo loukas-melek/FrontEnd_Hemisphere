@@ -12,8 +12,6 @@ import { ResizableModule } from 'angular-resizable-element';
 
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
-import { SeekforoffersModule } from './seekforoffers/seekforoffers.module';
-import { SeekfortasksModule } from './seekfortasks/seekfortasks.module';
 
 
 
@@ -22,8 +20,7 @@ import { SeekfortasksModule } from './seekfortasks/seekfortasks.module';
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
-    SeekforoffersModule,
-    SeekfortasksModule,
+ 
     DashboardRoutingModule,
     ThemeModule,
     NbMenuModule,

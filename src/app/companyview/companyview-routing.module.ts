@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CompanyviewOComponent } from '../dashboard/companyView/companyview-o/companyview-o.component';
 import { WorkflowComponent } from '../dashboard/workflow/workflow.component';
 import { CompanyOffersComponent } from './company-offers/company-offers.component';
 import { CompanyTasksComponent } from './company-tasks/company-tasks.component';
