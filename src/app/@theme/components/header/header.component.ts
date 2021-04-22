@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [ { title: 'Profile',icon: 'person-outline', }, { title: 'Settings',icon: 'settings-outline', },{ title: 'Log out',icon: 'log-out-outline', } ];
 myRole;
 fullname;
 profile:Profile;
@@ -125,13 +125,18 @@ profile:Profile;
 onItemSelection( title ) {
   if ( title === 'Log out' ) {
     // Do something on Log out
+    
     console.log('Log out Clicked ')
-    this.tokenStorageService.signOut();
-    this.reloadPage();
+    this.router.navigate(['auth/logout']);
   } else if ( title === 'Profile' ) {
     // Do something on Profile
     console.log('Profile Clicked ')
     this.router.navigate(['front/profile']);
+  }
+  else if ( title === 'Settings' ) {
+    // Do something on Profile
+    console.log('Settings Clicked ')
+    this.router.navigate(['front/profile/settings']);
   }
 }
 reloadPage(): void {

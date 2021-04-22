@@ -1,26 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Profile } from '../../apps/entities/Profile';
 import { User } from '../../apps/entities/user';
 import { ProfileService } from '../../services/ProfileService';
 import { UserService } from '../../services/userService';
 
 @Component({
-  selector: 'ngx-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'ngx-profile-settings',
+  templateUrl: './profile-settings.component.html',
+  styleUrls: ['./profile-settings.component.scss']
 })
-export class ProfileComponent implements OnInit {
-user:User;
-profile:Profile;
-  constructor(private userService:UserService,private profileSerivce:ProfileService,private router: Router) { }
+export class ProfileSettingsComponent implements OnInit {
+  user:User
+  profile:Profile
+  constructor(private userService:UserService,private profileSerivce:ProfileService) { }
 
   ngOnInit(): void {
     this.getMyprofile();
   }
-  getMySettings() {
-    this.router.navigate(['profile/settings']);
-    }
   getMyprofile(){
     this.userService.whoami().subscribe(res=>{
       this.user=res;
@@ -28,6 +24,8 @@ profile:Profile;
         this.profile=res;
         console.log("hetha profilna");
         console.log(this.profile);
+        console.log(this.profile.name);
+        console.log(this.profile.lastname);
         
       })
     })

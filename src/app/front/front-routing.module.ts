@@ -5,6 +5,7 @@ import { FrontComponent } from './front.component';
 import { HomeComponent } from './home/home.component';
 import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
 
 
@@ -19,6 +20,10 @@ const routes: Routes = [{
     {
       path: 'profile',
       component: ProfileComponent,
+    },
+    {
+      path: 'profile/settings',
+      component: ProfileSettingsComponent,
     },
     {
       path: '',

@@ -14,6 +14,8 @@ export class Profile {
     lastname:string;
     phone:string;
     city:string;
+    created_at:Date;
+    updated_at:Date;
     
     public constructor() {
      
