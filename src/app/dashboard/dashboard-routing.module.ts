@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CompanyOffersComponent } from '../companyview/company-offers/company-offers.component';
-import { CompanyTasksComponent } from '../companyview/company-tasks/company-tasks.component';
-import { StudentOffersComponent } from '../studentview/student-offers/student-offers.component';
-import { StudentTasksComponent } from '../studentview/student-tasks/student-tasks.component';
-
 import { DashboardComponent } from './dashboard.component';
+
 
 import { WorkflowComponent } from './workflow/workflow.component';
 

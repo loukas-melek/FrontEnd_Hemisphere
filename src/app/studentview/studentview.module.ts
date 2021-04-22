@@ -12,11 +12,16 @@ import { MatTableModule } from '@angular/material/table';
 import { NbMenuModule } from '@nebular/theme';
 import { ResizableModule } from 'angular-resizable-element';
 import { ThemeModule } from '../@theme/theme.module';
+import { StudentDetailsOfferComponent } from './student-details-offer/student-details-offer.component';
+import { StudentDetailsOfferModule } from './student-details-offer/student-details-offer.module';
+import { StudentDetailsTaskModule } from './student-details-task/student-details-task.module';
 
 
 @NgModule({
   declarations: [StudentviewComponent],
   imports: [
+    StudentDetailsOfferModule,
+    StudentDetailsTaskModule,
     StudentOffersModule,
     StudentTasksModule,
     CommonModule,
