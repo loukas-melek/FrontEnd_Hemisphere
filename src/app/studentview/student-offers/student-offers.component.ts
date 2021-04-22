@@ -204,17 +204,11 @@ export class StudentOffersComponent implements OnInit {
     this.offers=dataSource.filteredData
     console.log(this.offers)}
     //dataSource.filteredData.forEach(element=>{this.offers.push(element)})
-    
-    
-  
-
-
-
 
   }
 
   getOffer(myObj:any) {
-    this.router.navigate(['dashboard/details' + '/' + myObj['id']]);
+    this.router.navigate(['offers/details' + '/' + myObj['id']]);
     }
     isVide(list:Array<GeneralPost>){
       if(list.length==0){

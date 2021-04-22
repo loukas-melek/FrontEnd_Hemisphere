@@ -40,6 +40,9 @@ export class StudentTasksComponent implements OnInit {
   ngOnInit(): void {
      this.bringmylist();
   }
+  getOffer(myObj:any) {
+    this.router.navigate(['tasks/details' + '/' + myObj['id']]);
+    }
   filtrer(location,categorie){
   
     let   retour=new Array<GeneralPost>();

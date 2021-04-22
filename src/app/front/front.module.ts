@@ -40,6 +40,7 @@ import { HomeModule } from './home/home.module';
 import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileModule } from './profile/profile.module';
+import { ProfileSettingsModule } from './profile-settings/profile-settings.module';
 
 
 
@@ -48,6 +49,7 @@ import { ProfileModule } from './profile/profile.module';
   declarations: [FrontComponent
     ],
   imports: [
+    ProfileSettingsModule,
     ProfileModule,
     FrontRoutingModule,
     ThemeModule,
