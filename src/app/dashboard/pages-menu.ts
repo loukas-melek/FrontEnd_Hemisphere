@@ -12,30 +12,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/dashboard/workflow',
     home: true,
   },
-  // {
-  //   title: 'OffersC',
-  //   icon: 'shopping-cart-outline',
-  //   link: '/dashboard/company/offers',
-  //   home: true,
-  // },
-  // {
-  //   title: 'TasksC',
-  //   icon: 'shopping-cart-outline',
-  //   link: '/dashboard/company/tasks',
-  //   home: true,
-  // },
-  // {
-  //   title: 'TasksS',
-  //   icon: 'shopping-cart-outline',
-  //   link: '/dashboard/student/tasks',
-  //   home: true,
-  // },
-  // {
-  //   title: 'OffersS',
-  //   icon: 'shopping-cart-outline',
-  //   link: '/dashboard/student/offers',
-  //   home: true,
-  // },
+
   {
     title: 'FEATURES',
     group: true,

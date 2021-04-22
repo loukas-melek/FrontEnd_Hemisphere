@@ -13,7 +13,7 @@ import { WorkflowComponent } from './workflow/workflow.component';
       path: 'workflow',
       component: WorkflowComponent,
     },
-    
+
     // {
     //   path: 'company/offers',
     //   component: CompanyOffersComponent,
@@ -30,6 +30,7 @@ import { WorkflowComponent } from './workflow/workflow.component';
     //   path: 'student/tasks',
     //   component: StudentTasksComponent,
     // },
+
   ],
  }];
 
