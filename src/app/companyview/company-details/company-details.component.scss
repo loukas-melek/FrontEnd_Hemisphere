@@ -1,0 +1,371 @@
+@import '../../@theme/styles/themes';
+
+    @include nb-install-component() {
+      nb-card {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+.card-box {
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    background-color: #fff;
+  }
+  .thumb-sm {
+    height: 36px;
+    width: 36px;
+  }
+  
+  .task-detail .task-dates li {
+    width: 50%;
+    float: left
+  }
+  
+  .task-detail .task-tags .bootstrap-tagsinput {
+    padding: 0;
+    border: none
+  }
+  
+  .task-detail .assign-team a {
+    display: inline-block;
+    margin: 5px 5px 5px 0
+  }
+  
+  .task-detail .files-list .file-box {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80px;
+    padding: 2px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    background-clip: padding-box
+  }
+  
+  .task-detail .files-list .file-box img {
+    line-height: 70px
+  }
+  
+  .task-detail .files-list .file-box p {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
+  
+  .add-new-plus {
+    height: 32px;
+    text-align: center;
+    width: 32px;
+    display: block;
+    line-height: 32px;
+    color: #98a6ad;
+    font-weight: 700;
+    background-color: #e3eaef;
+    border-radius: 50%
+  }
+  
+  .project-sort-item .form-group {
+    margin-right: 30px
+  }
+  
+  .project-sort-item .form-group:last-of-type {
+    margin-right: 0
+  }
+  
+  .project-box {
+    position: relative
+  }
+  
+  .project-box .badge {
+    position: absolute;
+    right: 20px
+  }
+  
+  .project-box h4 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    overflow: hidden
+  }
+  
+  .project-box ul li {
+    padding-right: 30px
+  }
+  
+  .project-box .project-members a {
+    margin: 0 0 10px -12px;
+    display: inline-block;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06), 0 1px 0 0 rgba(0, 0, 0, .02);
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06), 0 1px 0 0 rgba(0, 0, 0, .02)
+  }
+  
+  .project-box .project-members a:first-of-type {
+    margin-left: 0
+  }
+  
+  .company-card .company-logo {
+    float: left;
+    height: 60px;
+    width: 60px;
+    border-radius: 3px
+  }
+  
+  .company-card .company-detail {
+    margin: 0 0 50px 75px
+  }
+  .text-muted {
+    color: #98a6ad!important;
+  }
+  
+  p {
+    line-height: 1.6;
+    font-size: 14px;
+  }
+  
+  .bootstrap-tagsinput .label-info {
+    background-color: #02c0ce;
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 13px;
+    margin: 3px 1px;
+    border-radius: 3px;
+  }
+  .test{
+      display:block ;
+      padding: 0.3em 1.2em;
+      margin: 0 0.1em 0.1em 0;
+      border: 0.16em solid rgba(255,255,255,0) ;
+      border-radius: 2em;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-family:'Roboto',sans-serif; ;
+      font-weight: 300;
+      background-color:#4e9af1;
+      color:#FFFFFF;
+
+      text-shadow:  0 0.04em 0.04em rgba(0,0,0,0.35);
+      text-align: center;
+      transition: all 0.2s;
+  }
+  .test:hover{
+      border-color:rgba(255,255,255,1); ;
+  }
+    @media all and (max-width:30em) {
+        .test{
+            font-size:0.875em;
+            display:block;
+            left:-60px;
+            margin-top:20px;
+            border-radius: 1.1em;
+            width:100%;
+        }
+    }
+    body{
+        background:#eee;    
+    }
+    .main-box.no-header {
+        padding-top: 20px;
+    }
+    .main-box {
+        background: #FFFFFF;
+        -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
+        box-shadow: 1px 1px 2px 0 #CCCCCC;
+        margin-bottom: 16px;
+        -webikt-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+    .table a.table-link.danger {
+        color: #e74c3c;
+    }
+    .label {
+        border-radius: 3px;
+        font-size: 0.875em;
+        font-weight: 600;
+    }
+    .user-list tbody td .user-subhead {
+        font-size: 0.875em;
+        font-style: italic;
+    }
+    .user-list tbody td .user-link {
+        display: block;
+        font-size: 1.25em;
+        padding-top: 3px;
+        margin-left: 60px;
+    }
+    a {
+        color: #3498db;
+        outline: none!important;
+    }
+    .user-list tbody td>img {
+        position: relative;
+        max-width: 50px;
+        float: left;
+        margin-right: 15px;
+    }
+    
+    .table thead tr th {
+        text-transform: uppercase;
+        font-size: 0.875em;
+    }
+    .table thead tr th {
+        border-bottom: 2px solid #e7ebee;
+    }
+    .table tbody tr td:first-child {
+        font-size: 1.125em;
+        font-weight: 300;
+    }
+    .table tbody tr td {
+        font-size: 0.875em;
+        vertical-align: middle;
+        border-top: 1px solid #e7ebee;
+        padding: 12px 8px;
+    }
+    a:hover{
+    text-decoration:none;
+    }   
+    .thumb-lg {
+        height: 88px;
+        width: 88px;
+    }
+    .profile-user-box {
+        position: relative;
+        border-radius: 5px
+    }
+    .bg-custom {
+        background-color: #02c0ce!important;
+    }
+    .profile-user-box {
+        position: relative;
+        border-radius: 5px;
+    }
+    
+    .card-box {
+        padding: 20px;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        background-color: #fff;
+    }
+    .inbox-widget .inbox-item img {
+        width: 40px;
+    }
+    
+    .inbox-widget .inbox-item {
+        border-bottom: 1px solid #f3f6f8;
+        overflow: hidden;
+        padding: 10px 0;
+        position: relative
+    }
+    
+    .inbox-widget .inbox-item .inbox-item-img {
+        display: block;
+        float: left;
+        margin-right: 15px;
+        width: 40px
+    }
+    
+    .inbox-widget .inbox-item img {
+        width: 40px
+    }
+    
+    .inbox-widget .inbox-item .inbox-item-author {
+        color: #313a46;
+        display: block;
+        margin: 0
+    }
+    
+    .inbox-widget .inbox-item .inbox-item-text {
+        color: #98a6ad;
+        display: block;
+        font-size: 14px;
+        margin: 0
+    }
+    
+    .inbox-widget .inbox-item .inbox-item-date {
+        color: #98a6ad;
+        font-size: 11px;
+        position: absolute;
+        right: 7px;
+        top: 12px
+    }
+    
+    .comment-list .comment-box-item {
+        position: relative
+    }
+    
+    .comment-list .comment-box-item .commnet-item-date {
+        color: #98a6ad;
+        font-size: 11px;
+        position: absolute;
+        right: 7px;
+        top: 2px
+    }
+    
+    .comment-list .comment-box-item .commnet-item-msg {
+        color: #313a46;
+        display: block;
+        margin: 10px 0;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 24px
+    }
+    
+    .comment-list .comment-box-item .commnet-item-user {
+        color: #98a6ad;
+        display: block;
+        font-size: 14px;
+        margin: 0
+    }
+    
+    .comment-list a+a {
+        margin-top: 15px;
+        display: block
+    }
+    
+    .ribbon-box .ribbon-primary {
+        background: #2d7bf4;
+    }
+    
+    .ribbon-box .ribbon {
+        position: relative;
+        float: left;
+        clear: both;
+        padding: 5px 12px 5px 12px;
+        margin-left: -30px;
+        margin-bottom: 15px;
+        font-family: Rubik,sans-serif;
+        -webkit-box-shadow: 2px 5px 10px rgba(49,58,70,.15);
+        -o-box-shadow: 2px 5px 10px rgba(49,58,70,.15);
+        box-shadow: 2px 5px 10px rgba(49,58,70,.15);
+        color: #fff;
+        font-size: 13px;
+    }
+    .text-custom {
+        color: #02c0ce!important;
+    }
+    
+    .badge-custom {
+        background: #02c0ce;
+        color: #fff;
+    }
+    .badge {
+        font-family: Rubik,sans-serif;
+        -webkit-box-shadow: 0 0 24px 0 rgba(0,0,0,.06), 0 1px 0 0 rgba(0,0,0,.02);
+        box-shadow: 0 0 24px 0 rgba(0,0,0,.06), 0 1px 0 0 rgba(0,0,0,.02);
+        padding: .35em .5em;
+        font-weight: 500;
+    }
+    .text-muted {
+        color: #98a6ad!important;
+    }
+    
+    .font-13 {
+        font-size: 13px!important;
+    }

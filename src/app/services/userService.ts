@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { id } from "@swimlane/ngx-charts";
 import { Observable } from "rxjs";
+import { RequestLogin } from "../apps/entities/RequestLogin";
 import { User } from "../apps/entities/user";
 
 @Injectable({
@@ -14,8 +16,20 @@ import { User } from "../apps/entities/user";
    whoami(){
      return this.Http.get<User>(this.url+'/me')
    }
+   updateUser(id,user){
+     console.log(id);
+     console.log(user);
+     
+     return this.Http.put<User>(this.url+"/update/"+id,user);
+   }
    listUsers() {
     return this.Http.get<any[]>(this.url + '/list');
+    }
+    checkPass(id,password:string){
+      console.log(password);
+      console.log(id);
+      
+      return this.Http.post<boolean>(this.url+"/check/"+id ,password);
     }
     public  getUserByEmail(username):Observable<any>{
       //     let username = sessionStorage.getItem('username');

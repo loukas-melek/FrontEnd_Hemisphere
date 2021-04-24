@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { FrontComponent } from './front.component';
 import { HomeComponent } from './home/home.component';
-import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 
@@ -16,6 +16,10 @@ const routes: Routes = [{
     {
       path: 'home',
       component: HomeComponent,
+    },
+    {
+      path: 'test',
+      component: LandingComponent,
     },
     {
       path: 'profile',

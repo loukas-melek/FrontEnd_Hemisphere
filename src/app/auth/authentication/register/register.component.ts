@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   registerReq=new RequestRegister();
-  password;username;email;first;last;pwdc;firstc;lastc;emailc;location;city;phone;cpass;cityc;locationc;phonec;passc;companyname;genderc;gender;
+  password;username;email;first:string;last:string;pwdc;firstc:string;lastc:string;emailc;location;city;phone;cpass;cityc;locationc;phonec;passc;companyname;genderc;gender;
   constructor(private authService: AuthenticationService,private router:Router) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
   onSubmitUser(): void {
     this.registerReq.email=this.email;
     this.registerReq.password=this.password;
-    this.registerReq.username=this.first+""+this.last;
+    this.registerReq.username=this.last[0].toLowerCase()+this.first.toLowerCase();
   
    this.registerReq.roles=1;
     console.log(this.registerReq.roles);
@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
     console.log(Role);
     this.registerReq.email=this.emailc;
     this.registerReq.password=this.pwdc;
-    this.registerReq.username=this.firstc+""+this.lastc;
+    this.registerReq.username=this.last[0].toLowerCase()+this.first.toLowerCase();
     this.registerReq.roles=3;
     this.registerReq.name=this.firstc;
     this.registerReq.lastname=this.lastc;

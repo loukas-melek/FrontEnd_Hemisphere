@@ -55,7 +55,7 @@ export class StudentDetailsTaskComponent implements OnInit {
         console.log(this.generalPost);
         this.generalPost.offertasksolution
         
-        this.demandeService.listDemandeByOfferId(this.generalPost.offertasksolution.id).subscribe(res=>{
+        this.demandeService.listDemandeByPostId(this.generalPost.offertasksolution.id).subscribe(res=>{
            this.result=res;
            console.log("liste des demande pour cet offer");
            console.log(this.result);

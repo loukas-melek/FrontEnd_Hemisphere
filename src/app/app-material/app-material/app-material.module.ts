@@ -26,6 +26,9 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { NbInputModule, NbCardModule, NbButtonModule, NbActionsModule, NbUserModule, NbCheckboxModule, NbRadioModule, NbDatepickerModule, NbSelectModule, NbIconModule } from '@nebular/theme';
+import { ThemeModule } from '../../@theme/theme.module';
+import { FormsRoutingModule } from '../../pages/forms/forms-routing.module';
 
 
 @NgModule({
@@ -57,6 +60,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatStepperModule,
     MatPaginatorModule,
     MatMenuModule,
+    ThemeModule,
+    NbInputModule,
+    NbCardModule,
+    NbButtonModule,
+    NbActionsModule,
+    NbUserModule,
+    NbCheckboxModule,
+    NbRadioModule,
+    NbDatepickerModule,
+    FormsRoutingModule,
+    NbSelectModule,
+    NbIconModule,
+   
 
   ],
   exports: [
@@ -86,6 +102,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatStepperModule,
     MatPaginatorModule,
     MatMenuModule,
+    ThemeModule,
+    NbInputModule,
+    NbCardModule,
+    NbButtonModule,
+    NbActionsModule,
+    NbUserModule,
+    NbCheckboxModule,
+    NbRadioModule,
+    NbDatepickerModule,
+    FormsRoutingModule,
+    NbSelectModule,
+    NbIconModule,
   ],
 })
 export class AppMaterialModule { }

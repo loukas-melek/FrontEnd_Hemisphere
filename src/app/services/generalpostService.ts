@@ -25,4 +25,7 @@ export class GeneralPostService {
     listPubsByUser(id){
       return this.Http.get<GeneralPost[]>(this.urlPub+"/user/"+id);
     }
+    delete(id){
+      return this.Http.delete(this.urlPub+"/delete/"+id);
+    }
 }
