@@ -29,11 +29,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppMaterialModule } from '../app-material/app-material/app-material.module';
+import { CompanyDetailsModule } from './company-details/company-details.module';
 
 
 @NgModule({
   declarations: [CompanyviewComponent],
   imports: [
+    CompanyDetailsModule,
     CommonModule,
     CompanyOffersModule,
     CompanyTasksModule,

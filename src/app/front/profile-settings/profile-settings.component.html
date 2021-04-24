@@ -14,7 +14,7 @@
                                         <div class="mx-auto" style="width: 140px;">
                                             <div class="d-flex justify-content-center align-items-center rounded"
                                                 style="height: 140px; background-color: rgb(255, 255, 255);">
-                                                <img class="d-flex " alt="64x64" src="{{profile?.profilePicUrl}}" style="width: 140px; height: 140px;">
+                                                <img class="d-flex " alt="64x64" [src]="imageUrl" style="width: 140px; height: 140px;">
                                             </div>
                                         </div>
                                     </div>
@@ -24,15 +24,16 @@
                                             <p class="mb-0">@{{user?.username}}</p>
                                             <div class="text-muted"><small>Last seen 2 hours ago</small></div>
                                             <div class="mt-2">
-                                                <button class="btn btn-primary" type="button">
+                                                <button class="btn btn-primary" type="button" (click)="fileInput.click()"(change)="onSelectFile($event.target.files)">
+                                                    <input type='file'style="display:none;" #fileInput (change)="onSelectFile($event.target.files)">  
                                                     <i class="fa fa-fw fa-camera"></i>
                                                     <span>Change Photo</span>
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="text-center text-sm-right">
-                                            <span class="badge badge-secondary">Student</span>
-                                            <div class="text-muted"><small>Joined {{profile?.created_at}}</small></div>
+                                            <span class="badge badge-secondary">{{myrole}}</span>
+                                            <div class="text-muted"><small>Joined the {{formattedDate}}</small></div>
                                         </div>
                                     </div>
                                 </div>
@@ -56,62 +57,68 @@
 
                                         <div class="row">
                                             <div class="col">
+                                                <!-- <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Username</label>
+                                                            <input class="form-control" [(ngModel)]="username" type="text" name="username"
+                                                                placeholder="" value="{{user?.username}}">
+                                                        </div>
+                                                        </div>
+                                                        </div> -->
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
-                                                            <label>Full Name</label>
-                                                            <input class="form-control" type="text" name="name"
-                                                                placeholder="John Smith" value="John Smith">
+                                                            <label>Name</label>
+                                                            <input class="form-control"[(ngModel)]="first" type="text" name="name"
+                                                                placeholder="" value="{{profile?.name}}">
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group">
-                                                            <label>Username</label>
-                                                            <input class="form-control" type="text" name="username"
-                                                                placeholder="" value="{{user?.username}}">
+                                                            <label>LastName</label>
+                                                            <input class="form-control"[(ngModel)]="last" type="text" name="username"
+                                                                placeholder="" value="{{profile?.lastname}}">
                                                         </div>
 
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <label>Email</label>
-                                                            <input class="form-control" type="text"
+                                                            <input class="form-control"[(ngModel)]="email" type="text"
                                                                 placeholder="user@example.com" value="{{user?.email}}">
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group">
                                                             <label>Phone</label>
-                                                            <input class="form-control" type="text" placeholder="+216" value="{{profile?.phone}}">
+                                                            <input class="form-control"[(ngModel)]="phone" type="text" placeholder="+216" value="(+216) {{profile?.phone}}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Interest</label>
-                                                            <input class="form-control" value="{{profile?.interests}}" type="text" placeholder="">
+                                                            <input class="form-control"[(ngModel)]="interests" name="interests" value="{{profile?.interests}}" type="text" placeholder="">
                                                         </div>
                                                     </div>
 
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputAddress2">Address </label>
-                                                    <input type="text" class="form-control" id="inputAddress2"
-                                                        placeholder="Apartment, studio, or floor">
+                                                    <label for="inputAddress2">Languages </label>
+                                                    <input type="text"[(ngModel)]="languages" class="form-control" id="inputAddress2"
+                                                        placeholder="French, English, or Arabic" value="{{profile?.languages}}">
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
-                                                        <label for="inputCity">City</label>
-                                                        <input type="text" class="form-control" id="inputCity" value="{{profile?.city}}">
+                                                        <label for="inputCity">Location</label>
+                                                        <input type="text" class="form-control"[(ngModel)]="location" id="inputCity" value="{{profile?.location}}">
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputState">State</label>
-                                                        <select id="inputState" class="form-control">
-                                                            <option selected>Choose...</option>
-                                                            <option>...</option>
-                                                        </select>
+                                                        <label >State</label>
+                                                        <input type="text" class="form-control"value="{{profile?.state}}"[(ngModel)]="state" id="inputZip">
                                                     </div>
                                                     <div class="form-group col-md-2">
-                                                        <label for="inputZip">Zip</label>
-                                                        <input type="text" class="form-control" id="inputZip">
+                                                        <label >City</label>
+                                                        <input type="text" class="form-control"value="{{profile?.city}}"[(ngModel)]="city" id="inputZip">
                                                     </div>
 
                                                 </div>
@@ -119,7 +126,7 @@
                                                     <div class="col mb-3">
                                                         <div class="form-group">
                                                             <label>About</label>
-                                                            <textarea class="form-control" rows="5" value="{{profile?.about}}"
+                                                            <textarea class="form-control"[(ngModel)]="about" rows="5" value="{{profile?.about}}"
                                                                 placeholder="My Bio"></textarea>
                                                         </div>
                                                     </div>
@@ -129,7 +136,7 @@
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-end">
-                                                <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                <button class="btn btn-primary" (click)="updateprofile()" type="submit">Save Changes</button>
                                             </div>
                                         </div>
 
@@ -139,12 +146,32 @@
                                         aria-labelledby="profile-tab">
                                         <div class="row">
                                                 <div class="col-12 col-sm-6 mb-3">
+                                                    <div class="mb-2"><b>Change Username</b></div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Username</label>
+                                                                <input class="form-control" [(ngModel)]="username" type="text" name="username"
+                                                                    placeholder="" value="{{user?.username}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2"><b>Change email</b></div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Email</label>
+                                                                <input class="form-control"[(ngModel)]="email" type="text"
+                                                                    placeholder="user@example.com" value="{{user?.email}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="mb-2"><b>Change Password</b></div>
                                                     <div class="row">
                                                         <div class="col">
                                                             <div class="form-group">
                                                                 <label>Current Password</label>
-                                                                <input class="form-control" type="password"
+                                                                <input class="form-control"[(ngModel)]="cpass"name="cpass" type="password"
                                                                     placeholder="••••••">
                                                             </div>
                                                         </div>
@@ -153,7 +180,7 @@
                                                         <div class="col">
                                                             <div class="form-group">
                                                                 <label>New Password</label>
-                                                                <input class="form-control" type="password"
+                                                                <input class="form-control"[(ngModel)]="npass"name="npass" type="password"
                                                                     placeholder="••••••">
                                                             </div>
                                                         </div>
@@ -163,7 +190,7 @@
                                                             <div class="form-group">
                                                                 <label>Confirm <span
                                                                         class="d-none d-xl-inline">Password</span></label>
-                                                                <input class="form-control" type="password"
+                                                                <input class="form-control"[(ngModel)]="cnpass"name="cnpass" type="password"
                                                                     placeholder="••••••">
                                                             </div>
                                                         </div>
@@ -175,7 +202,7 @@
                                             </div>
                                         <div class="row">
                                             <div class="col d-flex justify-content-end">
-                                                <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                <button class="btn btn-primary" (click)="updateuser()" type="submit">Save Changes</button>
                                             </div>
                                         </div>
                                     </div>

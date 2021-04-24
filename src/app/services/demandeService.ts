@@ -20,14 +20,20 @@ import { Demande } from "../apps/entities/demande";
       
       return this.Http.post<Demande>(this.url+"/add", data);
     }
+    updateDemande(id,demande:Demande){
+      return this.Http.put<Demande>(this.url+"/update/"+id,demande);
+    }
     listDemandesByUserId(user_id){
       return this.Http.get<any[]>(this.url + '/list/user/'+user_id);
     }
-    listDemandeByOfferId(offer_id){
-      return this.Http.get<any[]>(this.url + '/list/offer/'+offer_id);
+    listDemandeByPostId(id){
+      return this.Http.get<Demande[]>(this.url + '/list/'+id);
     }
     listDemandeByTaskId(task_id){
       return this.Http.get<any[]>(this.url + '/list/task/'+task_id);
+    }
+    treatDemande(id,status){
+      return this.Http.post(this.url+'/treat/'+id,status);
     }
     // createDemande(user:User,date:Date,motivation:any) {
   
@@ -45,9 +51,9 @@ import { Demande } from "../apps/entities/demande";
     //       console.log(this.demande);
     //       return this.Http.post(this.url + '/add', this.demande);
     //       }
-          deleteOffer(myObj:any) {
+          deleteOffer(id) {
   
-              return this.Http.delete(this.url + '/' + myObj['id'])
+              return this.Http.delete(this.url + '/delete/' +id)
                 }  
                 // getOffer(id:any) {
   

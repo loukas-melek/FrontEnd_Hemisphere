@@ -57,7 +57,7 @@ aria-haspopup="true" aria-expanded="false">
     <div class="col-md-4 single-note-item all-category"*ngFor="let offer of offers" >
     <div class="card card-body">
     <span class="side-stick"></span>
-    <h6 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie">{{offer.offertasksolution.title}} <i class="point fa fa-circle ml-1 font-10"></i></h6>
+    <h6 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie"><a (click)='getOffer(offer)'>{{offer.offertasksolution.title}}</a> <i class="point fa fa-circle ml-1 font-10"></i></h6>
     <p class="note-date font-12 text-muted">{{changeDate(offer.updated_at)}}</p>
     <div class="note-content">
     <p class="note-inner-content text-muted text-truncate" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">{{offer.offertasksolution.description}}</p>

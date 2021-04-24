@@ -37,10 +37,9 @@ import { ThemeModule } from '../@theme/theme.module';
 import { FrontRoutingModule } from './front-routing.module';
 import { FrontComponent } from './front.component';
 import { HomeModule } from './home/home.module';
-import { LandingComponent } from './landing/landing.component';
-import { ProfileComponent } from './profile/profile.component';
 import { ProfileModule } from './profile/profile.module';
 import { ProfileSettingsModule } from './profile-settings/profile-settings.module';
+import { LandingModule } from './landing/landing.module';
 
 
 
@@ -49,6 +48,7 @@ import { ProfileSettingsModule } from './profile-settings/profile-settings.modul
   declarations: [FrontComponent
     ],
   imports: [
+    LandingModule,
     ProfileSettingsModule,
     ProfileModule,
     FrontRoutingModule,

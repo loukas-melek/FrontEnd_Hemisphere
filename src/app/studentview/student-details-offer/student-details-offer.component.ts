@@ -24,11 +24,14 @@ generalPost:GeneralPost;
 closeResult;
 user:User
 motivation: string;
+emotivation: string;
   profile: Profile
   result=new Array<Demande>()
   submitted: boolean;
   found: boolean;
   test=false;
+  myapp:Demande;
+  appMenu = [ { title: 'Profile',icon: 'person-outline', }, { title: 'Settings',icon: 'settings-outline', },{ title: 'Log out',icon: 'log-out-outline', } ];
   constructor(private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
 
   ngOnInit(): void {
@@ -57,7 +60,7 @@ motivation: string;
       console.log(this.generalPost);
       this.generalPost.offertasksolution
       
-      this.demandeService.listDemandeByOfferId(this.generalPost.offertasksolution.id).subscribe(res=>{
+      this.demandeService.listDemandeByPostId(this.generalPost.offertasksolution.id).subscribe(res=>{
          this.result=res;
          console.log("liste des demande pour cet offer");
          console.log(this.result);
@@ -65,6 +68,9 @@ motivation: string;
           console.log("dkhalna lel foreach lena");
           console.log(demande);
           if(demande.profile.id==this.profile.id){
+            this.myapp=demande
+            console.log(this.myapp);
+            
             console.log("existss !!!");
             this.found=true;
             console.log(this.found);
@@ -82,6 +88,15 @@ motivation: string;
   })
 })
 })
+  }
+  delete(){
+    this.demandeService.deleteOffer(this.myapp.id).subscribe(res=>{
+      console.log(res);
+      this.reloadPage();
+    })
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
   getMyprofile(){
     this.userService.whoami().subscribe(res=>{
@@ -109,6 +124,16 @@ motivation: string;
     
       return this.found;
   }
+  editDemande(){
+    let newd=this.myapp;
+    newd.motivation=this.emotivation;
+
+    this.demandeService.updateDemande(this.myapp.id,newd).subscribe(res=>{
+      console.log(res);
+      this.reloadPage();
+      
+    })
+  }
   addDemande() {
     console.log(this.motivation);
     
@@ -134,6 +159,7 @@ motivation: string;
       ;}
     )
     window.alert("Application done with success !")
+    this.reloadPage()
       }
       // this.modalService.dismissAll();
    

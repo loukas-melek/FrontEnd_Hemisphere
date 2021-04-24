@@ -17,4 +17,7 @@ export class ProfileService {
         getProfileByUserId(id){
             return this.Http.get<Profile>(this.urlPub+'/user/'+id)
         }
+        updateprofile(id,profile:Profile){
+            return this.Http.put<Profile>(this.urlPub+"/update/"+id,profile)
+        }
 }

@@ -7,13 +7,14 @@ import { PagesComponent } from './pages.component';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
+import { LandingModule } from '../front/landing/landing.module';
 
 @NgModule({
   imports: [
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
-   
+    LandingModule,
     ECommerceModule,
     MiscellaneousModule,
   ],

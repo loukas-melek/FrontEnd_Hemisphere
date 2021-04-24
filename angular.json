@@ -12,6 +12,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
+          
             "preserveSymlinks": true,
             "outputPath": "dist",
             "index": "src/index.html",
@@ -57,7 +58,8 @@
               "lodash",
               "zrender/lib/svg/svg",
               "zrender/lib/vml/vml",
-              "style-loader!leaflet/dist/leaflet.css"
+              "style-loader!leaflet/dist/leaflet.css",
+              "chart.js"
             ]
           },
           "configurations": {

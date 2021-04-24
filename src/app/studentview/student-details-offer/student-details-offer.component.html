@@ -7,7 +7,36 @@
                     <div class="media mt-0 m-b-30"><img class="d-flex mr-3 rounded-circle" alt="64x64" src="{{generalPost?.profile.profilePicUrl}}" style="width: 48px; height: 48px;">
                         <div class="media-body">
                             <h5 class="media-heading mb-0 mt-0">{{generalPost?.profile.name}} {{generalPost?.profile.lastname}}</h5><span class="badge badge-danger">Design</span></div>
-                            <div *ngIf="found"><button type="submit" class="btn btn-warning text-white cog"><i class="fas fa-cog"></i> Edit My Application</button></div>
+                            <!-- <nb-action class="user-action" *nbIsGranted="true"> -->
+                                <!-- <span >Application Done</span>
+                                <nb-icon class="action-icon" [nbContextMenu]="appMenu" icon="settings-2-outline"></nb-icon> -->
+                                <!-- <nb-user [nbContextMenu]="appMenu"
+                                
+                                [name]="profile?.name"
+                               >
+                                    </nb-user>
+                              </nb-action> -->
+                            <!-- <div *ngIf="found"><button type="submit" class="btn btn-warning text-white cog"><i class="fas fa-cog"></i> Edit My Application</button></div> -->
+                            <div *ngIf="found" class="category-selector btn-group">
+                                <span class="text-success"><b>Application Sent</b> </span>
+                                <a class="nav-link dropdown-toggle category-dropdown label-group p-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                                   <div class="category">
+                                       <div class="category-business"></div>
+                                       <div class="category-social"></div>
+                                       <div class="category-important"></div>
+                                       <span class="more-options text-dark"><i class="icon-options-vertical"></i></span>
+                                   </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right category-menu">
+                                   <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-primary" (click)="open(edit)" >
+                                    <i class="far fa-edit"></i> Edit My Application
+                                   </a>
+                                   <a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-danger" (click)="delete()">
+                                    <i class="far fa-trash-alt"></i> Cancel My Application
+                                   </a>
+                                  
+                                </div>
+                                </div>
                             <div *ngIf="!found"><button type="submit" class="btn btn-success waves-effect waves-light" (click)="open(content)"><i class="fas fa-plus"></i> Make An Application</button></div>
 
                     </div>
@@ -167,3 +196,31 @@
     </form>
   
   </ng-template>
+
+  <ng-template #edit let-modal let-c="close" let-d="dismiss">
+    <div class="modal-header" style="background-color: rgb(45, 55, 76);">
+      <h6 class="modal-title text-white" id="modal-basic-title">Apply to {{generalPost?.profile.name}}'s Offer</h6>
+      <button type="button" class="close text-white" aria-label="Close" #closebutton (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form class="forms-sample" >
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="description">Motivation</label>
+            <textarea class="form-control" id="motivation" value="{{myapp?.motivation}}" name="emotivation"[(ngModel)]="emotivation" rows="4"></textarea>
+            </div>
+        <!-- <div class="form-group">
+          <label for="motivation"><b>Motivation&nbsp;&nbsp; </b> </label>
+          <textarea [(ngModel)]="motivation" name="motivation" size="20" type="text" class="form-control"
+            id="motivation"> </textarea>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark"(click)="editDemande()">Save</button>
+        
+      </div>
+    </form>
+  
+  </ng-template>
+
