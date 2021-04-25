@@ -17,6 +17,8 @@ export class CommentService {
           console.log(comment.created_at);
           
         console.log("we are now in the service we will parse to the controller")
+        console.log(comment.general_Post);
+        
         return this.Http.post<Comment>("http://localhost:3000/comment/add/", comment);
         }
     listCommentsByPub(id){

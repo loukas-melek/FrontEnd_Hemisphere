@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalDataSource } from 'ng2-smart-table';
 import { SmartTableData } from '../../@core/data/smart-table';
+import { Comment } from '../../apps/entities/Comment';
 import { Demande } from '../../apps/entities/demande';
+import { CommentService } from '../../services/CommentService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { ProfileService } from '../../services/ProfileService';
@@ -27,12 +29,56 @@ export class CompanyDetailsComponent implements OnInit {
   approuved="Approuved"
   declined="Declined"
   profilestudent:Profile;
-  constructor(private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
+  types=["PFE","PFA","STAGE","EMPLOIS","OTHER"];
+  categories=["INFORMATIQUE","FINANCE","MANAGEMENT","SECURITY","COMMERCE","ELECTRIQUE","ENERGITIQUE","MECANIQUE","CHIMIE","OTHER"];
+  locations=["Tunis","Bizert","HomeWorking","Online","BenArous","Siliana","SidBouzid","Monastir","Mednine","Ariana","Gafsa","Gabes","Sousse","Nabel","Manouba","Beja","Zaghouan","Kbili","Kasserine","Mahdia","Sfax","Karouane","Tozeur","Kef","Jendouba","Tatouine","Other"];
+  comms=new Array<Comment>();
+  comentaire=new Comment;
+  comm: string;
+  count;
+  
+  constructor(private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
   }
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.getoffer();
     this.listdemandes();
+  }
+  editOffer(){
+    console.log(this.generalPost);
+    
+    let pub=this.generalPost;
+    if(this.title!=undefined){
+      pub.offertasksolution.title=this.title;
+    }
+    if(this.poste!=undefined){
+      pub.offertasksolution.poste=this.poste;
+    }
+    if(this.location!=undefined){
+      pub.offertasksolution.location=this.location;
+    }
+    if(this.nofstudent!=undefined){
+      pub.offertasksolution.studentNumber=this.nofstudent;
+    }
+    if(this.type!=undefined){
+      pub.offertasksolution.type=this.type;
+    }
+    if(this.categorie!=undefined){
+      pub.offertasksolution.categorie=this.categorie;
+    }
+    if(this.description!=undefined){
+      pub.offertasksolution.description=this.description;
+    }
+    if(this.cost!=undefined){
+      pub.offertasksolution.cost=this.cost;
+    }
+    console.log(pub);
+    this.generalPostService.updatePub(pub.id,pub).subscribe(res=>{
+      console.log(res);
+      
+    })
+    this.reloadPage();
+
   }
   checkSupervision(){
     console.log("we try it here!!")
@@ -47,6 +93,24 @@ export class CompanyDetailsComponent implements OnInit {
       event.confirm.reject();
     }
   }
+ 
+  addComment(){
+    console.log(this.comm);
+    
+    console.log("Wheeree in ");
+      let pub=this.generalPost;
+    
+    this.comentaire.content=this.comm;
+    this.comentaire.profile=this.profile;
+    this.comentaire.general_Post=pub;
+    console.log(this.comentaire);
+    
+  this.commentService.createComment(this.comentaire).subscribe(res=>{
+    console.log(res);
+    console.log(this.comentaire);
+})
+this.ngOnInit();
+}
   getoffer(){
     this.userService.whoami().subscribe(res=>{
       this.user=res;
@@ -60,7 +124,14 @@ export class CompanyDetailsComponent implements OnInit {
     this.generalPostService.getPubById(this.id).subscribe(res=>{
       this.generalPost=res;
       console.log(this.generalPost);
-      this.generalPost.offertasksolution
+      this.commentService.listCommentsByPub(this.generalPost.id).subscribe(res=>{
+        this.comms=res;
+        console.log(this.comms);
+        this.count=this.comms.length
+        console.log(this.count);
+        
+      })
+
     
   })
 })
@@ -68,6 +139,8 @@ export class CompanyDetailsComponent implements OnInit {
 
   }
 acceptdemande(demande:Demande){
+  if(confirm("Are you sure to approuve "+demande.profile.name+" for this job ? ")) {
+    console.log("Implement delete functionality here");
   console.log(demande.profile);
   
 this.demandeService.treatDemande(demande.id,1).subscribe(res=>{
@@ -75,6 +148,7 @@ this.demandeService.treatDemande(demande.id,1).subscribe(res=>{
   
 })
 this.reloadPage();
+  }
 }
 reloadPage(): void {
   window.location.reload();
@@ -97,13 +171,17 @@ declinedemande(demande:Demande){
   }
 
   deleteoffer(){
-  let pub = this.generalPost;
+    if(confirm("Are you sure to cancel your offer ? ")) {
+      console.log("Implement delete functionality here");
+      let pub = this.generalPost;
   console.log(pub);
   
   this.generalPostService.delete(pub.id).subscribe(res=>{
     console.log(res);
     this.router.navigate(['company/offers']);
   })
+    }
+  
   }
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' ,size:'lg'}).result.then((result) => {

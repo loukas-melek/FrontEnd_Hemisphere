@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { delay } from 'rxjs/operators';
+import { Comment } from '../../apps/entities/Comment';
 import { Demande } from '../../apps/entities/demande';
 import { GeneralPost } from '../../apps/entities/General_Post';
 import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Profile } from '../../apps/entities/Profile';
 import { User } from '../../apps/entities/user';
+import { CommentService } from '../../services/CommentService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { OfferService } from '../../services/OfferTaskSolutionService';
@@ -31,8 +33,13 @@ emotivation: string;
   found: boolean;
   test=false;
   myapp:Demande;
+ 
   appMenu = [ { title: 'Profile',icon: 'person-outline', }, { title: 'Settings',icon: 'settings-outline', },{ title: 'Log out',icon: 'log-out-outline', } ];
-  constructor(private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
+  comentaire=new Comment();
+  comms=new Array<Comment>();
+  comm: string;
+  count: number;
+  constructor(private commentService:CommentService,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
 
   ngOnInit(): void {
     this.getoffer();
@@ -45,6 +52,23 @@ emotivation: string;
    
    
   }
+  addComment(){
+    console.log(this.comm);
+    
+    console.log("Wheeree in ");
+      let pub=this.generalPost;
+    
+    this.comentaire.content=this.comm;
+    this.comentaire.profile=this.profile;
+    this.comentaire.general_Post=pub;
+    console.log(this.comentaire);
+    
+  this.commentService.createComment(this.comentaire).subscribe(res=>{
+    console.log(res);
+    console.log(this.comentaire);
+})
+this.ngOnInit();
+}
   getoffer(){
     this.userService.whoami().subscribe(res=>{
       this.user=res;
@@ -60,7 +84,7 @@ emotivation: string;
       console.log(this.generalPost);
       this.generalPost.offertasksolution
       
-      this.demandeService.listDemandeByPostId(this.generalPost.offertasksolution.id).subscribe(res=>{
+      this.demandeService.listDemandeByPostId(this.generalPost.id).subscribe(res=>{
          this.result=res;
          console.log("liste des demande pour cet offer");
          console.log(this.result);
@@ -83,6 +107,12 @@ emotivation: string;
        
        }
        })
+       this.commentService.listCommentsByPub(this.generalPost.id).subscribe(res=>{
+        this.comms=res;
+        console.log(this.comms);
+        this.count=this.comms.length
+        
+      })
       
     })
   })
@@ -90,10 +120,13 @@ emotivation: string;
 })
   }
   delete(){
+    if(confirm("Are you sure to cancel your application ? ")) {
+      console.log("Implement delete functionality here");
     this.demandeService.deleteOffer(this.myapp.id).subscribe(res=>{
       console.log(res);
       this.reloadPage();
     })
+  }
   }
   reloadPage(): void {
     window.location.reload();
@@ -143,8 +176,8 @@ emotivation: string;
     console.log(this.profile.id,"idusermotiv");
     d.profile = this.profile;
     d.isvalide=false;
-    d.offer_Task_Solution=this.generalPost.offertasksolution
-    console.log(d.offer_Task_Solution);
+    d.generalpost=this.generalPost
+    console.log(d.generalpost);
     
     console.log("dialog compo********");
     console.log(d);

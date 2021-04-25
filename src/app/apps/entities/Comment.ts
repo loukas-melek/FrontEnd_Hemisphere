@@ -1,15 +1,14 @@
-import { Post } from "./Post";
 import { GeneralPost } from "./General_Post";
-import { User } from "./user";
+import { Profile } from "./Profile";
 
 export class Comment { 
     id: number;
     content: string;
     created_at:Date;
     updated_at	:Date;
-    pub:GeneralPost;
+    general_Post:GeneralPost;
 ;
-    user:User;
+    profile:Profile;
     public constructor() {
      
      

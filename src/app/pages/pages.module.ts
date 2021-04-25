@@ -8,6 +8,8 @@ import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { LandingModule } from '../front/landing/landing.module';
+import { Landing2Component } from './landing2/landing2.component';
+import { Landing2Module } from './landing2/landing2.module';
 
 @NgModule({
   imports: [
@@ -17,6 +19,7 @@ import { LandingModule } from '../front/landing/landing.module';
     LandingModule,
     ECommerceModule,
     MiscellaneousModule,
+    Landing2Module
   ],
   declarations: [
     PagesComponent,

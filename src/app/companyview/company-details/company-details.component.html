@@ -108,19 +108,19 @@
                                                           <a href="#">{{demande.profile.email}}</a>
                                                       </td>
                                                       <td style="width: 20%;">
-                                                          <a (click)="openprofile(profile,demande.profile) " class="table-link text-warning">
+                                                          <a  (click)="openprofile(profile,demande.profile) " class="table-link text-warning">
                                                               <span class="fa-stack">
                                                                   <i class="fa fa-square fa-stack-2x"></i>
                                                                   <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                                               </span>
                                                           </a>
-                                                          <a (click)="acceptdemande(demande)" class="table-link text-info">
+                                                          <a *ngIf="demande.status!=1" (click)="acceptdemande(demande)" class="table-link text-info">
                                                               <span class="fa-stack">
                                                                   <i class="fa fa-square fa-stack-2x"></i>
                                                                   <i class="fas fa-check fa-stack-1x fa-inverse"></i>
                                                               </span>
                                                           </a>
-                                                          <a (click)="declinedemande(demande)" class="table-link danger">
+                                                          <a *ngIf="demande.status!=2" (click)="declinedemande(demande)" class="table-link danger">
                                                               <span class="fa-stack">
                                                                   <i class="fa fa-square fa-stack-2x"></i>
                                                                   <i class="fas fa-times fa-stack-1x fa-inverse"></i>
@@ -211,15 +211,15 @@
             <!-- end col -->
             <div class="col-lg-4">
                 <div class="card-box">
-                    <h4 class="header-title m-b-30">Comments (5)</h4>
+                    <h4 class="header-title m-b-30">Comments ({{count}})</h4>
                     <div>
-                        <div class="media m-b-20">
+                        <div class="media m-b-20" *ngFor="let comm of comms">
                             <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{comm.profile.profilePicUrl}}"></a>
                             </div>
                             <div class="media-body">
-                                <h5 class="mt-0">Maxine Kennedy</h5>
-                                <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a></div>
+                                <h5 class="mt-0">{{comm.profile.name}} {{comm.profile.lastname}}</h5>
+                                <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> {{comm.content}}</p><a href="" class="text-success font-13">Reply</a></div>
                         </div>
                         <div class="media m-b-20">
                             <div class="d-flex mr-3">
@@ -238,7 +238,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="media m-b-20">
+                        <!-- <div class="media m-b-20">
                             <div class="d-flex mr-3">
                                 <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
                             </div>
@@ -253,17 +253,19 @@
                             <div class="media-body">
                                 <h5 class="mt-0">Erick Loper</h5>
                                 <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Maxine</a> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a></div>
-                        </div>
+                        </div> -->
                         <div class="media m-b-20">
                             <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{generalPost?.profile.profilePicUrl}}"></a>
                             </div>
+                            <form (ngSubmit)="addComment()">
                             <div class="media-body">
-                                <input type="text" class="form-control input-sm" placeholder="Some text value...">
+                                <input type="text" [(ngModel)]="comm" name="comm" id="comm" class="form-control input-sm" placeholder="Some text value...">
                                 <div class="mt-2 text-right">
                                     <button type="submit" class="btn btn-sm btn-custom waves-effect waves-light">Send</button>
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -288,43 +290,43 @@
   <span aria-hidden="true">&times;</span>
   </button>
   </div>
-  <form class="forms-sample"   >
+  <form class="forms-sample"  (ngSubmit)="editOffer()" >
   <div class="modal-body" >
   
   <table ><tr><td style="padding-right: 40px;">
   <div class="form-group">
   <label for="title">Title</label>
-  <input type="text" class="form-control"[(ngModel)]="title" name="title" id="title" placeholder="Title">
+  <input type="text" class="form-control"[(ngModel)]="title" value="{{generalPost.offertasksolution.title}}" name="title" id="title" placeholder="Title">
   </div></td><td style="padding-right: 40px;">
   <div class="form-group">
   <label for="poste">Poste</label>
-  <input type="text" style="width: 200px;" name="poste" class="form-control"[(ngModel)]="poste" id="poste" placeholder="Poste">
+  <input type="text" style="width: 200px;" name="poste"value="{{generalPost.offertasksolution.poste}}" class="form-control"[(ngModel)]="poste" id="poste" placeholder="Poste">
   </div>
 </td>
   <td>
   <div class="form-group">
   <label for="nofstune">Number of student</label>
-  <input type="number"  style="width: 200px;" name="nofstudent" [(ngModel)]="nofstudent" class="form-control" id="nofstudent" >
+  <input type="number"  style="width: 200px;" name="nofstudent"value="{{generalPost.offertasksolution.studentNumber}}" [(ngModel)]="nofstudent" class="form-control" id="nofstudent" >
   </div></td>
   </tr>
   <tr>
   <td style="padding-right: 40px;">
   <div class="form-group">
   <label for="location">Location</label>
-  <select style="width: 80%;" class="form-control"name="location" [(ngModel)]="location" id="loc">
+  <select style="width: 80%;" class="form-control"name="location"value="{{generalPost.offertasksolution.location}}" [(ngModel)]="location" id="loc">
   <option *ngFor="let loc of locations">{{loc}}</option>
   </select>
   </div></td>
   <td style="padding-right: 40px;">
   <div class="form-group">
   <label for="type">Type</label>
-  <select class="form-control" name="type" id="type" [(ngModel)]="type">
+  <select class="form-control" name="type" id="type"value="{{generalPost.offertasksolution.type}}" [(ngModel)]="type">
   <option *ngFor="let ty of types">{{ty}}</option>
   </select>
   </div></td><td>
   <div class="form-group">
   <label for="categorie">Categorie</label>
-  <select class="form-control" name="categorie" id="categorie"[(ngModel)]="categorie">
+  <select class="form-control" name="categorie"value="{{generalPost.offertasksolution.categorie}}" id="categorie"[(ngModel)]="categorie">
   <option *ngFor="let cat of categories">{{cat}}</option>
   
   </select>
@@ -348,60 +350,24 @@
   </label> 
   
   
-  <!-- don't include this please  -->
-  <!-- <label >Membership</label>
-  <div >
-  <div class="form-check">
-  <label class="form-check-label">
-  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
-  Free
-  <i class="input-helper"></i>
-  </label>
-  </div>
-  </div>
-  <div>
-  <div class="form-check">
-  <label class="form-check-label">
-  <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
-  Professional
-  <i class="input-helper"></i>
-  </label>
-  </div>
-  </div> -->
-  
-  <!-- inculude this -->
+
   </div>
   </div>
   </td>
   <td *ngIf="checkSupervision()">
   <div class="form-group">
   <label for="cost">Cost Of Supervision</label>
-  <input type="number"[(ngModel)]="cost" name="cost" class="form-control" id="cost" >
+  <input type="number"[(ngModel)]="cost" name="cost"value="{{generalPost.offertasksolution.cost}}" class="form-control" id="cost" >
   </div>
   </td>
   </tr>
-  <!-- <tr><td colspan="3">
-  <div class="form-group">
-  <label>Upload File</label>
-  <input type="file" name="img[]" class="file-upload-default">
-  <div class="input-group col-xs-12">
-  <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-  <span class="input-group-append">
-  <button class="file-upload-browse btn btn-gradient-success" type="button">Upload</button>
-  </span>
-  </div>
-  </div></td></tr> -->
-  <!-- <tr><td style="padding-right: 40px;">
-  <div class="form-group">
-  <label for="cname">Company Name</label>
-  <input type="text" [(ngModel)]="cname" class="form-control" id="cname" placeholder="Company Name">
-  </div></td>  -->
+ 
   
   <tr>
   <td colspan="3">
   <div class="form-group">
   <label for="description">Description</label>
-  <textarea class="form-control" id="description"name="description"[(ngModel)]="description" rows="4"></textarea>
+  <textarea class="form-control" id="description"name="description"[(ngModel)]="description"value="{{generalPost.offertasksolution.description}}" rows="4"></textarea>
   </div>
 </td></tr></table>
   
@@ -416,32 +382,6 @@
   </ng-template>
 
 
-  <ng-template #edit let-modal let-c="close" let-d="dismiss">
-    <div class="modal-header" style="background-color: rgb(45, 55, 76);">
-      <h6 class="modal-title text-white" id="modal-basic-title">Apply to {{generalPost?.profile.name}}'s Offer</h6>
-      <button type="button" class="close text-white" aria-label="Close" #closebutton (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <form class="forms-sample" >
-      <div class="modal-body">
-        <div class="form-group">
-            <label for="description">Motivation</label>
-            <textarea class="form-control" id="motivation" value="{{myapp?.motivation}}" name="emotivation"[(ngModel)]="emotivation" rows="4"></textarea>
-            </div>
-        <!-- <div class="form-group">
-          <label for="motivation"><b>Motivation&nbsp;&nbsp; </b> </label>
-          <textarea [(ngModel)]="motivation" name="motivation" size="20" type="text" class="form-control"
-            id="motivation"> </textarea>
-        </div> -->
-      </div>
-      <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-dark"(click)="editDemande()">Save</button>
-        
-      </div>
-    </form>
-  
-  </ng-template>
 
   <ng-template #profile let-modal let-c="close" let-d="dismiss">
     <div class="modal-header" style="background-color: rgb(45, 55, 76);">

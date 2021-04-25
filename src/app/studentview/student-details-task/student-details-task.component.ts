@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Comment } from '../../apps/entities/Comment';
 
 import { Demande } from '../../apps/entities/demande';
 import { GeneralPost } from '../../apps/entities/General_Post';
 import { Profile } from '../../apps/entities/Profile';
 import { User } from '../../apps/entities/user';
+import { CommentService } from '../../services/CommentService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { ProfileService } from '../../services/ProfileService';
@@ -22,12 +24,18 @@ export class StudentDetailsTaskComponent implements OnInit {
   closeResult;
   user:User
   motivation: string;
-    profile: Profile
+    profile=new  Profile();
     result=new Array<Demande>()
     submitted: boolean;
     found: boolean;
     test=false;
-    constructor(private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
+    emotivation
+  myapp: Demande;
+  comentaire=new Comment();
+  comms=new Array<Comment>();
+  comm: string;
+  count;
+    constructor(private commentService:CommentService,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
   
     ngOnInit(): void {
       this.getoffer();
@@ -39,6 +47,36 @@ export class StudentDetailsTaskComponent implements OnInit {
      console.log(this.result);
      
      
+    }
+    addComment(){
+      console.log(this.comm);
+      
+      console.log("Wheeree in ");
+        let pub=this.generalPost;
+      
+      this.comentaire.content=this.comm;
+      this.comentaire.profile=this.profile;
+      this.comentaire.general_Post=pub;
+      console.log(this.comentaire);
+      
+    this.commentService.createComment(this.comentaire).subscribe(res=>{
+      console.log(res);
+      console.log(this.comentaire);
+  })
+  this.ngOnInit();
+  }
+    editDemande(){
+      let newd=this.myapp;
+      newd.motivation=this.emotivation;
+  
+      this.demandeService.updateDemande(this.myapp.id,newd).subscribe(res=>{
+        console.log(res);
+        this.reloadPage();
+        
+      })
+    }
+    reloadPage(): void {
+      window.location.reload();
     }
     getoffer(){
       this.userService.whoami().subscribe(res=>{
@@ -55,7 +93,7 @@ export class StudentDetailsTaskComponent implements OnInit {
         console.log(this.generalPost);
         this.generalPost.offertasksolution
         
-        this.demandeService.listDemandeByPostId(this.generalPost.offertasksolution.id).subscribe(res=>{
+        this.demandeService.listDemandeByPostId(this.generalPost.id).subscribe(res=>{
            this.result=res;
            console.log("liste des demande pour cet offer");
            console.log(this.result);
@@ -63,6 +101,9 @@ export class StudentDetailsTaskComponent implements OnInit {
             console.log("dkhalna lel foreach lena");
             console.log(demande);
             if(demande.profile.id==this.profile.id){
+              this.myapp=demande
+              console.log(this.myapp);
+              
               console.log("existss !!!");
               this.found=true;
               console.log(this.found);
@@ -75,6 +116,11 @@ export class StudentDetailsTaskComponent implements OnInit {
          
          }
          })
+         this.commentService.listCommentsByPub(this.generalPost.id).subscribe(res=>{
+          this.comms=res;
+          console.log(this.comms);
+          this.count=this.comms.length
+        })
         
       })
     })
@@ -116,8 +162,8 @@ export class StudentDetailsTaskComponent implements OnInit {
       console.log(this.profile.id,"idusermotiv");
       d.profile = this.profile;
       d.isvalide=false;
-      d.offer_Task_Solution=this.generalPost.offertasksolution
-      console.log(d.offer_Task_Solution);
+      d.generalpost=this.generalPost
+      console.log(d.generalpost);
       
       console.log("dialog compo********");
       console.log(d);
@@ -133,6 +179,7 @@ export class StudentDetailsTaskComponent implements OnInit {
       )
       window.alert("Application done with success !")
         }
+        this.reloadPage()
         // this.modalService.dismissAll();
      
         //this.router.navigate(['projects/details/',this.d.offer.id]);

@@ -16,6 +16,7 @@ export class GeneralPostService {
         console.log("we are now in the service we will parse to the controller")
         return this.Http.post<GeneralPost>("http://localhost:3000/pub/add", pub);
         }
+    
     getPubById(id){
       return this.Http.get<GeneralPost>(this.urlPub+'/'+id);
     }
