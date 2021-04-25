@@ -41,6 +41,9 @@ export class CompanyTasksComponent implements OnInit {
      this.bringmylist();
     
   }
+  getOffer(id) {
+    this.router.navigate(['company/detail' + '/' + id]);
+    }
   filtrer(location,categorie){
   
     let   retour=new Array<GeneralPost>();

@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { LandingComponent } from './landing/landing.component';
+import { Landing2Component } from './landing2/landing2.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +18,10 @@ const routes: Routes = [{
     {
       path: 'landing',
       component: LandingComponent,
+    },
+    {
+      path: 'landing2',
+      component: Landing2Component,
     },
     // {
     //   path: 'iot-dashboard',

@@ -217,8 +217,8 @@ changeDate(date:Date):String{
 
   }
 
-  getOffer(myObj:any) {
-    this.router.navigate(['company/detail' + '/' + myObj['id']]);
+  getOffer(id) {
+    this.router.navigate(['company/detail' + '/' + id]);
     }
     isVide(list:Array<OfferTaskSolution>){
       if(list.length==0){
