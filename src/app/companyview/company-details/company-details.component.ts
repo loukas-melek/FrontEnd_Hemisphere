@@ -5,10 +5,12 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { SmartTableData } from '../../@core/data/smart-table';
 import { Comment } from '../../apps/entities/Comment';
 import { Demande } from '../../apps/entities/demande';
+import { Project } from '../../apps/entities/project';
 import { CommentService } from '../../services/CommentService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { ProfileService } from '../../services/ProfileService';
+import { ProjectService } from '../../services/projectService';
 import { UserService } from '../../services/userService';
 import { Profile } from 'c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/Profile';
 
@@ -34,15 +36,31 @@ export class CompanyDetailsComponent implements OnInit {
   locations=["Tunis","Bizert","HomeWorking","Online","BenArous","Siliana","SidBouzid","Monastir","Mednine","Ariana","Gafsa","Gabes","Sousse","Nabel","Manouba","Beja","Zaghouan","Kbili","Kasserine","Mahdia","Sfax","Karouane","Tozeur","Kef","Jendouba","Tatouine","Other"];
   comms=new Array<Comment>();
   comentaire=new Comment;
-  comm: string;
+  commmentaire: string;
   count;
-  
-  constructor(private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
+  project=new Project();
+  confirmedList=new Array<Profile>();
+  commnt: string;
+  constructor(private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
   }
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.getoffer();
     this.listdemandes();
+  }
+  addReply(comment:Comment){
+    let pub=this.generalPost;
+      
+      this.comentaire.content=this.commnt;
+      this.comentaire.profile=this.profile;
+      this.comentaire.id_comment=comment;
+      console.log(this.comentaire);
+      
+    this.commentService.createComment(this.comentaire).subscribe(res=>{
+      console.log(res);
+      console.log(this.comentaire);
+  })
+  this.ngOnInit();
   }
   editOffer(){
     console.log(this.generalPost);
@@ -95,12 +113,12 @@ export class CompanyDetailsComponent implements OnInit {
   }
  
   addComment(){
-    console.log(this.comm);
+    console.log(this.commmentaire);
     
     console.log("Wheeree in ");
       let pub=this.generalPost;
     
-    this.comentaire.content=this.comm;
+    this.comentaire.content=this.commmentaire;
     this.comentaire.profile=this.profile;
     this.comentaire.general_Post=pub;
     console.log(this.comentaire);
@@ -150,6 +168,32 @@ this.demandeService.treatDemande(demande.id,1).subscribe(res=>{
 this.reloadPage();
   }
 }
+ConfirmProject(){
+  this.id = this.route.snapshot.params['id'];
+  
+  this.projectService.getByGeneralPost(this.id).subscribe(res=>{
+    this.project=res;
+    console.log(this.project);
+    console.log(this.listDemandes);
+    this.listDemandes.forEach(element=>{
+      if(element.status==1){
+        this.confirmedList=[];
+        this.confirmedList.push(element.profile);
+      }
+      console.log(this.confirmedList);
+      this.projectService.ConfirmeProject(this.project.project_id,this.confirmedList).subscribe(res=>{
+        console.log(res);
+        
+      })
+      
+    })
+    
+    
+
+  })
+  
+}
+
 reloadPage(): void {
   window.location.reload();
 }

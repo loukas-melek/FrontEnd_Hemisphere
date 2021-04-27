@@ -15,7 +15,6 @@ export class OfferTaskSolution {
     TypeOffer:TypeOffer
     cost: number;
     poste:string;
-    ipath:string;
     location:LocationsOffer;
     competance:Competance
     public constructor() {

@@ -12,6 +12,7 @@ import { ResizableModule } from 'angular-resizable-element';
 
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
+import { WorkflowModule } from './workflow/workflow.module';
 
 
 
@@ -20,7 +21,8 @@ import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
- 
+    WorkflowModule,
+
     DashboardRoutingModule,
     ThemeModule,
     NbMenuModule,

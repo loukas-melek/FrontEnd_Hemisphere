@@ -33,11 +33,11 @@ emotivation: string;
   found: boolean;
   test=false;
   myapp:Demande;
- 
+ commnt
   appMenu = [ { title: 'Profile',icon: 'person-outline', }, { title: 'Settings',icon: 'settings-outline', },{ title: 'Log out',icon: 'log-out-outline', } ];
   comentaire=new Comment();
   comms=new Array<Comment>();
-  comm: string;
+  commennt: string;
   count: number;
   constructor(private commentService:CommentService,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
 
@@ -52,13 +52,14 @@ emotivation: string;
    
    
   }
+
   addComment(){
-    console.log(this.comm);
+    console.log(this.commennt);
     
     console.log("Wheeree in ");
       let pub=this.generalPost;
     
-    this.comentaire.content=this.comm;
+    this.comentaire.content=this.commennt;
     this.comentaire.profile=this.profile;
     this.comentaire.general_Post=pub;
     console.log(this.comentaire);
@@ -69,6 +70,21 @@ emotivation: string;
 })
 this.ngOnInit();
 }
+addReply(comment:Comment){
+  let pub=this.generalPost;
+    
+    this.comentaire.content=this.commnt;
+    this.comentaire.profile=this.profile;
+    this.comentaire.id_comment=comment;
+    console.log(this.comentaire);
+    
+  this.commentService.createComment(this.comentaire).subscribe(res=>{
+    console.log(res);
+    console.log(this.comentaire);
+})
+this.ngOnInit();
+}
+
   getoffer(){
     this.userService.whoami().subscribe(res=>{
       this.user=res;
@@ -167,6 +183,7 @@ this.ngOnInit();
       
     })
   }
+
   addDemande() {
     console.log(this.motivation);
     

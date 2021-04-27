@@ -1,0 +1,248 @@
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- meta -->
+                <div class="profile-user-box card-box bg-custom" style="background-image: url(assets/images/ill_header.png);">
+                    <div class="row">
+                        <div class="col-sm-6"><span class="float-left mr-3"><img src="{{profile?.profilePicUrl}}" alt="" class="thumb-lg rounded-circle"></span>
+                            <div class="media-body ">
+                                <h4 class="mt-1 mb-1 font-18">{{profile?.lastname}} {{profile?.name}}</h4>
+                                <p class="font-13 text-light">User Experience Specialist</p>
+                                <p class="text-light mb-0">{{profile?.city}}, {{profile?.location}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-right">
+                                <button type="button" (click)="getMySettings()" class="btn btn-light waves-effect"><i class="mdi mdi-account-settings-variant mr-1"></i> Edit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ meta -->
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-xl-4">
+                <!-- Personal-Information -->
+                <div class="card-box" >
+                    <h4 class="header-title mt-0">Personal Information</h4>
+                    <div class="panel-body">
+                        <p class="text-muted font-13">{{profile?.about}}</p>
+                        <hr>
+                        <div class="text-left">
+                            <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">{{profile?.lastname}} {{profile?.name}}</span></p>
+                            <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15">{{profile?.phone}}</span></p>
+                            <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15">{{user?.email}}</span></p>
+                            <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15">{{profile?.location}}</span></p>
+                            <p class="text-muted font-13"><strong>Languages :</strong> <span class="m-l-5"><span class="flag-icon flag-icon-us m-r-5 m-t-0" title="us"></span> <span>{{profile?.languages}}</span> </span>
+                                
+                            </p>
+                        </div>
+                        <ul class="social-links list-inline mt-4 mb-0">
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="card-box" >
+                    <h4 class="header-title mt-0 mb-3">Experiences</h4>
+                    <div class="">
+                        <div class="" *ngFor="let ex of experiences">
+                            <div class="text-right">
+                            <a (click)="deleteExperience(ex)" class="table-link text-danger ">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-times fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                            <a (click)="openModal(co,ex)"  class="table-link text-info">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="far fa-edit fa-stack-1x fa-inverse"></i>
+                                   
+                                </span>
+                            </a>
+                            </div>
+                            <h5 class="text-custom">{{ex.type}} : {{ex.title}}</h5>
+                            <p class="mb-0">Within {{ex.company}} Company</p>
+                            <p><b>{{formatDate(ex.created_at)}}</b></p>
+                            <p class="text-muted font-13 mb-0">{{ex.description}}.</p>
+                        </div>
+                        <hr>
+                        <!-- <div class="">
+                            <h5 class="text-custom">Senior Graphic Designer</h5>
+                            <p class="mb-0">coderthemes.com</p>
+                            <p><b>2007-2009</b></p>
+                            <p class="text-muted font-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div> -->
+                    </div>
+                    <div class="text-right">
+                        <button type="button" (click)="open(content)" class="btn btn-light waves-effect"><i class="mdi mdi-account-settings-variant mr-1"></i> Add New Experience</button>
+                    </div>
+                </div>
+                <div class="card-box">
+                    <h4 class="header-title mb-3">My Projects</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Project Name</th>
+                                    <th>Start Date</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Categorie</th>
+                                    <th>employer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let proj of myProjects">
+                                    <td>1</td>
+                                    <td>{{proj.title}}</td>
+                                    <td>{{proj.start_date}}</td>
+                                    <td>{{proj.end_date}}</td>
+                                    <td><span class="label label-info">Work in Progress</span></td>
+                                    <td>{{proj.project_category}}</td>
+                                    <td>{{proj.profile.name}}</td>
+                                </tr>
+                                <!-- <tr>
+                                    <td>2</td>
+                                    <td>Adminox Frontend</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span class="label label-success">Pending</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Adminox Admin</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span class="label label-pink">Done</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Adminox Frontend</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span class="label label-purple">Work in Progress</span></td>
+                                    <td>Coderthemes</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Adminox Admin</td>
+                                    <td>01/01/2015</td>
+                                    <td>07/05/2015</td>
+                                    <td><span class="label label-warning">Coming soon</span></td>
+                                    <td>Coderthemes</td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- container -->
+</div>
+<ng-template #content let-modal let-c="close" let-d="dismiss">
+    <div class="modal-header" style="background-color: rgb(45, 55, 76);">
+      <h6 class="modal-title text-white" id="modal-basic-title">Add Your Pro Experiences</h6>
+      <button type="button" class="close text-white" aria-label="Close" #closebutton (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form class="forms-sample" (ngSubmit)="createExperience()" >
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="description">Title</label>
+            <input type="text" class="form-control"[(ngModel)]="title" name="title" id="title" placeholder="Title">
+        </div>
+            <div class="form-group">
+                <label for="description">Company</label>
+                <input type="text" class="form-control"[(ngModel)]="company" name="company" id="company" placeholder="company">
+                </div>
+        
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select class="form-control" name="type" id="type" [(ngModel)]="type">
+                <option *ngFor="let ty of types">{{ty}}</option>
+                </select>
+                </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control"[(ngModel)]="date" name="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description"name="description"[(ngModel)]="description" rows="4"></textarea>
+                    </div>
+        <!-- <div class="form-group">
+          <label for="motivation"><b>Motivation&nbsp;&nbsp; </b> </label>
+          <textarea [(ngModel)]="motivation" name="motivation" size="20" type="text" class="form-control"
+            id="motivation"> </textarea>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+        <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+        <button id="btn-n-add" class="btn btn-info" >Add</button>
+        </div>
+    </form>
+  
+  </ng-template>
+  <ng-template #co let-modal let-c="close" let-d="dismiss">
+    <div class="modal-header" style="background-color: rgb(45, 55, 76);">
+      <h6 class="modal-title text-white" id="modal-basic-title">Edit Your Pro Experiences</h6>
+      <button type="button" class="close text-white" aria-label="Close" #closebutton (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form class="forms-sample" [formGroup]="edit" (ngSubmit)="editExperience()" >
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="description">Title</label>
+            <input type="text" formControlName="titleE" class="form-control" name="titleE" id="titleE" placeholder="Title">
+        </div>
+            <div class="form-group">
+                <label for="description">Company</label>
+                <input type="text"formControlName="companyE" class="form-control" name="companyE" id="companyE" placeholder="company">
+                </div>
+        
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select class="form-control"formControlName="typeE" name="typeE" id="typeE" >
+                <option *ngFor="let ty of typesE">{{ty}}</option>
+                </select>
+                </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date"formControlName="dateE" class="form-control" name="dateE" id="dateE">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control"formControlName="descriptionE" id="descriptionE"name="descriptionE" rows="4"></textarea>
+                    </div>
+        <!-- <div class="form-group">
+          <label for="motivation"><b>Motivation&nbsp;&nbsp; </b> </label>
+          <textarea [(ngModel)]="motivation" name="motivation" size="20" type="text" class="form-control"
+            id="motivation"> </textarea>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+        <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+        <button id="btn-n-add" class="btn btn-info" >Add</button>
+        </div>
+    </form>
+  
+  </ng-template>

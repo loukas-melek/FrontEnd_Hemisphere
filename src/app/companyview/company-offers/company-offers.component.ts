@@ -6,6 +6,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralPost } from '../../apps/entities/General_Post';
 import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Profile } from '../../apps/entities/Profile';
+import { Project } from '../../apps/entities/project';
 import { User } from '../../apps/entities/user';
 import { TokenStorageService } from '../../auth/authentication/services/token-storage.service';
 import { GeneralPostService } from '../../services/generalpostService';
@@ -79,7 +80,6 @@ export class CompanyOffersComponent implements OnInit {
      console.log("just testing the toogle value");
      console.log(this.supervised);
      offer.categorie=this.categorie
-     offer.ipath=this.profile.profilePicUrl;
      offer.title=this.title;
      offer.type=0;
      offer.TypeOffer=this.type;
@@ -104,6 +104,7 @@ export class CompanyOffersComponent implements OnInit {
      this.offerService.createOfferTaskSolution(offer,this.profile.id).subscribe(
        res=>{
          console.log(res);
+         
          this.modalService.dismissAll();
      this.ngOnInit();
        }
@@ -216,7 +217,7 @@ changeDate(date:Date):String{
 
 
   }
-
+ 
   getOffer(id) {
     this.router.navigate(['company/detail' + '/' + id]);
     }

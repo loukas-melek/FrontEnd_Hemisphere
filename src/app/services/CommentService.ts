@@ -27,4 +27,7 @@ export class CommentService {
     numberComments(id){
       return this.Http.get<number>(this.urlPub+'/count/'+id);
     }
+    listReplies(id){
+      return this.Http.get<Comment[]>(this.urlPub+"/replies/"+id);
+    }
 }

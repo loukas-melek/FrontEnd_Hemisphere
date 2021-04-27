@@ -11,6 +11,7 @@ export class Demande {
     bidprice:number;
     deliverytime:string;
     isvalide:boolean;
+    status:number;
     public constructor() {
     }
 }

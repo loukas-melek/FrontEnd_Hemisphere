@@ -1,12 +1,118 @@
-<div class="middle">
-    <h1 >COMING SOON</h1>
-    <h4 > IN </h4>
-    <hr>  
-    <div class="timer">
-      <br>
-      <span id="days" > {{daysToDday}} </span>d
-      <span id="hours" > {{hoursToDday}} </span>h
-      <span id="minutes" > {{minutesToDday}} </span>m
-      <span id="seconds" > {{secondsToDday}} </span>s
+<div class="example-container">
+  <button (click)="CreateSprint()">++</button>
+  <button (click)="CreateSprint()">Add Sprint</button>
+  <button (click)="ListSprint()">List Sprint</button>
+</div>
+{{sprint.length}}
+<div class="row">
+
+  <div  class="example-container">
+    <h2>To do</h2>
+  
+    <div
+    #parentList="cdkDropList"
+      cdkDropList
+      id="sprintTodo"
+      #todoList="cdkDropList"
+      [cdkDropListData]="sprintTodo"
+      [cdkDropListConnectedTo]="[doingList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div   *ngFor="let item of sprintTodo" cdkDrag>
+        <div class="example-box" (click)="open(sprint)">{{item.description}}</div>
+        <div #childList="cdkDropList"  id={{item.sprint_id}} #todotList="cdkDropList" [cdkDropListConnectedTo]="[doingList]" *ngIf="item.Sprint_Task" [cdkDropListData]="item.Sprint_Task"
+        cdkDropList  (cdkDropListDropped)="drop($event)">
+          <div *ngFor="let subItem of item.Sprint_Task" cdkDrag>    
+            <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div  class="example-container">
+    <h2>Doing</h2>
+  <div
+    #parentList="cdkDropList"
+      cdkDropList
+      id="sprintDoing"
+      #doingList="cdkDropList"
+      [cdkDropListData]="sprintDoing"
+      [cdkDropListConnectedTo]="[todoList,doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of sprintDoing" cdkDrag>
+        <ul><div (click)="open(sprint)" >{{item.description}}</div>
+        <div  #childList="cdkDropList" id={{item.sprint_id}} #doingtList="cdkDropList" [cdkDropListConnectedTo]="[todoList,doneList]" *ngIf="item.Sprint_Task" [cdkDropListData]="item.Sprint_Task"
+        cdkDropList  (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let subItem of item.Sprint_Task" cdkDrag>
+            <li>
+              <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
+          </li>
+          </div>
+        </div>
+        </ul>
+        </div>
+      
+      </div>
+    </div>
+ 
+
+  
+  <div class="example-container">
+    <h2>Done</h2>
+  
+    <div
+    #parentList="cdkDropList"
+      cdkDropList
+      id="sprintDone"
+      #doneList="cdkDropList"
+      [cdkDropListData]="sprintDone"
+      [cdkDropListConnectedTo]="[doingList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of sprintDone" cdkDrag>
+       <div (click)="open(sprint)">{{item.description}}</div>
+        <div #childList="cdkDropList" #donetList="cdkDropList" id={{item.sprint_id}} [cdkDropListConnectedTo]="[doingList]" *ngIf="item.Sprint_Task" [cdkDropListData]="item.Sprint_Task"
+        cdkDropList  (cdkDropListDropped)="drop($event)">
+          <div  *ngFor="let subItem of item.Sprint_Task" cdkDrag>
+              <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
+        </div>
+      </div>
+    
+    </div>
   </div>
+</div>
+</div>
+    
+
+
+<ng-template #sprint let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+  <div class="modal-header bg-info " style="background-image: url(assets/images/ill_header.png);">
+  <h4 class="modal-title text-white" id="modal-basic-title" >Sprint detail</h4>
+  <hr>
+  <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+  <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-footer">
+    <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+    <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+    <button id="btn-n-add" class="btn btn-info" >Add</button>
+    </div>
+  </ng-template>
+
+  <ng-template #task let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+    <div class="modal-header bg-info " style="background-image: url(assets/images/ill_header.png);">
+    <h4 class="modal-title text-white" id="modal-basic-title" >task detail</h4>
+    <hr>
+    <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-footer">
+      <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+      <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+      <button id="btn-n-add" class="btn btn-info" >Add</button>
+      </div>
+    </ng-template>

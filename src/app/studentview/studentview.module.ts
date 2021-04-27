@@ -15,11 +15,15 @@ import { ThemeModule } from '../@theme/theme.module';
 import { StudentDetailsOfferComponent } from './student-details-offer/student-details-offer.component';
 import { StudentDetailsTaskModule } from './student-details-task/student-details-task.module';
 import { StudentDetailsOfferModule } from './student-details-offer/student-details-offer.module';
+import { ProfileModule } from './profile/profile.module';
+import { ProfileSettingsModule } from './profile-settings/profile-settings.module';
 
 
 @NgModule({
   declarations: [StudentviewComponent],
   imports: [
+    ProfileModule,
+    ProfileSettingsModule,
     StudentDetailsOfferModule,
     StudentDetailsTaskModule,
     StudentOffersModule,
