@@ -16,11 +16,13 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { ThemeModule } from '../../@theme/theme.module';
 
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
   declarations: [WorkflowComponent],
   imports: [
+    DragDropModule,
     FormsModule,
     ThemeModule,
     NbCardModule,

@@ -7,7 +7,7 @@ export class Comment {
     created_at:Date;
     updated_at	:Date;
     general_Post:GeneralPost;
-;
+    id_comment:Comment;    
     profile:Profile;
     public constructor() {
      

@@ -128,77 +128,10 @@
                                                           </a>
                                                       </td>
                                                   </tr>
-                                                  <!-- <tr>
-                                                      <td>
-                                                          <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                                                          <a href="#" class="user-link">Full name 2</a>
-                                                          <span class="user-subhead">Admin</span>
-                                                      </td>
-                                                      <td>2013/08/12</td>
-                                                      <td class="text-center">
-                                                          <span class="label label-success">Active</span>
-                                                      </td>
-                                                      <td>
-                                                          <a href="#">marlon@brando.com</a>
-                                                      </td>
-                                                      <td style="width: 20%;">
-                                                          <a href="#" class="table-link  text-warning">
-                                                              <span class="fa-stack">
-                                                                  <i class="fa fa-square fa-stack-2x"></i>
-                                                                  <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                              </span>
-                                                          </a>
-                                                          <a href="#" class="table-link  text-info">
-                                                              <span class="fa-stack">
-                                                                  <i class="fa fa-square fa-stack-2x"></i>
-                                                                  <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                              </span>
-                                                          </a>
-                                                          <a href="#" class="table-link danger">
-                                                              <span class="fa-stack">
-                                                                  <i class="fa fa-square fa-stack-2x"></i>
-                                                                  <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                              </span>
-                                                          </a>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>
-                                                          <img src="https://bootdey.com/img/Content/user_2.jpg" alt="">
-                                                          <a href="#" class="user-link">Full name 3</a>
-                                                          <span class="user-subhead">Member</span>
-                                                      </td>
-                                                      <td>2013/08/12</td>
-                                                      <td class="text-center">
-                                                          <span class="label label-danger">inactive</span>
-                                                      </td>
-                                                      <td>
-                                                          <a href="#">marlon@brando.com</a>
-                                                      </td>
-                                                      <td style="width: 20%;">
-                                                          <a href="#" class="table-link  text-warning">
-                                                              <span class="fa-stack">
-                                                                  <i class="fa fa-square fa-stack-2x"></i>
-                                                                  <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                              </span>
-                                                          </a>
-                                                          <a href="#" class="table-link  text-info">
-                                                              <span class="fa-stack">
-                                                                  <i class="fa fa-square fa-stack-2x"></i>
-                                                                  <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                              </span>
-                                                          </a>
-                                                          <a href="#" class="table-link danger">
-                                                              <span class="fa-stack">
-                                                                  <i class="fa fa-square fa-stack-2x"></i>
-                                                                  <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                              </span>
-                                                          </a>
-                                                      </td>
-                                                  </tr> -->
                                               </tbody>
                                           </table>
                                       </div>
+                                      <button class="btn btn-success" (click)="ConfirmProject()"> Confirm the Project</button>
                                   </div>
                               </div>
                           </div>
@@ -214,14 +147,28 @@
                     <h4 class="header-title m-b-30">Comments ({{count}})</h4>
                     <div>
                         <div class="media m-b-20" *ngFor="let comm of comms">
+                            <div *ngIf="comm.general_Post!=null">
                             <div class="d-flex mr-3">
                                 <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{comm.profile.profilePicUrl}}"></a>
                             </div>
                             <div class="media-body">
                                 <h5 class="mt-0">{{comm.profile.name}} {{comm.profile.lastname}}</h5>
-                                <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> {{comm.content}}</p><a href="" class="text-success font-13">Reply</a></div>
+                                <p class="font-13  mb-0"> {{comm.content}}</p>
+                                <input type="text" [(ngModel)]="commnt" name="commnt" id="commnt" class="form-control input-sm" placeholder="Some text value...">
+                                <a (click)="addReply(comm)" class="text-success font-13">Reply</a>
+                            </div>
                         </div>
-                        <div class="media m-b-20">
+                                <div class="media m-t-20 m-b-20" *ngIf="comm.id_comment!=null">
+                                    <div class="d-flex mr-3">
+                                        <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{comm.profile.profilePicUrl}}"></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mt-0">{{comm.profile.name}} {{comm.profile.lastname}}</h5>
+                                        <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Doyle</a> {{comm.content}}.</p></div>
+                                </div>
+                            
+                        </div>
+                        <!-- <div class="media m-b-20">
                             <div class="d-flex mr-3">
                                 <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar2.png"></a>
                             </div>
@@ -237,7 +184,7 @@
                                         <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Doyle</a> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="media m-b-20">
                             <div class="d-flex mr-3">
                                 <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
@@ -260,7 +207,7 @@
                             </div>
                             <form (ngSubmit)="addComment()">
                             <div class="media-body">
-                                <input type="text" [(ngModel)]="comm" name="comm" id="comm" class="form-control input-sm" placeholder="Some text value...">
+                                <input type="text" [(ngModel)]="commmentaire" name="commmentaire" id="commmentaire" class="form-control input-sm" placeholder="Some text value...">
                                 <div class="mt-2 text-right">
                                     <button type="submit" class="btn btn-sm btn-custom waves-effect waves-light">Send</button>
                                 </div>

@@ -30,11 +30,15 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppMaterialModule } from '../app-material/app-material/app-material.module';
 import { CompanyDetailsModule } from './company-details/company-details.module';
+import { ProfileModule } from './profile/profile.module';
+import { ProfileSettingsModule } from './profile-settings/profile-settings.module';
 
 
 @NgModule({
   declarations: [CompanyviewComponent],
   imports: [
+    ProfileModule,
+    ProfileSettingsModule,
     CompanyDetailsModule,
     CommonModule,
     CompanyOffersModule,

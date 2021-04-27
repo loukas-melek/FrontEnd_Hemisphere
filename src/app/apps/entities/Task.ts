@@ -1,19 +1,17 @@
-import { Competance } from "./Competance";
-import { User } from "./user";
+import { Sprint } from "./sprint";
+import { Status } from "./Status";
 
 export class Task { 
-    id: number;
-    title: string;
-    description: string;
-    categorie: string;
-    isSupervised: number;
-    cost: number;
-    date: Date;
-    location:string;
-    competance:Competance
+    task_id: number;
+    task_type: Date;
+    status:string;
+    duration:number;
+    priority:number;
+    description:string;
+    is_done:number;
+    sprint:Sprint;
     public constructor() {
      
      
      }
   }
-  

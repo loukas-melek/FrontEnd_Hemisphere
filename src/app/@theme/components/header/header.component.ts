@@ -123,21 +123,44 @@ profile:Profile;
     return this.router.url.includes("/front");
 }
 onItemSelection( title ) {
+  this.userrService.whoami().subscribe(res=>{
+    this.userr=res;
   if ( title === 'Log out' ) {
     // Do something on Log out
     
     console.log('Log out Clicked ')
     this.router.navigate(['auth/logout']);
-  } else if ( title === 'Profile' ) {
-    // Do something on Profile
-    console.log('Profile Clicked ')
-    this.router.navigate(['front/profile']);
+  } 
+  else if ( title === 'Profile' ) {
+    if(this.userr.roles.toString()=="ROLE_STUDENT"){
+      console.log('Profile Clicked ')
+      this.router.navigate(['student/profile']);
+    }
+    if(this.userr.roles.toString()=="ROLE_COMPANY"){
+      console.log('Profile Clicked ')
+      this.router.navigate(['company/profile']);
+    } 
+    if(this.userr.roles.toString()=="ROLE_ADMIN"){
+      console.log('Profile Clicked ')
+      this.router.navigate(['front/profile']);
+    }
+    
   }
   else if ( title === 'Settings' ) {
-    // Do something on Profile
-    console.log('Settings Clicked ')
-    this.router.navigate(['front/profile/settings']);
+    if(this.userr.roles.toString()=="ROLE_STUDENT"){
+      console.log('settings Clicked ')
+      this.router.navigate(['student/profile/settings']);
+    }
+    if(this.userr.roles.toString()=="ROLE_COMPANY"){
+      console.log('settings Clicked ')
+      this.router.navigate(['company/profile/settings']);    
+    } 
+    if(this.userr.roles.toString()=="ROLE_ADMIN"){
+      console.log('settings Clicked ')
+      this.router.navigate(['front/settings']);
+    }
   }
+})
 }
 reloadPage(): void {
   window.location.reload();
@@ -148,10 +171,10 @@ RedirectMe(){
     console.log(this.userr.roles);
     this.myRole=this.userr.roles.toString()
     console.log(this.myRole);
-    if(this.myRole.includes("STUDENT")){
+    if(this.myRole.includes("ROLE_STUDENT")){
       this.router.navigate(['student/workflow']);
     }else
-    if(this.myRole.includes("COMPANY")){
+    if(this.myRole.includes("ROLE_COMPANY")){
       this.router.navigate(['company/workflow']);
     }else
     if(this.myRole=="ROLE_ADMIN"){
