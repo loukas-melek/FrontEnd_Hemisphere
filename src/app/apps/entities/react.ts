@@ -1,7 +1,6 @@
 import { Post } from "./Post";
 import { User } from "./user";
 import { Comment } from "./Comment";
-import { Pub } from "./General_Post";
 
 
 export class React { 

@@ -9,6 +9,8 @@ import { Task } from '../../apps/entities/Task';
 import { SprintService } from '../../services/SprintSerivce';
 import { Sprint_TaskService } from '../../services/TaskService';
 import { Project } from '../../apps/entities/project';
+import { ProjectDto } from '../../apps/entities/ProjectDto';
+import { SprintDto } from '../../apps/entities/SprintDto';
 
 
 @Component({
@@ -30,12 +32,12 @@ export class WorkflowComponent implements OnInit {
   public hoursToDday;
   public daysToDday;
 
-  sprint:Sprint[];
+  sprint:SprintDto[];
   tasks:Task[];
   sprints:Sprint;
-  sprintTodo:Sprint[];
-  sprintDone:Sprint[];
-  sprintDoing:Sprint[];
+  sprintTodo:SprintDto[];
+  sprintDone:SprintDto[];
+  sprintDoing:SprintDto[];
   closeResult: string;
 
   
@@ -53,18 +55,13 @@ constructor(private modalService: NgbModal,private SprintSer:SprintService,priva
 }
 
 
-
 CreateSprint(){
-  
-  
   this.sprintDone= [ ]; 
   this.sprintTodo= [ ]; 
   this.sprintDoing= [ ]; 
 
-  
   this.sprint.forEach((e,ind) => {
-    
-    e.Sprint_Task.forEach(t => {
+    e.sprintsTask.forEach(t => {
       if(t.status=="TODO")
         {
           let test = 0;
@@ -73,7 +70,7 @@ CreateSprint(){
             if(s.sprint_id==e.sprint_id)
             {
               let test1 = 0;
-              s.Sprint_Task.forEach(ss => 
+              s.sprintsTask.forEach(ss => 
               {
                 if(ss.task_id==t.task_id)
                 {
@@ -82,7 +79,7 @@ CreateSprint(){
               }); 
               if(test1==0)
               {
-                this.sprintTodo[index].Sprint_Task.push(t);   
+                this.sprintTodo[index].sprintsTask.push(t);   
               }
               test = 1
             }   
@@ -90,11 +87,11 @@ CreateSprint(){
           }); 
           if (test == 0)
           {
-            let spr = new Sprint() ;
+            let spr = new SprintDto() ;
             spr.sprint_id = e.sprint_id ;
             spr.description = e.description ;
-            spr.Sprint_Task=[];
-            spr.Sprint_Task.push(t);
+            spr.sprintsTask=[];
+            spr.sprintsTask.push(t);
             this.sprintTodo.push(spr);
 
           }
@@ -108,7 +105,7 @@ CreateSprint(){
             if(s.sprint_id==e.sprint_id)
             {
               let test1 = 0;
-              s.Sprint_Task.forEach(ss => 
+              s.sprintsTask.forEach(ss => 
               {
                 if(ss.task_id==t.task_id)
                 {
@@ -117,18 +114,18 @@ CreateSprint(){
               }); 
               if(test1==0)
               {
-                this.sprintDoing[index].Sprint_Task.push(t); 
+                this.sprintDoing[index].sprintsTask.push(t); 
               }
               test = 1
             }  
           }); 
           if (test == 0)
           {
-            let spr = new Sprint() ;
+            let spr = new SprintDto() ;
             spr.sprint_id = e.sprint_id ;
             spr.description = e.description ;
-            spr.Sprint_Task=[];
-            spr.Sprint_Task.push(t);
+            spr.sprintsTask=[];
+            spr.sprintsTask.push(t);
             this.sprintDoing.push(spr);
           }
         }
@@ -142,7 +139,7 @@ CreateSprint(){
             if(s.sprint_id==e.sprint_id)
             {
               let test1 = 0;
-              s.Sprint_Task.forEach((ss , index)=> 
+              s.sprintsTask.forEach((ss , index)=> 
               {
                 if(ss.task_id==t.task_id)
                 {
@@ -151,7 +148,7 @@ CreateSprint(){
               }); 
               if(test1==0)
               {
-                this.sprintDone[index].Sprint_Task.push(t); 
+                this.sprintDone[index].sprintsTask.push(t); 
               }
               test = 1
             }   
@@ -159,15 +156,16 @@ CreateSprint(){
           }); 
           if (test == 0)
           {
-            let spr = new Sprint() ;
+            let spr = new SprintDto() ;
             spr.sprint_id = e.sprint_id ;
             spr.description = e.description ;
-            spr.Sprint_Task=[];
-            spr.Sprint_Task.push(t);
+            spr.sprintsTask=[];
+            spr.sprintsTask.push(t);
             this.sprintDone.push(spr);
           }
         } 
     });
+  
   });  
   console.log("all:",this.sprint);
   console.log("Todo:",this.sprintTodo);
@@ -176,36 +174,30 @@ CreateSprint(){
 }
 ListSprint(){
   this.sprint= [ ];
-
   this.SprintSer.getall().subscribe(res=>{
-     let project=new Array <Project>()
+     let project=new Array <ProjectDto>()
     project=res
-    console.log(project);
-    
     project.forEach(e => {
-      this.sprint=e.sprints
-      console.log("all:",this.sprint);
+      if(e.project_id==1)
+      {
+        this.sprint=e.sprints
+        console.log("all:",this.sprint);
+        this.CreateSprint();
+      }
       });  
-    // let project=new Array <Project>()
-    // project=res
-    // this.sprint = project[0].sprintsTask;
      console.log(res);
-     
-  
- 
- 
 }); 
-  // this.SprintSer.listSprint().subscribe(res=>{
-  //    this.sprint = res;
-  //    this.sprint.forEach(e => {
+  //this.SprintSer.listSprint().subscribe(res=>{
+    // this.sprint = res;
+    //  this.sprint.forEach(e => {
       
-  //     this.Sprint_TaskSer.listSprint_TaskBySprint(e.sprint_id).subscribe(t=>{
-  //     e.Sprint_Task=t;  
-  //     });   
-  // });  
+    //   this.Sprint_TaskSer.listSprint_TaskBySprint(e.sprint_id).subscribe(t=>{
+    //   e.SprintsTask=t;  
+    //   });   
+ // });  
   
-//   console.log("all:",this.sprint);
-// }); 
+ 
+//}); 
  
 }
 
@@ -230,12 +222,21 @@ ListSprint(){
         {
           console.log('task todo > doing');
           this.sprint.forEach((e,index) => {
-            e.Sprint_Task.forEach((t,indexx) => {
+            e.sprintsTask.forEach((t,indexx) => {
               if(t.task_id==this.tasks[event.previousIndex].task_id)
                 {
                   console.log('push');
                   t.status="DOING";
-                  this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+                  let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  task.sprint.sprint_id=e.sprint_id;
+                  this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
                 } 
             });
           }); 
@@ -245,12 +246,28 @@ ListSprint(){
           console.log('task doing > todo');
 
           this.sprint.forEach((e,index) => {
-            e.Sprint_Task.forEach((t,indexx) => {
+            e.sprintsTask.forEach((t,indexx) => {
               if(t.task_id==this.tasks[event.previousIndex].task_id)
                 {
                   console.log('push');
                   t.status="TODO";
-                  this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+                  let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  console.log("ntestewwa");
+                  
+                  console.log(e.sprint_id);
+                  task.sprint.sprint_id=e.sprint_id;
+                  console.log("el id te3na");
+                  
+                  console.log(task.sprint.sprint_id);
+                  
+                  this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
                 } 
             });
           });       
@@ -261,12 +278,23 @@ ListSprint(){
           console.log('task done > doing');
 
           this.sprint.forEach((e,index) => {
-            e.Sprint_Task.forEach((t,indexx) => {
+            e.sprintsTask.forEach((t,indexx) => {
               if(t.task_id==this.tasks[event.previousIndex].task_id)
                 {
-                  console.log('push');
                   t.status="DOING";
-                  this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+                  let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  task.sprint.sprint_id=e.sprint_id;
+                  console.log('push');
+                  
+                  this.Sprint_TaskSer.updatetask(task).subscribe(res=>{console.log(res);
+                  });
                 } 
             });
           });   
@@ -276,12 +304,21 @@ ListSprint(){
           console.log('task doing > done');
 
           this.sprint.forEach((e,index) => {
-            e.Sprint_Task.forEach((t,indexx) => {
+            e.sprintsTask.forEach((t,indexx) => {
               if(t.task_id==this.tasks[event.previousIndex].task_id)
                 {
                   console.log('push');
                   t.status="DONE";
-                  this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+                  let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  task.sprint.sprint_id=e.sprint_id;
+                  this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
                 } 
             });
           });       
@@ -300,11 +337,20 @@ ListSprint(){
         this.sprint.forEach((e,index) => {
           if(e.sprint_id==this.sprints.sprint_id)
           {
-          e.Sprint_Task.forEach((t,indexx) => {
+          e.sprintsTask.forEach((t,indexx) => {
             if(t.status=="TODO")
             {
               t.status="DOING";
-              this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+              let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  task.sprint.sprint_id=e.sprint_id;
+              this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
              
           });
@@ -317,11 +363,20 @@ ListSprint(){
         this.sprint.forEach((e,index) => {
           if(e.sprint_id==this.sprints.sprint_id)
           {
-          e.Sprint_Task.forEach((t,indexx) => {
+          e.sprintsTask.forEach((t,indexx) => {
             if(t.status=="DOING")
             {
               t.status="TODO";
-              this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+              let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  task.sprint.sprint_id=e.sprint_id;
+              this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
                 
           });
@@ -334,12 +389,21 @@ ListSprint(){
         this.sprint.forEach((e,index) => {
           if(e.sprint_id==this.sprints.sprint_id)
           {
-          e.Sprint_Task.forEach((t,indexx) => {
+          e.sprintsTask.forEach((t,indexx) => {
             
             if(t.status=="DOING")
             { 
               t.status="DONE";
-              this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+              let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  task.sprint.sprint_id=e.sprint_id;
+              this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
           });
         }
@@ -351,11 +415,20 @@ ListSprint(){
         this.sprint.forEach((e,index) => {
           if(e.sprint_id==this.sprints.sprint_id)
           {
-          e.Sprint_Task.forEach((t,indexx) => {
+          e.sprintsTask.forEach((t,indexx) => {
             if(t.status=="DONE")
             { 
               t.status="DOING";
-                this.Sprint_TaskSer.updatetask(t).subscribe(res=>{});
+              let task= new Task();
+                  task.description=t.description
+                  task.duration=t.duration
+                  task.is_done=t.is_done
+                  task.priority=t.priority
+                  task.status=t.status;
+                  task.task_id=t.task_id;
+                  task.task_type=t.task_type;
+                  task.sprint.sprint_id=e.sprint_id;
+                this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
                 
           });

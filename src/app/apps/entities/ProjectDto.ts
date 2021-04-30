@@ -2,8 +2,10 @@ import { CategorieOffer } from "./CategorieOffer";
 import { GeneralPost } from "./General_Post";
 import { Profile } from "./Profile";
 import { Sprint } from "./sprint";
+import { SprintDto } from "./SprintDto";
+import { Task } from "./Task";
 
-export class Project { 
+export class ProjectDto{ 
     project_id: number;
     start_date: Date;
     end_date: Date;
@@ -11,10 +13,8 @@ export class Project {
     is_active:number;
     description:string;
     project_category:CategorieOffer;
-    profile:Profile;
-    update_at:Date;
-    created_at:Date;
-    generalpost:GeneralPost
+    sprints=new Array<SprintDto>() 
+
     public constructor() {
      
      

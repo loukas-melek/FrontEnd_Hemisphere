@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Sprint } from "../apps/entities/sprint";
 import { Task } from "../apps/entities/Task";
 
 
@@ -16,10 +17,13 @@ import { Task } from "../apps/entities/Task";
     return this.Http.get<Task[]>(this.url+"/task/"+id);
     }
 
-    updatetask(task:Task) {
-      return this.Http.put<Task>(this.url + '/' + task.task_id,task);
-      }
+  
+      updatetask(task:Task) {
 
+        
+        console.log(task);
+        return this.Http.put<Task>(this.url + '/' +task.task_id,task);
+        }
 
 
 }
