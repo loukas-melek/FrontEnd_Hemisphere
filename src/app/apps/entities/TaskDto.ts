@@ -1,7 +1,7 @@
 import { Sprint } from "./sprint";
 import { Status } from "./Status";
 
-export class Task { 
+export class TaskDto { 
     task_id: number;
     task_type: Date;
     status:string;
@@ -9,7 +9,6 @@ export class Task {
     priority:number;
     description:string;
     is_done:number;
-    sprint=new Sprint();
     public constructor() {
      
      

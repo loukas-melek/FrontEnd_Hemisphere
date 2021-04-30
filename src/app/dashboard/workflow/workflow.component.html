@@ -20,9 +20,9 @@
       (cdkDropListDropped)="drop($event)">
       <div   *ngFor="let item of sprintTodo" cdkDrag>
         <div class="example-box" (click)="open(sprint)">{{item.description}}</div>
-        <div #childList="cdkDropList"  id={{item.sprint_id}} #todotList="cdkDropList" [cdkDropListConnectedTo]="[doingList]" *ngIf="item.Sprint_Task" [cdkDropListData]="item.Sprint_Task"
+        <div #childList="cdkDropList"  id={{item.sprint_id}} #todotList="cdkDropList" [cdkDropListConnectedTo]="[doingList]" *ngIf="item.sprintsTask" [cdkDropListData]="item.sprintsTask"
         cdkDropList  (cdkDropListDropped)="drop($event)">
-          <div *ngFor="let subItem of item.Sprint_Task" cdkDrag>    
+          <div *ngFor="let subItem of item.sprintsTask" cdkDrag>    
             <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
           </div>
         </div>
@@ -43,9 +43,9 @@
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of sprintDoing" cdkDrag>
         <ul><div (click)="open(sprint)" >{{item.description}}</div>
-        <div  #childList="cdkDropList" id={{item.sprint_id}} #doingtList="cdkDropList" [cdkDropListConnectedTo]="[todoList,doneList]" *ngIf="item.Sprint_Task" [cdkDropListData]="item.Sprint_Task"
+        <div  #childList="cdkDropList" id={{item.sprint_id}} #doingtList="cdkDropList" [cdkDropListConnectedTo]="[todoList,doneList]" *ngIf="item.sprintsTask" [cdkDropListData]="item.sprintsTask"
         cdkDropList  (cdkDropListDropped)="drop($event)">
-        <div *ngFor="let subItem of item.Sprint_Task" cdkDrag>
+        <div *ngFor="let subItem of item.sprintsTask" cdkDrag>
             <li>
               <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
           </li>
@@ -73,9 +73,9 @@
       (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of sprintDone" cdkDrag>
        <div (click)="open(sprint)">{{item.description}}</div>
-        <div #childList="cdkDropList" #donetList="cdkDropList" id={{item.sprint_id}} [cdkDropListConnectedTo]="[doingList]" *ngIf="item.Sprint_Task" [cdkDropListData]="item.Sprint_Task"
+        <div #childList="cdkDropList" #donetList="cdkDropList" id={{item.sprint_id}} [cdkDropListConnectedTo]="[doingList]" *ngIf="item.sprintsTask" [cdkDropListData]="item.sprintsTask"
         cdkDropList  (cdkDropListDropped)="drop($event)">
-          <div  *ngFor="let subItem of item.Sprint_Task" cdkDrag>
+          <div  *ngFor="let subItem of item.sprintsTask" cdkDrag>
               <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Post } from "../apps/entities/Post";
 import { Profile } from "../apps/entities/Profile";
 import { Project } from "../apps/entities/project";
+import { ProjectDto } from "../apps/entities/ProjectDto";
 import { User } from "../apps/entities/user";
 import { UserService } from "./userService";
 
@@ -33,6 +34,6 @@ export class ProjectService {
         return this.Http.get<Project[]>(this.urlPub+"/student/"+id);
        }
        getall(){
-         return this.Http.get<Project[]>(this.urlPub+"/getall")
+         return this.Http.get<ProjectDto[]>(this.urlPub+"/getall")
        }
 }
