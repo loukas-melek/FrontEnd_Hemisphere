@@ -5,7 +5,10 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { NbMenuModule } from '@nebular/theme';
 import { DashboardComponent } from './dashboard.component';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MyoffersComponent } from './myoffers/myoffers.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResizableModule } from 'angular-resizable-element';
@@ -30,7 +33,9 @@ import { AppMaterialModule } from '../app-material/app-material/app-material.mod
 
 
 @NgModule({
+
   declarations: [DashboardComponent],
+
   imports: [
     WorkflowModule,
     ProjectsModule,
