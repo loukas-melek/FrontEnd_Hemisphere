@@ -28,12 +28,15 @@ export class ProjectService {
          return this.Http.post(this.urlPub+"/confirme/"+id,students);
        }
        getByGeneralPost(id){
-         return this.Http.get<Project>(this.urlPub+"/find/"+id);
+         return this.Http.get<ProjectDto>(this.urlPub+"/find/"+id);
        }
        findProjectByStudent(id){
-        return this.Http.get<Project[]>(this.urlPub+"/student/"+id);
+        return this.Http.get<ProjectDto[]>(this.urlPub+"/student/"+id);
        }
        getall(){
          return this.Http.get<ProjectDto[]>(this.urlPub+"/getall")
+       }
+       findbyProfileId(id){
+         return this.Http.get<ProjectDto[]>(this.urlPub+"/company/"+id);
        }
 }

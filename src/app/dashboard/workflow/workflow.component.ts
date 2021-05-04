@@ -11,6 +11,8 @@ import { Sprint_TaskService } from '../../services/TaskService';
 import { Project } from '../../apps/entities/project';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { SprintDto } from '../../apps/entities/SprintDto';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -31,6 +33,7 @@ export class WorkflowComponent implements OnInit {
   public minutesToDday;
   public hoursToDday;
   public daysToDday;
+  edit: FormGroup;
 
   sprint:SprintDto[];
   tasks:Task[];
@@ -41,9 +44,10 @@ export class WorkflowComponent implements OnInit {
   closeResult: string;
 
   
+  description;type;dateD: Date;dateF: Date;duration;priority;
   
  
-constructor(private modalService: NgbModal,private SprintSer:SprintService,private Sprint_TaskSer:Sprint_TaskService){
+constructor(private route:ActivatedRoute,private fb: FormBuilder,private modalService: NgbModal,private SprintSer:SprintService,private Sprint_TaskSer:Sprint_TaskService){
   this.sprint= [ ];
   this.tasks= [ ];
   this.sprintDoing= [ ]; 
@@ -55,7 +59,7 @@ constructor(private modalService: NgbModal,private SprintSer:SprintService,priva
 }
 
 
-CreateSprint(){
+LoadSprint(){
   this.sprintDone= [ ]; 
   this.sprintTodo= [ ]; 
   this.sprintDoing= [ ]; 
@@ -70,6 +74,7 @@ CreateSprint(){
             if(s.sprint_id==e.sprint_id)
             {
               let test1 = 0;
+              
               s.sprintsTask.forEach(ss => 
               {
                 if(ss.task_id==t.task_id)
@@ -95,6 +100,7 @@ CreateSprint(){
             this.sprintTodo.push(spr);
 
           }
+          
         }
 
         if(t.status=="DOING")
@@ -165,7 +171,10 @@ CreateSprint(){
           }
         } 
     });
-  
+    if(e.sprintsTask.length==0)
+    {
+      this.sprintTodo.push(e);
+    }
   });  
   console.log("all:",this.sprint);
   console.log("Todo:",this.sprintTodo);
@@ -177,12 +186,14 @@ ListSprint(){
   this.SprintSer.getall().subscribe(res=>{
      let project=new Array <ProjectDto>()
     project=res
+    console.log(this.route.snapshot.params['id']);
+    
     project.forEach(e => {
-      if(e.project_id==1)
+      if(e.project_id==this.route.snapshot.params['id'])
       {
         this.sprint=e.sprints
         console.log("all:",this.sprint);
-        this.CreateSprint();
+        this.LoadSprint();
       }
       });  
      console.log(res);
@@ -202,8 +213,10 @@ ListSprint(){
 }
 
   ngOnInit(): void {
-    this.CreateSprint();
-
+    this.ListSprint();
+    this.edit = this.fb.group({
+      sprint_id:[''],
+     });
     
   }
 
@@ -439,7 +452,7 @@ ListSprint(){
       }
 
       }
-      this.CreateSprint();
+      this.LoadSprint()
   }
  
   open(content) {
@@ -449,6 +462,25 @@ ListSprint(){
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+  openModal(targetModal, sprint_id:number) {
+    
+    
+    this.modalService.open(targetModal, {
+      ariaLabelledBy: 'modal-basic-title' ,size:'lg',
+     centered: true,
+     backdrop: 'static'
+    })
+    .result.then((result)=>{
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    
+    });
+   
+    this.edit.patchValue({
+      sprint_id:sprint_id,
+    });
+   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -458,5 +490,55 @@ ListSprint(){
       return `with: ${reason}`;
     }
   }
+  CreateSprint() {
+    let sprint=new Sprint();
+    sprint.description=this.description;
+    sprint.project.project_id=this.route.snapshot.params['id'];
+    sprint.sprint_type=this.type;
+    //sprint.start_date=this.dateD;
+    //sprint.end_date=this.dateF;
+    sprint.status="TODO";
+    console.log("we start to create sprint and this is the value");
+    console.log(sprint);
+    this.SprintSer.createSprint(sprint).subscribe(
+      res=>{
+        console.log(res);
+        
+       
+      }
+    )
+    this.modalService.dismissAll();
+    this.ngOnInit();
+    }
+
+    CreateTask() {
+      console.log( this.edit.getRawValue());
+      let task=new Task();
+     
+      let sprint_id=this.edit.getRawValue();
+      console.log("bottimiboin",sprint_id);
+      console.log(sprint_id);
+      
+      task.description=this.description;
+      task.sprint=sprint_id;
+      task.duration=this.duration;
+      task.priority=this.priority
+      task.task_type=this.type;
+      task.status="TODO";
+      //sprint.start_date=this.dateD;
+      //sprint.end_date=this.dateF;
+     
+      console.log("we start to create task and this is the value");
+      console.log(task);
+      this.Sprint_TaskSer.createTask(task).subscribe(
+        res=>{
+          console.log(res);
+          
+          
+        }
+      )
+      this.modalService.dismissAll();
+      this.ngOnInit();
+      }
 }
 

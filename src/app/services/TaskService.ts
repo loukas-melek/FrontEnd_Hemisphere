@@ -26,4 +26,9 @@ import { Task } from "../apps/entities/Task";
         }
 
 
+        createTask(task:Task){
+          console.log("add",task)
+          return this.Http.post<Task>(this.url  , task);
+          }
+
 }

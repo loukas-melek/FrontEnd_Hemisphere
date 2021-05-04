@@ -5,8 +5,10 @@
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
   </div>
-  <a class="logo" href="/front/home"><span style="font-family:Arial, Helvetica, sans-serif">Hemisphere</span></a>
-  </div>
+  <!-- <a class="logo" href="/front/home"><span style="font-family:Arial, Helvetica, sans-serif">Hemisphere</span></a> -->
+    <a class="logo" href="/front/home"><img *ngIf="show" src="../../../../assets/Asset 7.svg" width="150" height="60"></a>
+
+</div>
   <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select>
@@ -18,10 +20,10 @@
     
     <nb-action class="control-item">
       <div *ngIf="isDashboardRoute()">
-        <a class="logo" href="/front/home" >home</a>
+        <a class="logo text-primary" href="/front/home" ><small><i class="fas fa-laptop-house"></i> Home</small></a>
       </div>
       <div *ngIf="isFrontRoute()">
-        <a class="logo" (click)="RedirectMe()" >dashboard</a>
+        <a class="logo text-primary" (click)="RedirectMe()" ><i class="fas fa-laptop-house"></i> Workspace</a>
       </div>
      
       <nb-search type="rotate-layout"></nb-search>

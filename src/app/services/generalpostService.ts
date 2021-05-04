@@ -21,6 +21,10 @@ export class GeneralPostService {
       return this.Http.get<GeneralPost>(this.urlPub+'/'+id);
     }
     updatePub(id:any,pub:GeneralPost){
+      console.log("service manup");
+      
+      console.log(pub.offertasksolution);
+      
       return this.Http.put<GeneralPost>(this.urlPub+"/update/"+id,pub);
     }
     listPubsByUser(id){

@@ -29,6 +29,7 @@ import { CompanyviewModule } from './companyview/companyview.module';
 import { StudentviewModule } from './studentview/studentview.module';
 import { AppMaterialModule } from './app-material/app-material/app-material.module';
 import { RoleGuard } from './auth/authentication/services/role-guard.guard';
+import { SupervisorviewModule } from './supervisorview/supervisorview.module';
 
 
 
@@ -36,6 +37,7 @@ import { RoleGuard } from './auth/authentication/services/role-guard.guard';
   declarations: [AppComponent, TestComponent],
   imports: [
     AppMaterialModule,
+    SupervisorviewModule,
     CompanyviewModule,
     StudentviewModule,
     AuthenticationModule,

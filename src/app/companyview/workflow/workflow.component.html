@@ -1,0 +1,441 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="example-container">
+  <!-- <button class="btn btn-warning text-white" (click)="ListSprint()">List Sprint</button>
+  <br> -->
+  <button class="btn btn-primary" (click)="open(addsprint)"> <i class="fas fa-folder-plus"></i> Create new sprint</button>
+</div>
+{{sprint.length}}
+<div class="row">
+
+  <div  class="example-container">
+    
+    <h2>To do</h2>
+  
+    <div
+    #parentList="cdkDropList"
+      cdkDropList
+      id="sprintTodo"
+      #todoList="cdkDropList"
+      [cdkDropListData]="sprintTodo"
+      [cdkDropListConnectedTo]="[doingList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      
+      <div   *ngFor="let item of sprintTodo" cdkDrag>
+        <div class="example-box" >{{item.description}} 
+          <div class="text-right">
+            <a (click)="openModal(addtask,item.sprint_id)" class="table-link text-success " >
+              <span class="fa-stack">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+              </span>
+              </a>
+          <!-- <button class="btn btn-success"  (click)="open(sprint)"> <i class="fas fa-eye"></i> </button> -->
+
+          <br>
+          <!-- <button class="btn btn-success"  (click)="openModal(addtask,item.sprint_id)"> <i class="fas fa-plus"></i></button> -->
+          
+            <a  (click)="openModalAffiche(sprint,item.sprint_id)" class="table-link text-warning" >
+              <span class="fa-stack">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
+              </span>
+              </a>
+              <br>
+              <a  (click)="Toggletodo(item.sprint_id)" class="table-link text-dark" >
+                <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fas fa-caret-down fa-stack-1x fa-inverse"></i>
+                </span>
+                </a>
+             
+        </div>
+        </div>
+        <div  #childList="cdkDropList"  id={{item.sprint_id}} #todotList="cdkDropList" [cdkDropListConnectedTo]="[doingList]" *ngIf="item.toggle" [cdkDropListData]="item.sprintsTask"
+        cdkDropList  (cdkDropListDropped)="drop($event)">
+          <div *ngFor="let subItem of item.sprintsTask;index as x" cdkDrag>    
+            <div class="example-box" >{{subItem.description}}
+              <a  (click)="openModal(task,item.sprint_id)" class="table-link text-warning">
+                <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
+                </span>
+                </a>
+                
+            </div>
+            
+            <!-- <div *ngIf="x==(item.sprintsTask.length-1)">    
+              <div class="example-box" (click)="open(task)">Add task to{{item.description}}</div>
+            </div> -->
+            <div *ngIf="!(item.sprintsTask)">    
+              <div class="example-box" (click)="open(task)">Add task to{{item.description}}</div>
+            </div>
+          </div>
+        </div>
+        
+        <hr>
+      </div>
+      
+    </div>
+    
+  </div>
+  <div  class="example-container">
+    
+    <h2>Doing</h2>
+  
+    <div
+    #parentList="cdkDropList"
+      cdkDropList
+      id="sprintDoing"
+      #doingList="cdkDropList"
+      [cdkDropListData]="sprintDoing"
+      [cdkDropListConnectedTo]="[todoList,doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      
+      <div    *ngFor="let item of sprintDoing" cdkDrag>
+        <div class="example-box">{{item.description}} 
+          <div class="text-right">
+            <a (click)="openModal(addtask,item.sprint_id)" class="table-link text-success " >
+              <span class="fa-stack">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+              </span>
+              </a>
+          <!-- <button class="btn btn-success"  (click)="open(sprint)"> <i class="fas fa-eye"></i> </button> -->
+
+          <br>
+          <!-- <button class="btn btn-success"  (click)="openModal(addtask,item.sprint_id)"> <i class="fas fa-plus"></i></button> -->
+          
+            <a  (click)="openModalAffiche(sprint,item.sprint_id)" class="table-link text-warning" >
+              <span class="fa-stack">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
+              </span>
+              </a>
+              <br>
+              <a  (click)="Toggledoing(item.sprint_id)" class="table-link text-dark" >
+                <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fas fa-caret-down fa-stack-1x fa-inverse"></i>
+                </span>
+                </a>
+        </div>
+        </div>
+        <div  #childList="cdkDropList" id={{item.sprint_id}} #doingtList="cdkDropList" [cdkDropListConnectedTo]="[todoList,doneList]" *ngIf="item.toggle" [cdkDropListData]="item.sprintsTask"
+        cdkDropList  (cdkDropListDropped)="drop($event)">
+          <div *ngFor="let subItem of item.sprintsTask" cdkDrag>    
+            <div class="example-box" >{{subItem.description}}
+              <a  (click)="openModal(task,item.sprint_id)" class="table-link text-warning">
+                <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
+                </span>
+                </a>
+                
+            </div>
+          </div>
+        </div>
+        
+<hr>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- <div  class="example-container">
+    <h2>Doing</h2>
+  <div
+    #parentList="cdkDropList"
+      cdkDropList
+      id="sprintDoing"
+      #doingList="cdkDropList"
+      [cdkDropListData]="sprintDoing"
+      [cdkDropListConnectedTo]="[todoList,doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of sprintDoing" cdkDrag>
+       <div (click)="open(sprint)" >{{item.description}}</div>
+        <div  #childList="cdkDropList" id={{item.sprint_id}} #doingtList="cdkDropList" [cdkDropListConnectedTo]="[todoList,doneList]" *ngIf="item.sprintsTask" [cdkDropListData]="item.sprintsTask"
+        cdkDropList  (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let subItem of item.sprintsTask" cdkDrag>
+    
+              <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
+     
+          </div>
+        </div>
+
+        </div>
+      
+      </div>
+    </div> -->
+ 
+
+    <div  class="example-container">
+    
+        <h2>Done</h2>
+      
+        <div
+        #parentList="cdkDropList"
+      cdkDropList
+      id="sprintDone"
+      #doneList="cdkDropList"
+      [cdkDropListData]="sprintDone"
+      [cdkDropListConnectedTo]="[doingList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+          
+          <div    *ngFor="let item of sprintDone" cdkDrag>
+            <div class="example-box">{{item.description}} 
+              <div class="text-right">
+                <a (click)="openModal(addtask,item.sprint_id)" class="table-link text-success " >
+                  <span class="fa-stack">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+                  </span>
+                  </a>
+              <!-- <button class="btn btn-success"  (click)="open(sprint)"> <i class="fas fa-eye"></i> </button> -->
+    
+              <br>
+              <!-- <button class="btn btn-success"  (click)="openModal(addtask,item.sprint_id)"> <i class="fas fa-plus"></i></button> -->
+              
+                <a  (click)="openModalAffiche(sprint,item.sprint_id)" class="table-link text-warning" >
+                  <span class="fa-stack">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
+                  </span>
+                  </a>
+                  <br>
+                  <a  (click)="Toggledone(item.sprint_id)" class="table-link text-dark" >
+                    <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fas fa-caret-down fa-stack-1x fa-inverse"></i>
+                    </span>
+                    </a>            </div>
+            </div>
+            <div  #childList="cdkDropList" #donetList="cdkDropList" id={{item.sprint_id}} [cdkDropListConnectedTo]="[doingList]" *ngIf="item.toggle" [cdkDropListData]="item.sprintsTask"
+            cdkDropList  (cdkDropListDropped)="drop($event)">
+              <div *ngFor="let subItem of item.sprintsTask" cdkDrag>    
+                <div class="example-box" >{{subItem.description}}
+                  <a  (click)="openModal(task,item.sprint_id)" class="table-link text-warning">
+                    <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
+                    </span>
+                    </a>
+                    
+                </div>
+              </div>
+            </div>
+            
+    <hr>
+          </div>
+        </div>
+        
+      </div>
+  <!-- <div class="example-container">
+    <h2>Done</h2>
+  
+    <div
+    #parentList="cdkDropList"
+      cdkDropList
+      id="sprintDone"
+      #doneList="cdkDropList"
+      [cdkDropListData]="sprintDone"
+      [cdkDropListConnectedTo]="[doingList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of sprintDone" cdkDrag>
+       <div (click)="open(sprint)">{{item.description}}</div>
+        <div #childList="cdkDropList" #donetList="cdkDropList" id={{item.sprint_id}} [cdkDropListConnectedTo]="[doingList]" *ngIf="item.sprintsTask" [cdkDropListData]="item.sprintsTask"
+        cdkDropList  (cdkDropListDropped)="drop($event)">
+          <div  *ngFor="let subItem of item.sprintsTask" cdkDrag>
+              <div class="example-box" (click)="open(task)">{{subItem.description}}</div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div> -->
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
+
+
+<ng-template #sprint let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+  <div class="modal-header bg-info " style="background-image: url(assets/images/ill_header.png);">
+  <h4 class="modal-title text-white" id="modal-basic-title" >Sprint detail</h4>
+  <hr>
+  <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+  <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let item of sprintTodo">
+      <div class="assign-team mt-4">
+        <h6 class="m-b-5"><i class="fas fa-audio-description"></i> Description</h6>
+        <div>
+            <p>{{oneSprint?.description}}</p>
+    </div>
+    </div>
+    <!-- <p class="text-muted">{{generalPost?.offertasksolution.description}}</p> -->
+    <ul class="list-inline task-dates m-b-0 mt-5">
+        <li>
+            <h6 class="m-b-5"><i class="fas fa-code-branch"></i> Start Date</h6>
+            <p  class="text-muted" >{{oneSprint?.start_date}}</p>
+        </li>
+        <li>
+            <h6 class="m-b-5"><i class="fas fa-tags"></i> End Date </h6>
+            <p> <small class="text-muted">{{oneSprint?.end_date}}  </small></p>
+        </li>
+    </ul>
+    <ul class="list-inline task-dates m-b-0 mt-5">
+        <li>
+            <div class="attached-files mt-4">
+                <h6 class=""><i class="fas fa-file-signature"></i> Status</h6>
+                <p class="text-muted">{{oneSprint?.status}} </p>
+            </div>
+        </li>
+        <li>
+            <div class="assign-team mt-4">
+                <h6 class="m-b-5"><i class="fas fa-users"></i> Type</h6>
+                <div>
+                    <p> <small class="text-muted" > {{oneSprint?.sprint_type}} </small></p>
+            </div>
+            </div>
+        </li>
+    </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+    <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+    <button id="btn-n-add" class="btn btn-info" >Add</button>
+    </div>
+  </ng-template>
+
+  <ng-template #task let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+    <div class="modal-header bg-info " style="background-image: url(assets/images/ill_header.png);">
+    <h4 class="modal-title text-white" id="modal-basic-title" >task detail</h4>
+    <hr>
+    <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+   
+    <div class="modal-footer">
+      <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+      <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+      <button id="btn-n-add" class="btn btn-info" >Add</button>
+      </div>
+    </ng-template>
+
+    <ng-template #addsprint let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+      <div class="modal-header bg-info " style="background-image: url(assets/images/ill_header.png);">
+      <h4 class="modal-title text-white" id="modal-basic-title" >Add Sprint</h4>
+      <hr>
+      <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <form class="forms-sample" (ngSubmit)="CreateSprint()"  >
+        <div class="modal-body" >
+        
+        <table >
+        <tr>
+          <td style="padding-right: 40px;">
+            <div class="form-group">
+            <label for="title">Description</label>
+            <input type="text" class="form-control"[(ngModel)]="description" name="description" id="description" placeholder="Description">
+            </div>
+          </td>
+          <td style="padding-right: 40px;">
+            <div class="form-group">
+            <label for="poste">Type</label>
+            <input type="text" style="width: 200px;" name="type" class="form-control"[(ngModel)]="type" id="type" placeholder="Type">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-right: 40px;">
+            <div class="form-group">
+            <label for="date">Date Debut</label>
+            <input type="date" class="form-control" name="dateD" id="dateD" [(ngModel)]="dateD">
+            </div>
+          </td>
+          <td style="padding-right: 40px;">
+            <div class="form-group">
+            <label for="date">Date Fin</label>
+            <input type="date" class="form-control" name="dateF" id="dateF" [(ngModel)]="dateF">
+            </div>
+          </td>
+        </tr>
+    </table>
+    
+        
+        </div>
+        <div class="modal-footer">
+        <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+        <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+        <button id="btn-n-add" class="btn btn-info" >Add</button>
+        </div>
+        </form>
+      </ng-template>
+
+      <ng-template #addtask let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+        <div class="modal-header bg-info " style="background-image: url(assets/images/ill_header.png);">
+        <h4 class="modal-title text-white" id="modal-basic-title" >Add Task</h4>
+        <hr>
+        <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form class="forms-sample" (ngSubmit)="CreateTask()"  >
+          <div class="modal-body" >
+          
+          <table >
+          <tr>
+            <td style="padding-right: 40px;">
+              <div class="form-group">
+              <label for="Description">Description</label>
+              <input type="text" class="form-control"[(ngModel)]="description" name="description" id="description" placeholder="Description">
+              </div>
+            </td>
+            <td style="padding-right: 40px;">
+              <div class="form-group">
+              <label for="type">Type</label>
+              <input type="text" style="width: 200px;" name="type" class="form-control"[(ngModel)]="type" id="type" placeholder="Type">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-right: 40px;">
+              <div class="form-group">
+              <label for="duration">Duration</label>
+              <input type="text" class="form-control" name="duration" id="duration" [(ngModel)]="duration">
+              </div>
+            </td>
+            <td style="padding-right: 40px;">
+              <div class="form-group">
+              <label for="priority">Priority</label>
+              <input type="text" class="form-control" name="priority" id="priority" [(ngModel)]="priority">
+              </div>
+            </td>
+          </tr>
+      </table>
+          
+          
+          </div>
+          <div class="modal-footer">
+          <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
+          <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+          <button id="btn-n-add" class="btn btn-info" >Add</button>
+          </div>
+          </form>
+        </ng-template>
+
+        

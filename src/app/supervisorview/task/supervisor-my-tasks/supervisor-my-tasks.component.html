@@ -1,0 +1,173 @@
+<button class="btn btn-primary" (click)="open(content)"> <i class="fas fa-folder-plus"></i> Create new task</button>
+
+<br><br>
+<br>
+<form >
+    <table style="width: 100%;">
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="categorie">Categorie</label>
+              <select style="width: 80%;" class="form-control" #c name="cat" id="cat"(change)="filtrer(l.value,c.value)">
+                <option>All</option>
+                <option *ngFor="let cat of categories">{{cat}}</option>
+                
+              </select>
+            </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <label for="type">Location</label>
+              <select style="width: 80%;" class="form-control"name="loc" #l id="loc"(change)="filtrer(l.value,c.value)">
+                <option>All</option>
+                <option *ngFor="let loc of locations">{{loc}}</option>
+                
+              </select>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"> 
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input style="width: 100%;">
+          </mat-form-field>
+      </td>
+      </tr>
+    </table>
+
+  </form>
+   <div class="tab-content bg-transparent">
+    <div id="note-full-container" class="note-has-grid row">
+        <div class="col-md-4 single-note-item all-category" *ngFor="let task of mylist">
+          <div class="card card-body">
+            <span class="side-stick"></span>
+            <div class="container">
+            <h6 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie" style="margin-left: -1rem;"><a (click)='getOffer(task.id)'>{{task.offertasksolution.title}}</a> <i class="point fa fa-circle ml-1 font-10"></i></h6>
+            <span class="badge badge-primary">{{task.offertasksolution.categorie}}</span>
+          
+        
+          </div>
+            <div >
+               <p class="text-muted"><i class="far fa-clock"></i> {{changeDate(task.updated_at)}}  <i class="fas fa-map-marker-alt"></i> {{task.offertasksolution.location}} </p> 
+        
+            </div>
+            <div class="note-content">
+              <di class="container">
+            <p class="note-inner-content text-muted text-truncate" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis." style="margin-left: -1rem;">{{task.offertasksolution.description}}</p>
+            <p class="text-muted" style="margin-left: 8rem;">{{task.offertasksolution.cost}}<small class="text-muted" style="margin-left: 0.25rem;">Dinars </small></p>
+          </di>
+            </div>
+            
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<ng-template #content let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
+    <div class="modal-header bg-primary" >
+      <h4 class="modal-title text-white" id="modal-basic-title" style="text-align: center;">Create new Task</h4>
+      
+      <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <form class="forms-sample" (ngSubmit)="createTask()"  >
+    <div class="modal-body" >
+     
+       
+        <div class="form-group">
+          <label for="title"><b>Title</b></label>
+          <input type="text" class="form-control"[(ngModel)]="title" name="title" id="title" placeholder="Title">
+        </div>
+        <!-- <td style="padding-right: 40px;">
+        <div class="form-group">
+          <label for="poste">Poste</label>
+          <input type="text" style="width: 200px;" class="form-control"[(ngModel)]="poste" name="poste" id="poste" placeholder="Poste">
+        </div>
+    </td> -->
+        
+          <div class="form-group">
+            <label for="nofstune"><b>Number of student</b></label>
+            <input type="number"   [(ngModel)]="nofstudent" name="nofstudent" class="form-control" id="nofstudent" >
+          </div>
+      
+        <div class="form-group">
+          <label for="location"><b>Location</b></label>
+          <select  class="form-control"name="loc" [(ngModel)]="location" id="loc">
+            <option *ngFor="let lo of locations">{{lo}}</option>
+          </select>
+        </div>
+          <div class="form-group">
+            <label for="categorie"><b>Categorie</b></label>
+              <select class="form-control" id="categorie"name="categorie"[(ngModel)]="categorie">
+                <option *ngFor="let cat of categories">{{cat}}</option>
+                
+              </select>
+            </div>
+           
+        
+   
+            <div class="form-group">
+              <label for="date"><b>Date</b></label>
+              <input type="date" class="form-control"[(ngModel)]="date" name="date" id="date">
+            </div>
+            <div class="form-group">
+              <label for="date"><b>Skills Required</b></label>
+              <ng-multiselect-dropdown
+  [placeholder]="'custom placeholder'"
+  [settings]="dropdownSettings"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+>
+</ng-multiselect-dropdown>
+            </div>
+           
+            <!-- <div class="form-group">
+              <label>Skills Required</label>
+            
+              <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info"name="cmp"id="cmp"[(ngModel)]="cmp"  placeholder="java , Api dev , angular">
+                <span class="input-group-append">
+                  <button class="file-upload-browse btn btn-gradient-success" type="button" (click)="addcmp()"><i class="fas fa-plus"></i></button>
+                </span>
+              </div>
+              <br>
+              <div *ngFor="let l of lcompetance;let index = index;" ><button (click)="removeone(index)"><i class="fas fa-ban"></i>{{l}}</button></div>
+              
+            </div> -->
+        
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="supervision"><b>Supervision</b></label>
+            &nbsp;&nbsp;&nbsp;
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]="supervised"id="supervised" name="supervised" >
+              <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    
+      <div *ngIf="checkSupervision()" class="form-group">
+        <label for="cost"><b>Cost Of Supervision</b></label>
+        <input type="number"[(ngModel)]="cost" name="cost" class="form-control" id="cost" >
+      </div>
+   
+    <div class="form-group">
+      <label for="description"><b>Description</b> </label>
+      <textarea class="form-control" id="description" name="description" [(ngModel)]="description" rows="4"></textarea>
+    </div>
+    
+  
+</div>
+<div class="modal-footer">
+    <button id="btn-n-save" type="submit" class="float-left btn btn-success" style="display: none;">Save</button>
+    <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+    <button id="btn-n-add" type="submit" class="btn btn-info" >Add</button>
+</div>
+</form>
+</ng-template>
+

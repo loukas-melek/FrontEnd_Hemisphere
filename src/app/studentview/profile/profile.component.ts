@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProjectService } from '../../services/projectService';
 import { Project } from '../../apps/entities/project';
+import { ProjectDto } from '../../apps/entities/ProjectDto';
 
 @Component({
   selector: 'ngx-profile',
@@ -27,18 +28,18 @@ export class ProfileComponent implements OnInit {
   typesE=["PFE","PFA","STAGE","EMPLOIS","OTHER"];
   edit: FormGroup;
   closeResult: string;
-  myProjects=new Array<Project>();
+  myProjects=new Array<ProjectDto>();
   types=["PFE","PFA","STAGE","EMPLOIS","OTHER"];
     constructor(private datepipe: DatePipe,private projectService:ProjectService,private fb: FormBuilder,private modalService: NgbModal,private userService:UserService,private experienceService:ExperienceService,private profileSerivce:ProfileService,private router: Router) { }
   
     ngOnInit(): void {
       this.edit = this.fb.group({
-        typeE:[''],
-        profileE: [''],
-        companyE: [''],
-        descriptionE: [''],
-        dateE: [''],
-        titleE:[''],
+        type:[''],
+        profile: [''],
+        company: [''],
+        description: [''],
+        date: [''],
+        title:[''],
         id:[''],
        });
       this.getMyprofile();
@@ -71,8 +72,6 @@ export class ProfileComponent implements OnInit {
     createExperience(){
       let experience = new Experience()
       experience.company=this.company;
-      experience.created_at=this.date;
-      experience.updated_at=this.date;
       experience.profile=this.profile;
       experience.type=this.type
       experience.description=this.description;
@@ -90,16 +89,17 @@ export class ProfileComponent implements OnInit {
       console.log( this.edit.getRawValue());
       let experience = new Experience();
       experience=this.edit.getRawValue();
-
         console.log(experience);
         console.log(experience.id);
      
-      confirm("Are you sure to edit this experience?")
-      this.experienceService.updateExperience(experience.id,experience).subscribe(res=>{
+     
+      this.experienceService.updateExperience(experience).subscribe(res=>{
         console.log(res);
         
       })
-      this.ngOnInit()
+  
+      this.modalService.dismissAll();
+         this.ngOnInit();
       
     }
     deleteExperience(ex:Experience){
@@ -136,12 +136,11 @@ export class ProfileComponent implements OnInit {
       });
      
       this.edit.patchValue({
-        typeE:experience.type,
-        profileE: experience.profile,
-        companyE: experience.company,
-        descriptionE: experience.description,
-        dateE: experience.created_at,
-        titleE:experience.title,
+        type:experience.type,
+        profile: experience.profile,
+        company: experience.company,
+        description: experience.description,
+        title:experience.title,
         id:experience.id
       });
      }

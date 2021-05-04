@@ -12,7 +12,7 @@ export class OfferTaskSolution {
     studentNumber: number;
     isSupervised: number;
     type: number;
-    TypeOffer:TypeOffer
+    offer_type:TypeOffer
     cost: number;
     poste:string;
     location:LocationsOffer;

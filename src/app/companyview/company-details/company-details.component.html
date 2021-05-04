@@ -6,76 +6,77 @@
                 <div class="card-box task-detail">
                     <div class="media mt-0 m-b-30"><img class="d-flex mr-3 rounded-circle" alt="64x64" src="{{generalPost?.profile.profilePicUrl}}" style="width: 48px; height: 48px;">
                         <div class="media-body">
-                            <h5 class="media-heading mb-0 mt-0">{{generalPost?.profile.name}} {{generalPost?.profile.lastname}}</h5><span class="badge badge-danger">Design</span></div>
+                            <h5 class="media-heading mb-0 mt-0">{{generalPost?.profile.name}} {{generalPost?.profile.lastname}}</h5><small style="margin-left: 0.5rem;" class="text-muted"><i class="fas fa-map-marker-alt"></i> {{generalPost?.offertasksolution.location}} </small></div>
+                            <div *ngIf="mine"> <a  (click)="openModal(offer,generalPost.offertasksolution)" class="table-link text-primary">
+                                <span class="fa-stack">
+                                    <i class="fa fa-square fa-stack-2x"></i>
+                                    <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a></div>
                            
-                                <button class="test" (click)="open(offer)" ><i class="far fa-edit"></i> Edit</button>
-                                <div class="row"> <div class="col"><button id="btn-n-add" (click)="deleteoffer()" class="test"style="background-color:#f14e4e" ><i class="far fa-trash-alt"></i> Delete</button></div> </div>
+                                <!-- <button class="test" (click)="openModal(offer,generalPost.offertasksolution)" class="btn btn-outline-info" ><i class="far fa-edit"></i> Edit</button> -->
+                                <div *ngIf="mine"> 
+                                    <!-- <div class="col"><button id="btn-n-add" (click)="deleteoffer()" class="test" class="btn btn-outline-danger" style="margin-left: 0.5rem;" ><i class="far fa-trash-alt"></i> Delete</button></div>  -->
+                                    <a  (click)="deleteoffer()" class="table-link text-danger">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fas fa-times fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </div>
                                 
 
                     </div>
                     <br>
                     <h4 class="m-b-20">{{generalPost?.offertasksolution.title}}</h4>
-                    
-                    <p class="text-muted">{{generalPost?.offertasksolution.description}}</p>
+                    <div class="assign-team mt-4">
+                        <h6 class="m-b-5"><i class="fas fa-audio-description"></i> Description</h6>
+                        <div>
+                            <p>{{generalPost?.offertasksolution.description}}</p>
+                    </div>
+                    </div>
+                    <!-- <p class="text-muted">{{generalPost?.offertasksolution.description}}</p> -->
                     <ul class="list-inline task-dates m-b-0 mt-5">
                         <li>
-                            <h5 class="m-b-5">Start Date</h5>
-                            <p>01 December 2021 <small class="text-muted">1:00 PM</small></p>
+                            <h6 class="m-b-5"><i class="fas fa-code-branch"></i> category</h6>
+                            <p  class="text-muted" >{{generalPost?.offertasksolution. categorie   }}</p>
                         </li>
                         <li>
-                            <h5 class="m-b-5">Due Date</h5>
-                            <p>17 February 2021 <small class="text-muted">12:00 PM</small></p>
+                            <h6 class="m-b-5"><i class="fas fa-tags"></i> Price </h6>
+                            <p> <small class="text-muted">{{generalPost?.offertasksolution.cost}} Dinars </small></p>
                         </li>
                     </ul>
-                    <div class="clearfix"></div>
+                    <ul class="list-inline task-dates m-b-0 mt-5">
+                        <li>
+                            <div class="attached-files mt-4">
+                                <h6 class=""><i class="fas fa-file-signature"></i> Offer Type</h6>
+                                <p class="text-muted">{{generalPost?.offertasksolution.offer_type }} </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="assign-team mt-4">
+                                <h6 class="m-b-5"><i class="fas fa-users"></i> Students Number</h6>
+                                <div>
+                                    <p> <small class="text-muted">{{generalPost?.offertasksolution.studentNumber}} Students </small></p>
+                            </div>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    
+                    <!-- <div class="clearfix"></div> -->
                     <div class="task-tags mt-4">
-                        <h5 class="">Skills Required</h5>
-                        <div class="bootstrap-tagsinput"><span class="tag label label-info">Html<span data-role="remove"></span></span> <span class="tag label label-info">Bootstrap<span data-role="remove"></span></span> <span class="tag label label-info">Css<span data-role="remove"></span></span>
+                        <h6 ><i class="fas fa-cubes"></i> Skills Required</h6>
+                        <div class="bootstrap-tagsinput"><span class="tag label label-info text-white">Html<span data-role="remove"></span></span> <span class="tag label label-info text-white">Bootstrap<span data-role="remove"></span></span> <span class="tag label label-info text-white">Css<span data-role="remove"></span></span>
                             
                         </div>
 
                     </div>
-                    <div class="assign-team mt-4">
-                        <h5 class="m-b-5">Assign to</h5>
-                        <div>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar2.png"> </a>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar3.png"> </a>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar5.png"> </a>
-                            <a href="#"><img class="rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar8.png"> </a><a href="#"><span class="add-new-plus"><i class="fa fa-plus"></i></span></a></div>
-                    </div>
-                    <div class="attached-files mt-4">
-                        <h5 class="">Attached Files</h5>
-                        <div class="files-list">
-                            <div class="file-box">
-                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-responsive img-thumbnail" alt="attached-img"></a>
-                                <p class="font-13 mb-1 text-muted"><small>File one</small></p>
-                            </div>
-                            <div class="file-box">
-                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-responsive img-thumbnail" alt="attached-img"></a>
-                                <p class="font-13 mb-1 text-muted"><small>Attached-2</small></p>
-                            </div>
-                            <div class="file-box">
-                                <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-responsive img-thumbnail" alt="attached-img"></a>
-                                <p class="font-13 mb-1 text-muted"><small>Dribbble shot</small></p>
-                            </div>
-                            <div class="file-box ml-3"><a href="#"><span class="add-new-plus"><i class="fa fa-plus"></i></span></a></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="text-right mt-4">
-                                    <!-- <div *ngIf="!found"><button type="submit" class="btn btn-success waves-effect waves-light" (click)="open(content)"><i class="fas fa-plus"></i> Make An Application</button></div> -->
-                                    <!-- <button type="submit" class="btn btn-success waves-effect waves-light" (click)="open(content)">Make An Application</button> -->
-                        <!-- <button type="button" class="btn btn-light waves-effect">Cancel</button> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
                   <!--lite des demandes -->
                 
                   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
                   <hr>
-                  <div class="container bootstrap snippets bootdey">
+                  <div class="container bootstrap snippets bootdey" *ngIf="mine">
                       <div class="row">
                           <div class="col-lg-12">
                               <div class="main-box no-header clearfix">
@@ -131,7 +132,8 @@
                                               </tbody>
                                           </table>
                                       </div>
-                                      <button class="btn btn-success" (click)="ConfirmProject()"> Confirm the Project</button>
+                                      <br>
+                                    <div class="text-right">  <button class="btn btn-success" (click)="ConfirmProject()" style="margin-right: 20px;margin-bottom: 10px;"><i class="fas fa-paper-plane"></i> Send Invitations</button></div>
                                   </div>
                               </div>
                           </div>
@@ -148,25 +150,32 @@
                     <div>
                         <div class="media m-b-20" *ngFor="let comm of comms">
                             <div *ngIf="comm.general_Post!=null">
+                                <div class="media m-b-20">
                             <div class="d-flex mr-3">
                                 <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{comm.profile.profilePicUrl}}"></a>
                             </div>
                             <div class="media-body">
                                 <h5 class="mt-0">{{comm.profile.name}} {{comm.profile.lastname}}</h5>
-                                <p class="font-13  mb-0"> {{comm.content}}</p>
-                                <input type="text" [(ngModel)]="commnt" name="commnt" id="commnt" class="form-control input-sm" placeholder="Some text value...">
-                                <a (click)="addReply(comm)" class="text-success font-13">Reply</a>
-                            </div>
+                                <p class="font-20 text-muted mb-0"><i class="far fa-comment-dots"></i> {{comm.content}}.</p>
+                                <!-- <img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{comm.profile.profilePicUrl}}"> -->
+                                <!-- <div class="media-body">
+                                    <h5 class="media-heading mb-0 mt-0">{{comm.profile.name}} {{comm.profile.lastname}}</h5>
+                                <p class="font-13  mb-0"> {{comm.content}}</p> -->
+                                <!-- <input type="text" [(ngModel)]="commnt" name="commnt" id="commnt" class="form-control input-sm" placeholder="Some text value..."> -->
+                                <!-- <a (click)="addReply(comm)" class="text-success font-13">Reply</a> -->
+                            <!-- </div> -->
                         </div>
-                                <div class="media m-t-20 m-b-20" *ngIf="comm.id_comment!=null">
+                                <!-- <div class="media m-t-20 m-b-20" *ngIf="comm.id_comment!=null">
                                     <div class="d-flex mr-3">
                                         <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{comm.profile.profilePicUrl}}"></a>
                                     </div>
                                     <div class="media-body">
                                         <h5 class="mt-0">{{comm.profile.name}} {{comm.profile.lastname}}</h5>
                                         <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Doyle</a> {{comm.content}}.</p></div>
-                                </div>
-                            
+                                </div> -->
+                            </div>
+                            </div>
+                            <br><br><br><br>
                         </div>
                         <!-- <div class="media m-b-20">
                             <div class="d-flex mr-3">
@@ -203,14 +212,21 @@
                         </div> -->
                         <div class="media m-b-20">
                             <div class="d-flex mr-3">
-                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{generalPost?.profile.profilePicUrl}}"></a>
+                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="{{myprofile?.profilePicUrl}}"></a>
                             </div>
                             <form (ngSubmit)="addComment()">
                             <div class="media-body">
-                                <input type="text" [(ngModel)]="commmentaire" name="commmentaire" id="commmentaire" class="form-control input-sm" placeholder="Some text value...">
-                                <div class="mt-2 text-right">
-                                    <button type="submit" class="btn btn-sm btn-custom waves-effect waves-light">Send</button>
+                                <!-- <input type="text"  name="commmentaire" id="commmentaire" class="form-control input-sm" placeholder="Some text value..."> -->
+                                <div class="input-field form-group">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <input type="password"name="commmentaire"
+                                    [(ngModel)]="commmentaire"
+                                    required
+                                     class="form-control" placeholder="Comment">			  
                                 </div>
+                                <!-- <div class="mt-2 text-right">
+                                    <button type="submit" class="btn btn-sm btn-custom waves-effect waves-light">Send</button>
+                                </div> -->
                             </div>
                         </form>
                         </div>
@@ -231,49 +247,50 @@
 
   <ng-template #offer let-modal let-c="close" let-d="dismiss" class="modal-dialog" >
   <div class="modal-header bg-info " style="background-color: rgb(45, 55, 76);">
-  <h4 class="modal-title text-white" id="modal-basic-title" >Edit Offer</h4>
+    <h4 *ngIf="generalPost?.offertasksolution.type==1" class="modal-title text-white" id="modal-basic-title" ><i class="fas fa-edit"></i> Edit Task</h4>
+  <h4 *ngIf="generalPost?.offertasksolution.type==0"class="modal-title text-white" id="modal-basic-title" ><i class="fas fa-edit"></i> Edit Offer</h4>
   <hr>
   <button type="button" class="close" aria-label="Close" #closebutton (click)="d('Cross click')">
   <span aria-hidden="true">&times;</span>
   </button>
   </div>
-  <form class="forms-sample"  (ngSubmit)="editOffer()" >
+  <form class="forms-sample" [formGroup]="edit" (ngSubmit)="editOffer()" >
   <div class="modal-body" >
   
   <table ><tr><td style="padding-right: 40px;">
   <div class="form-group">
   <label for="title">Title</label>
-  <input type="text" class="form-control"[(ngModel)]="title" value="{{generalPost.offertasksolution.title}}" name="title" id="title" placeholder="Title">
+  <input type="text" class="form-control"formControlName="title"  name="title" id="title" placeholder="Title">
   </div></td><td style="padding-right: 40px;">
   <div class="form-group">
   <label for="poste">Poste</label>
-  <input type="text" style="width: 200px;" name="poste"value="{{generalPost.offertasksolution.poste}}" class="form-control"[(ngModel)]="poste" id="poste" placeholder="Poste">
+  <input type="text" style="width: 200px;"formControlName="poste" name="poste" class="form-control" id="poste" placeholder="Poste">
   </div>
 </td>
   <td>
   <div class="form-group">
   <label for="nofstune">Number of student</label>
-  <input type="number"  style="width: 200px;" name="nofstudent"value="{{generalPost.offertasksolution.studentNumber}}" [(ngModel)]="nofstudent" class="form-control" id="nofstudent" >
+  <input type="number"  style="width: 200px;"formControlName="studentNumber" name="studentNumber"  class="form-control" id="studentNumber" >
   </div></td>
   </tr>
   <tr>
   <td style="padding-right: 40px;">
   <div class="form-group">
   <label for="location">Location</label>
-  <select style="width: 80%;" class="form-control"name="location"value="{{generalPost.offertasksolution.location}}" [(ngModel)]="location" id="loc">
+  <select style="width: 80%;"formControlName="location" class="form-control"name="location"  id="loc">
   <option *ngFor="let loc of locations">{{loc}}</option>
   </select>
   </div></td>
   <td style="padding-right: 40px;">
   <div class="form-group">
   <label for="type">Type</label>
-  <select class="form-control" name="type" id="type"value="{{generalPost.offertasksolution.type}}" [(ngModel)]="type">
-  <option *ngFor="let ty of types">{{ty}}</option>
+  <select class="form-control" formControlName="offer_type"name="offer_type" id="offer_type" >
+  <option *ngFor="let ty of types" >{{ty}}</option>
   </select>
   </div></td><td>
   <div class="form-group">
   <label for="categorie">Categorie</label>
-  <select class="form-control" name="categorie"value="{{generalPost.offertasksolution.categorie}}" id="categorie"[(ngModel)]="categorie">
+  <select class="form-control"formControlName="categorie" name="categorie" id="categorie">
   <option *ngFor="let cat of categories">{{cat}}</option>
   
   </select>
@@ -304,7 +321,7 @@
   <td *ngIf="checkSupervision()">
   <div class="form-group">
   <label for="cost">Cost Of Supervision</label>
-  <input type="number"[(ngModel)]="cost" name="cost"value="{{generalPost.offertasksolution.cost}}" class="form-control" id="cost" >
+  <input type="number"formControlName="cost" name="cost" class="form-control" id="cost" >
   </div>
   </td>
   </tr>
@@ -314,7 +331,7 @@
   <td colspan="3">
   <div class="form-group">
   <label for="description">Description</label>
-  <textarea class="form-control" id="description"name="description"[(ngModel)]="description"value="{{generalPost.offertasksolution.description}}" rows="4"></textarea>
+  <textarea class="form-control"formControlName="description" id="description"name="description" rows="4"></textarea>
   </div>
 </td></tr></table>
   

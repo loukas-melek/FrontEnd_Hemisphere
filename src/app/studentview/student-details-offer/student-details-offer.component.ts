@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { delay } from 'rxjs/operators';
@@ -34,14 +35,18 @@ emotivation: string;
   test=false;
   myapp:Demande;
  commnt
-  appMenu = [ { title: 'Profile',icon: 'person-outline', }, { title: 'Settings',icon: 'settings-outline', },{ title: 'Log out',icon: 'log-out-outline', } ];
+ edit: FormGroup;
   comentaire=new Comment();
   comms=new Array<Comment>();
   commennt: string;
   count: number;
-  constructor(private commentService:CommentService,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
+  constructor(private fb: FormBuilder,private commentService:CommentService,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
 
   ngOnInit(): void {
+    this.edit = this.fb.group({
+      motivation:[''],
+   
+     });
     this.getoffer();
 
     // this.getMyprofile();
@@ -174,8 +179,9 @@ this.ngOnInit();
       return this.found;
   }
   editDemande(){
+    console.log( this.edit.value.motivation);
     let newd=this.myapp;
-    newd.motivation=this.emotivation;
+    newd.motivation=this.edit.value.motivation;
 
     this.demandeService.updateDemande(this.myapp.id,newd).subscribe(res=>{
       console.log(res);
@@ -183,7 +189,24 @@ this.ngOnInit();
       
     })
   }
-
+  openModal(targetModal, demande:Demande) {
+    this.modalService.open(targetModal, {
+      ariaLabelledBy: 'modal-basic-title' ,size:'lg',
+     centered: true,
+     backdrop: 'static'
+    })
+    .result.then((result)=>{
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    
+    });
+   
+    this.edit.patchValue({
+      motivation:demande.motivation
+    });
+   }
+  
   addDemande() {
     console.log(this.motivation);
     

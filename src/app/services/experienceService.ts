@@ -18,8 +18,11 @@ export class ExperienceService {
         return this.Http.post<Experience>(this.urlPub+"/add", experience);
         }
     
-    updateExperience(id:any,experience:Experience){
-      return this.Http.put<Experience>(this.urlPub+"/update/"+id,experience);
+    updateExperience(experience:Experience){
+      console.log("exp service !!!");
+      console.log(experience);
+      
+      return this.Http.put<Experience>(this.urlPub+"/update/"+experience.id,experience);
     }
     listExperienceByUser(id){
       return this.Http.get<Experience[]>(this.urlPub+"/profile/"+id);

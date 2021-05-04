@@ -11,8 +11,9 @@ export class SprintDto {
     description:string;
     sprintsTask=new Array<TaskDto>();
     sprint_type: number;
+    toggle:boolean;
     public constructor() {
-     
+        this.toggle=false;
      
      }
   }

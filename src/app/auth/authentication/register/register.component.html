@@ -2,18 +2,20 @@
 <div class=" register" >
     <div class="row">
         <div class="col-md-3 register-left">
-            <img src="../../../../assets//images/Asset 1.png" alt="">
-            <h3 style="color: aliceblue;">Hemisphere</h3>
+            <img src="../../../../assets/logo4.png" alt="">
             <p style="color: aliceblue;">You are 30 seconds away from earning your own money!</p>
             <input type="submit" name="" value="Login"(click)="routme()"><br>
         </div>
         <div class="col-md-9 register-right">
-            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+            <ul class="nav nav-pills flex-column flex-sm-row nav-justified bg-light text-right" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"  aria-controls="home" aria-selected="true">Student</a>
+                    <a class="flex-sm-fill text-sm-center nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"  aria-controls="home" aria-selected="true">Student</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Company</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Company</a>
+                </li>
+                <li class="nav-item">
+                    <a class="flex-sm-fill text-sm-center nav-link" id="supervisor-tab" data-toggle="tab" href="#supervisor" role="tab" aria-controls="supervisor" aria-selected="false">Supervisor</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -121,6 +123,63 @@
                                 <input type="text" class="form-control"name="companyname" [(ngModel)]="companyname" placeholder="Your Company Name *" value="">
                             </div>
                             <input type="submit" class="btnRegister" (click)="onSubmitCompany()" value="Register">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="supervisor" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Work as a Supervisor</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control"name="firsts" [(ngModel)]="firsts" placeholder="First Name *" value="">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control"name="lasts" [(ngModel)]="lasts" placeholder="Last Name *" value="">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control"name="passwords" [(ngModel)]="passwords" placeholder="Password *" value="">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control"[(ngModel)]="passcs"name="passcs" placeholder="Confirm Password *" value="">
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="genders"[(ngModel)]="genders" value="male" checked="">
+                                        <span> Male </span> 
+                                    </label>
+                                    <label class="radio inline"> 
+                                        <input type="radio" name="genders"[(ngModel)]="genders" value="female">
+                                        <span> Female </span> 
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control"name="emails" [(ngModel)]="emails" placeholder="Your Email *" value="">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" minlength="10" maxlength="10"[(ngModel)]="phones" name="phones" class="form-control" placeholder="Your Phone " value="">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control"name="locations" [(ngModel)]="locations" placeholder="Your Location" value="">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control"name="city" [(ngModel)]="citys" placeholder="Your Citys" value="">
+                            </div>
+                            <!-- <div class="form-group">
+                                <select class="form-control">
+                                    <option class="hidden" selected="" disabled="">Please select your Sequrity Question</option>
+                                    <option>What is your Birthdate?</option>
+                                    <option>What is Your old Phone Number</option>
+                                    <option>What is your Pet Name?</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Enter Your Answer *" value="">
+                            </div> -->
+                            <input type="submit" class="btnRegister" (click)="onSubmitSupervisor()" value="Register">
                         </div>
                     </div>
                 </div>

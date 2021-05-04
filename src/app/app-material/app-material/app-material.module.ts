@@ -29,11 +29,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { NbInputModule, NbCardModule, NbButtonModule, NbActionsModule, NbUserModule, NbCheckboxModule, NbRadioModule, NbDatepickerModule, NbSelectModule, NbIconModule } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { FormsRoutingModule } from '../../pages/forms/forms-routing.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 
 @NgModule({
   declarations: [],
   imports: [
+    NgMultiSelectDropDownModule.forRoot(),
     CommonModule,
     ScrollingModule,
     FlexLayoutModule,
@@ -72,6 +75,16 @@ import { FormsRoutingModule } from '../../pages/forms/forms-routing.module';
     FormsRoutingModule,
     NbSelectModule,
     NbIconModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatSliderModule,
+    MatToolbarModule,
+    MatTreeModule,
+    MatMomentDateModule,
+    MatCardModule,
+    MatProgressBarModule
    
 
   ],

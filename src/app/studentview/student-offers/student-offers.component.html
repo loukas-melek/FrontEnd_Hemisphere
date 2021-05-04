@@ -47,44 +47,29 @@ Offers
   
   <div class="tab-content bg-transparent">
     <div id="note-full-container" class="note-has-grid row">
-    <div class="col-md-4 single-note-item all-category"*ngFor="let offer of offers" >
-    <div class="card card-body">
-    <span class="side-stick"></span>
-    <h6 class="note-title text-truncate w-75 mb-0" ><a (click)="getOffer(offer)">{{offer.offertasksolution.title}}</a>{{offer.offertasksolution.title}} <i class="point fa fa-circle ml-1 font-10"></i></h6>
-    <p class="note-date font-12 text-muted">{{changeDate(offer.updated_at)}}</p>
-    <div class="note-content">
-    <p class="note-inner-content text-muted text-truncate" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">{{offer.offertasksolution.description}}</p>
-    </div>
-    <div class="d-flex align-items-center">
-    <span class="mr-1"><i class="fa fa-star favourite-note"></i></span>
-    <span class="mr-1"><i class="fa fa-trash remove-note"></i></span>
-    <div class="ml-auto">
-    <div class="category-selector btn-group">
-    <a class="nav-link dropdown-toggle category-dropdown label-group p-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
-       <div class="category">
-           <div class="category-business"></div>
-           <div class="category-social"></div>
-           <div class="category-important"></div>
-           <span class="more-options text-dark"><i class="icon-options-vertical"></i></span>
-       </div>
-    </a>
-    <div class="dropdown-menu dropdown-menu-right category-menu">
-       <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business text-success" (click)="getOffer(offer)">
-           <i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i>Business
-       </a>
-       <a class="note-social badge-group-item badge-social dropdown-item position-relative category-social text-info" href="javascript:void(0);">
-           <i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Social
-       </a>
-       <a class="note-important badge-group-item badge-important dropdown-item position-relative category-important text-danger" href="javascript:void(0);">
-           <i class="mdi mdi-checkbox-blank-circle-outline mr-1"></i> Important
-       </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <br>
-    </div>
+      <div class="col-md-4 single-note-item all-category"*ngFor="let offer of offers" >
+        <div class="card card-body">
+        <span class="side-stick"></span>
+        <div class="container">
+        <h6 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie" style="margin-left: -1rem;"><a (click)='getOffer(offer)'>{{offer.offertasksolution.title}}</a> <i class="point fa fa-circle ml-1 font-10"></i></h6>
+        <span class="badge badge-primary" >{{offer.offertasksolution.categorie}}</span>
+      
+    
+      </div>
+        <div >
+           <p class="text-muted"><i class="far fa-clock"></i> {{changeDate(offer.updated_at)}}  <i class="fas fa-map-marker-alt"></i> {{offer.offertasksolution.location}} </p> 
+    
+        </div>
+        <div class="note-content">
+          <di class="container">
+        <p class="note-inner-content text-muted text-truncate" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis." style="margin-left: -1rem;">{{offer.offertasksolution.description}}</p>
+        <p class="text-muted" style="margin-left: 8rem;">{{offer.offertasksolution.cost}}<small class="text-muted" style="margin-left: 0.25rem;">Dinars </small></p>
+      </di>
+        </div>
+        
+        </div>
+        <br>
+        </div>
 
 </div>
 </div>
