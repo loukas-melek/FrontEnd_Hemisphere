@@ -12,8 +12,9 @@ export const routes: Routes = [
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule)
-      ,canActivate: [AuthGuardGuard],
+      .then(m => m.PagesModule),
+      
+      // ,canActivate: [AuthGuardGuard],
   },
   {
     path: 'front',
@@ -44,6 +45,13 @@ export const routes: Routes = [
       data: {role: 'ROLE_STUDENT'}
   },
   {
+    path: 'supervisor',
+    loadChildren: () => import('./supervisorview/supervisorview.module')
+      .then(m => m.SupervisorviewModule)
+      ,canActivate: [RoleGuard,AuthGuardGuard],
+      data: {role: 'ROLE_SUPERVISOR'}
+  },
+  {
     path: 'apps',
     loadChildren: () => import('./apps/apps.module')
       .then(m => m.AppsModule)
@@ -56,13 +64,15 @@ export const routes: Routes = [
       .then(m => m.AuthenticationModule)
       
   },
- { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-   { path: '**', redirectTo: 'auth/login' },
+ { path: '', redirectTo: 'pages', pathMatch: 'full' },
+   { path: '**', redirectTo: 'pages' },
 
 ];
 
 const config: ExtraOptions = {
   useHash: false,
+  anchorScrolling: 'enabled',
+
 };
 
 @NgModule({

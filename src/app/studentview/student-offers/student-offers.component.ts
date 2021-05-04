@@ -133,7 +133,7 @@ export class StudentOffersComponent implements OnInit {
       console.log("working on it ...");
       
       this.offers.forEach(offer=>{
-        if(offer.offertasksolution.type==type){
+        if(offer.offertasksolution.offer_type==type){
           retour.push(offer);
         }
       })
@@ -151,7 +151,7 @@ export class StudentOffersComponent implements OnInit {
     if (location != 'All' && type != 'All' && categorie == 'All') {
     
       this.offers.forEach(offer=>{
-        if(offer.offertasksolution.location==location&&offer.offertasksolution.type==type){
+        if(offer.offertasksolution.location==location&&offer.offertasksolution.offer_type==type){
           retour.push(offer);
         }
       })
@@ -169,7 +169,7 @@ export class StudentOffersComponent implements OnInit {
     if (location == 'All' && type != 'All' && categorie != 'All') {
       
       this.offers.forEach(offer=>{
-        if(offer.offertasksolution.type==type&&offer.offertasksolution.categorie==categorie){
+        if(offer.offertasksolution.offer_type==type&&offer.offertasksolution.categorie==categorie){
           retour.push(offer);
         }
       })
@@ -178,7 +178,7 @@ export class StudentOffersComponent implements OnInit {
     if (location != 'All' && type != 'All' && categorie != 'All') {
      
       this.offers.forEach(offer=>{
-        if(offer.offertasksolution.type==type&&offer.offertasksolution.categorie==categorie&&offer.offertasksolution.location==location){
+        if(offer.offertasksolution.offer_type==type&&offer.offertasksolution.categorie==categorie&&offer.offertasksolution.location==location){
           retour.push(offer);
         }
       })

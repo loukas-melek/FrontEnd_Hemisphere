@@ -9,19 +9,35 @@ export const MENU_ITEMS_COMPANY: NbMenuItem[] = [
   {
     title: 'Project Management',
     icon: 'calendar-outline',
-    link: '/company/workflow',
+    link: '/company/projects',
     
   },
   {
     title: 'Tasks',
     icon: 'archive-outline',
-    link: '/company/tasks',
-   
+    children: [
+      {
+        title: 'pulic-tasks',
+        link: '/company/tasks/public-tasks',
+      },
+      {
+        title: 'my-tasks',
+        link: '/company/tasks/my-tasks',
+      },
+    ],
   },
   {
     title: 'Offers',
     icon: 'briefcase-outline',
-    link: '/company/offers',
-    
+    children: [
+      {
+        title: 'public-offers',
+        link: '/company/offers/public-offers',
+      },
+      {
+        title: 'my-offers',
+        link: '/company/offers/my-offers',
+      },
+    ],
   },
 ];

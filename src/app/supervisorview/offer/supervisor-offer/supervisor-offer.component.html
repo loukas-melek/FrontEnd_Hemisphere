@@ -1,0 +1,73 @@
+<form >
+    <table style="width: 100%;">
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="type">Type</label>
+              <select style="width: 80%;" class="form-control"name="type" #t id="type"(change)="filtrer(l.value,t.value,c.value)">
+                <option>All</option>
+                <option *ngFor="let type of types">{{type}}</option>
+              </select>
+            </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <label for="categorie">Categorie</label>
+              <select style="width: 80%;" class="form-control" #c name="cat" id="cat"(change)="filtrer(l.value,t.value,c.value)">
+                <option>All</option>
+                <option *ngFor="let cat of categories">{{cat}}</option>
+                
+              </select>
+            </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <label for="type">Location</label>
+              <select style="width: 80%;" class="form-control"name="loc" #l id="loc"(change)="filtrer(l.value,t.value,c.value)">
+                <option>All</option>
+                <option *ngFor="let loc of location">{{loc}}</option>
+                
+              </select>
+            </div>
+        </td>
+      </tr>
+      <!-- <tr>
+        <td colspan="3"> 
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input style="width: 100%;">
+          </mat-form-field>
+      </td>
+      </tr> -->
+    </table>
+
+  </form>
+  <br>
+  <div class="tab-content bg-transparent">
+    <div id="note-full-container" class="note-has-grid row">
+      <div class="col-md-4 single-note-item all-category"*ngFor="let offer of offers" >
+        <div class="card card-body">
+        <span class="side-stick"></span>
+        <div class="container">
+        <h6 class="note-title text-truncate w-75 mb-0" data-noteheading="Book a Ticket for Movie" style="margin-left: -1rem;"><a (click)='getOffer(offer)'>{{offer.offertasksolution.title}}</a> <i class="point fa fa-circle ml-1 font-10"></i></h6>
+        <span class="badge badge-primary" >{{offer.offertasksolution.categorie}}</span>
+      
+    
+      </div>
+        <div >
+           <p class="text-muted"><i class="far fa-clock"></i> {{changeDate(offer.updated_at)}}  <i class="fas fa-map-marker-alt"></i> {{offer.offertasksolution.location}} </p> 
+    
+        </div>
+        <div class="note-content">
+          <di class="container">
+        <p class="note-inner-content text-muted text-truncate" data-notecontent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis." style="margin-left: -1rem;">{{offer.offertasksolution.description}}</p>
+        <p class="text-muted" style="margin-left: 8rem;">{{offer.offertasksolution.cost}}<small class="text-muted" style="margin-left: 0.25rem;">Dinars </small></p>
+      </di>
+        </div>
+        
+        </div>
+        <br>
+        </div>
+
+</div>
+</div>

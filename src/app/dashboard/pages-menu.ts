@@ -10,7 +10,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Project Management',
     icon: 'shopping-cart-outline',
     link: '/dashboard/workflow',
-    home: true,
+  },
+  {
+    title: 'Projects ',
+    icon: 'shopping-cart-outline',
+    link: '/dashboard/projects',
   },
   // {
   //   title: 'OffersC',

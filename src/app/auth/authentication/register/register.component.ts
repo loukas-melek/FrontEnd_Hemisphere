@@ -17,7 +17,10 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   registerReq=new RequestRegister();
-  password;username;email;first:string;last:string;pwdc;firstc:string;lastc:string;emailc;location;city;phone;cpass;cityc;locationc;phonec;passc;companyname;genderc;gender;
+  password;username;email;first:string;last:string;location;city;phone;gender;passc
+  firstc:string;lastc:string;emailc;cpass;cityc;locationc;phonec;companyname;genderc;pwdc;
+  passwords;usernames;emails;firsts:string;lasts:string;locations;citys;phones;genders;passcs
+
   constructor(private authService: AuthenticationService,private router:Router) { }
 
   ngOnInit(): void {
@@ -61,6 +64,40 @@ export class RegisterComponent implements OnInit {
     window.alert("Log Yourself In !");
     this.router.navigate(['auth/login']);
   }
+  onSubmitSupervisor(): void {
+    this.registerReq.email=this.emails;
+    this.registerReq.password=this.passwords;
+    this.registerReq.username=this.lasts[0].toLowerCase()+this.firsts.toLowerCase();
+  
+   this.registerReq.roles=5;
+    console.log(this.registerReq.roles);
+    this.registerReq.name=this.firsts;
+    this.registerReq.lastname=this.lasts;
+    this.registerReq.phone=this.phones;
+    this.registerReq.city=this.citys;
+    this.registerReq.location=this.locations;
+    if(this.genders=="Male"){
+      this.registerReq.gender=false;
+    }
+    if(this.genders=="Female"){
+      this.registerReq.gender=true;
+    }
+    console.log(this.registerReq);
+    this.authService.register(this.registerReq).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+    window.alert("Registration Success ! ")
+    window.alert("Log Yourself In !");
+    this.router.navigate(['auth/login']);
+  }
   routme(){
     this.router.navigate(['auth/login']);
   }
@@ -72,7 +109,7 @@ export class RegisterComponent implements OnInit {
     console.log(Role);
     this.registerReq.email=this.emailc;
     this.registerReq.password=this.pwdc;
-    this.registerReq.username=this.last[0].toLowerCase()+this.first.toLowerCase();
+    this.registerReq.username=this.lastc[0].toLowerCase()+this.firstc.toLowerCase();
     this.registerReq.roles=3;
     this.registerReq.name=this.firstc;
     this.registerReq.lastname=this.lastc;

@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Project } from "../apps/entities/project";
 import { ProjectDto } from "../apps/entities/ProjectDto";
 import { Sprint } from "../apps/entities/sprint";
+import { SprintDto } from "../apps/entities/SprintDto";
 
 
 @Injectable({
@@ -21,5 +22,11 @@ import { Sprint } from "../apps/entities/sprint";
     getall(){
         return this.Http.get<ProjectDto[]>("http://localhost:3000/project"+"/getall")
       }
-
+      createSprint(sprint:Sprint){
+        console.log("add",sprint)
+        return this.Http.post<Sprint>(this.url, sprint);
+        }
+        getSprintByID(id){
+          return this.Http.get<SprintDto>(this.url+"/"+id);
+        }
 }

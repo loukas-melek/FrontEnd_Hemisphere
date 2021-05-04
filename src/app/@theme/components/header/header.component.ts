@@ -19,7 +19,7 @@ import { Profile } from '../../../apps/entities/Profile';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
+  show=true;
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
@@ -112,6 +112,7 @@ profile:Profile;
 
   toggleSidebar(): boolean {
       this.sidebarService.toggle(true, 'menu-sidebar');
+      this.show=!this.show;
       this.layoutService.changeLayoutSize(); 
     return false;
   }
@@ -144,6 +145,10 @@ onItemSelection( title ) {
       console.log('Profile Clicked ')
       this.router.navigate(['front/profile']);
     }
+    if(this.userr.roles.toString()=="ROLE_SUPERVISOR"){
+      console.log('Profile Clicked ')
+      this.router.navigate(['supervisor/profile']);
+    }
     
   }
   else if ( title === 'Settings' ) {
@@ -159,6 +164,10 @@ onItemSelection( title ) {
       console.log('settings Clicked ')
       this.router.navigate(['front/settings']);
     }
+    if(this.userr.roles.toString()=="ROLE_SUPERVISOR"){
+      console.log('settings Clicked ')
+      this.router.navigate(['supervisor/profile/settings']);
+    }
   }
 })
 }
@@ -172,17 +181,25 @@ RedirectMe(){
     this.myRole=this.userr.roles.toString()
     console.log(this.myRole);
     if(this.myRole.includes("ROLE_STUDENT")){
-      this.router.navigate(['student/workflow']);
+      this.router.navigate(['student/projects']);
     }else
     if(this.myRole.includes("ROLE_COMPANY")){
-      this.router.navigate(['company/workflow']);
+      this.router.navigate(['company/projects']);
     }else
     if(this.myRole=="ROLE_ADMIN"){
-      this.router.navigate(['dashboard/workflow']);
+      this.router.navigate(['dashboard/projects']);
+    }else
+    if(this.myRole=="ROLE_SUPERVISOR"){
+      this.router.navigate(['supervisor/projects']);
     }
   })
 }
 isDashboardRoute() {
-  return this.router.url.includes("/dashboard");
+  if(this.router.url.includes("/company")||this.router.url.includes("/student")||this.router.url.includes("/supervisor")){
+  return true;
+  }
+  else {
+    return false;
+  }
 }
 }

@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalDataSource } from 'ng2-smart-table';
 import { SmartTableData } from '../../@core/data/smart-table';
 import { Comment } from '../../apps/entities/Comment';
 import { Demande } from '../../apps/entities/demande';
+import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Project } from '../../apps/entities/project';
+import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { CommentService } from '../../services/CommentService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { ProfileService } from '../../services/ProfileService';
 import { ProjectService } from '../../services/projectService';
 import { UserService } from '../../services/userService';
+import { GeneralPost } from 'c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/General_Post';
 import { Profile } from 'c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/Profile';
 
 @Component({
@@ -31,6 +35,8 @@ export class CompanyDetailsComponent implements OnInit {
   approuved="Approuved"
   declined="Declined"
   profilestudent:Profile;
+  edit: FormGroup;
+
   types=["PFE","PFA","STAGE","EMPLOIS","OTHER"];
   categories=["INFORMATIQUE","FINANCE","MANAGEMENT","SECURITY","COMMERCE","ELECTRIQUE","ENERGITIQUE","MECANIQUE","CHIMIE","OTHER"];
   locations=["Tunis","Bizert","HomeWorking","Online","BenArous","Siliana","SidBouzid","Monastir","Mednine","Ariana","Gafsa","Gabes","Sousse","Nabel","Manouba","Beja","Zaghouan","Kbili","Kasserine","Mahdia","Sfax","Karouane","Tozeur","Kef","Jendouba","Tatouine","Other"];
@@ -38,16 +44,58 @@ export class CompanyDetailsComponent implements OnInit {
   comentaire=new Comment;
   commmentaire: string;
   count;
-  project=new Project();
+  project=new ProjectDto();
   confirmedList=new Array<Profile>();
   commnt: string;
-  constructor(private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
+  mine: boolean;
+  myprofile: Profile;
+  constructor(private fb: FormBuilder,private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
   }
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.edit = this.fb.group({
+      offer_type:[''],
+      title:[''],
+      poste:[''],
+      location:[''],
+      studentNumber:[''],
+      categorie:[''],
+      description:[''],
+      cost:[''],
+      id:[''],
+      type:[''],
+     });
     this.getoffer();
     this.listdemandes();
   }
+  openModal(targetModal, offer:OfferTaskSolution) {
+    console.log(offer.description);
+    
+    this.modalService.open(targetModal, {
+      ariaLabelledBy: 'modal-basic-title' ,size:'lg',
+     centered: true,
+     backdrop: 'static'
+    })
+    .result.then((result)=>{
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    
+    });
+   
+    this.edit.patchValue({
+      type:offer.type,
+      offer_type:offer.offer_type,
+      title:offer.title,
+      poste:offer.poste,
+      location:offer.location,
+      studentNumber:offer.studentNumber,
+      categorie:offer.categorie,
+      description:offer.description,
+      cost:offer.cost,
+      id:offer.id,
+    });
+   }
   addReply(comment:Comment){
     let pub=this.generalPost;
       
@@ -64,38 +112,44 @@ export class CompanyDetailsComponent implements OnInit {
   }
   editOffer(){
     console.log(this.generalPost);
-    
+    console.log( this.edit.getRawValue());
+
     let pub=this.generalPost;
-    if(this.title!=undefined){
-      pub.offertasksolution.title=this.title;
-    }
-    if(this.poste!=undefined){
-      pub.offertasksolution.poste=this.poste;
-    }
-    if(this.location!=undefined){
-      pub.offertasksolution.location=this.location;
-    }
-    if(this.nofstudent!=undefined){
-      pub.offertasksolution.studentNumber=this.nofstudent;
-    }
-    if(this.type!=undefined){
-      pub.offertasksolution.type=this.type;
-    }
-    if(this.categorie!=undefined){
-      pub.offertasksolution.categorie=this.categorie;
-    }
-    if(this.description!=undefined){
-      pub.offertasksolution.description=this.description;
-    }
-    if(this.cost!=undefined){
-      pub.offertasksolution.cost=this.cost;
-    }
+    console.log(pub.offertasksolution.type);
+    
+    pub.offertasksolution=this.edit.getRawValue();
+    console.log(pub.offertasksolution);
+    
+    // if(this.title!=undefined){
+    //   pub.offertasksolution.title=this.title;
+    // }
+    // if(this.poste!=undefined){
+    //   pub.offertasksolution.poste=this.poste;
+    // }
+    // if(this.location!=undefined){
+    //   pub.offertasksolution.location=this.location;
+    // }
+    // if(this.nofstudent!=undefined){
+    //   pub.offertasksolution.studentNumber=this.nofstudent;
+    // }
+    // if(this.type!=undefined){
+    //   pub.offertasksolution.offer_type=this.type;
+    // }
+    // if(this.categorie!=undefined){
+    //   pub.offertasksolution.categorie=this.categorie;
+    // }
+    // if(this.description!=undefined){
+    //   pub.offertasksolution.description=this.description;
+    // }
+    // if(this.cost!=undefined){
+    //   pub.offertasksolution.cost=this.cost;
+    // }
     console.log(pub);
     this.generalPostService.updatePub(pub.id,pub).subscribe(res=>{
       console.log(res);
       
     })
-    this.reloadPage();
+    // this.reloadPage();
 
   }
   checkSupervision(){
@@ -135,6 +189,7 @@ this.ngOnInit();
       this.profileService.getProfileByUserId(this.user.id).subscribe(res=>{
         this.profile=res;
         console.log("hetha profilna");
+        this.myprofile=this.profile;
         console.log(this.profile);
         console.log(this.profile.name);
         console.log(this.profile.lastname);
@@ -142,6 +197,20 @@ this.ngOnInit();
     this.generalPostService.getPubById(this.id).subscribe(res=>{
       this.generalPost=res;
       console.log(this.generalPost);
+      if(this.generalPost.profile.id==this.profile.id){
+        console.log("mteee3na!!");
+        
+    this.mine=true;        
+      }else
+      if(this.generalPost.profile.id!=this.profile.id){
+        console.log("maahoucj mtee3naa");
+        
+        
+      
+        this.mine=false;
+      }
+      console.log(this.mine);
+      
       this.commentService.listCommentsByPub(this.generalPost.id).subscribe(res=>{
         this.comms=res;
         console.log(this.comms);

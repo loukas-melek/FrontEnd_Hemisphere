@@ -11,7 +11,7 @@ export class GeneralPost {
     created_at:Date
     updated_at:Date
     nlike:number;
-    offertasksolution:OfferTaskSolution;
+    offertasksolution=new OfferTaskSolution();
     ncomment:number;
     nshare:number;
     comment:Comment;

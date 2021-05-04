@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   credentiels=new RequestLogin();
   path;
+  username;password
   constructor(private userService:UserService,private route: ActivatedRoute,private authService:AuthenticationService, private tokenStorage: TokenStorageService,private router:Router) { }
 
   ngOnInit(): void {
@@ -58,6 +59,9 @@ export class LoginComponent implements OnInit {
       }else
       if(this.test=="ROLE_ADMIN"){
         this.router.navigate(['front/home']);
+      }else
+      if(this.test=="ROLE_SUPERVISOR"){
+        this.router.navigate(['front/home']);
       }
     })
   }
@@ -65,8 +69,8 @@ export class LoginComponent implements OnInit {
     console.log("test aal form chfih bedhabt");
     console.log(this.form.password);
     console.log(this.form.username);
-    this.credentiels.password=this.form.password;
-    this.credentiels.username=this.form.username;
+    this.credentiels.password=this.password;
+    this.credentiels.username=this.username;
     this.authService.login(this.credentiels).subscribe(
       
       

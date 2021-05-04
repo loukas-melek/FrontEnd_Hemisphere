@@ -13,6 +13,7 @@ const routes: Routes = []
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     FormsModule,
+    
   ]
 })
 export class AppsModule { }

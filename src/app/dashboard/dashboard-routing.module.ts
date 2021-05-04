@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 import { WorkflowComponent } from './workflow/workflow.component';
@@ -10,10 +11,13 @@ import { WorkflowComponent } from './workflow/workflow.component';
   component: DashboardComponent,
   children: [
     {
-      path: 'workflow',
+      path: 'workflow/:id',
       component: WorkflowComponent,
     },
-    
+    {
+      path: 'projects',
+      component: ProjectsComponent,
+    },
     // {
     //   path: 'company/offers',
     //   component: CompanyOffersComponent,

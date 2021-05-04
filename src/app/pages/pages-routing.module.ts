@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
@@ -6,7 +6,11 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { LandingComponent } from './landing/landing.component';
 import { Landing2Component } from './landing2/landing2.component';
-
+const routerOptions: ExtraOptions = {
+  useHash: false,
+  anchorScrolling: 'enabled',
+  // ...any other options you'd like to use
+};
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -17,7 +21,8 @@ const routes: Routes = [{
     },
     {
       path: 'landing',
-      component: LandingComponent,
+      loadChildren: () => import('./landing/landing.module')
+        .then(m => m.LandingModule),
     },
     {
       path: 'landing2',
@@ -79,7 +84,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'landing',
       pathMatch: 'full',
     },
     {
