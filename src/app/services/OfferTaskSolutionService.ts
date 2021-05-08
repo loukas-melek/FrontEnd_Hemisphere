@@ -51,6 +51,8 @@ return this.Http.get<OfferTaskSolution[]>(this.urlOffers + '/list');
   
     return this.Http.get<OfferTaskSolution>(this.urlOffers + '/' + id)
    }
-
+   getListCompetanceIdByoffer(id){
+     return this.Http.get<number[]>(this.urlOffers+'/competance/'+id);
+   }
   }
   

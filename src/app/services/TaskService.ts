@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Sprint } from "../apps/entities/sprint";
 import { Task } from "../apps/entities/Task";
+import { TaskDto } from "../apps/entities/TaskDto";
 
 
 @Injectable({
@@ -30,5 +31,8 @@ import { Task } from "../apps/entities/Task";
           console.log("add",task)
           return this.Http.post<Task>(this.url  , task);
           }
+        gettaskById(id){
+          return this.Http.get<TaskDto>(this.url+'/'+id);
+        }
 
 }

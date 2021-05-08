@@ -1,0 +1,23 @@
+<button (click)="myview()"></button>
+<jqxScheduler #scheduler
+              (onAppointmentDelete)="mySchedulerOnAppointmentDelete($event)"
+              (onAppointmentAdd)="mySchedulerOnAppointmentAdd($event)"
+              (onAppointmentDoubleClick)="mySchedulerOnAppointmentDoubleClick($event)"
+              (onAppointmentChange)="mySchedulerOnAppointmentChange($event)"
+
+              [editDialogCreate]="editDialogCreate"
+              [editDialogOpen]="editDialogOpen"
+              [editDialogClose]="editDialogClose"
+              [editDialogKeyDown]="editDialogKeyDown"
+
+              (onCellClick)="mySchedulerOnCellClick($event)"
+              [width]="getWidth()" [height]="600"
+              [date]="date"
+              [source]="dataAdapter"
+              [dayNameFormat]="'abbr'"
+              [showLegend]="true"
+              [view]="'agendaView'"
+              [resources]="resources"
+              [views]="views"
+              [appointmentDataFields]="appointmentDataFields">
+</jqxScheduler>

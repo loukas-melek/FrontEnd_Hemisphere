@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +14,12 @@ import { GeneralPostService } from '../../../services/generalpostService';
 import { OfferService } from '../../../services/OfferTaskSolutionService';
 import { ProfileService } from '../../../services/ProfileService';
 import { UserService } from '../../../services/userService';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-company-my-tasks',
@@ -30,41 +36,69 @@ export class CompanyMyTasksComponent implements OnInit {
   types=["PFE","PFA","STAGE","EMPLOIS","OTHER"];
   categories=["INFORMATIQUE","FINANCE","MANAGEMENT","SECURITY","COMMERCE","ELECTRIQUE","ENERGITIQUE","MECANIQUE","CHIMIE","OTHER"];
   locations=["Tunis","Bizert","HomeWorking","Online","BenArous","Siliana","SidBouzid","Monastir","Mednine","Ariana","Gafsa","Gabes","Sousse","Nabel","Manouba","Beja","Zaghouan","Kbili","Kasserine","Mahdia","Sfax","Karouane","Tozeur","Kef","Jendouba","Tatouine","Other"];
-  lcompetance=new Array<String>();
+  lcompetance=new Array<string>();
   lcompetances=new Array<Competance>();
   cmp: string;
   closeResult: string;
   title;poste;location;nofstudent;type;categorie;cname;description;date;cost;supervised=false;
   afficheDate;
   saved
-  constructor(private competanceService: CompetanceService ,private modalService: NgbModal,private userService:UserService,private profileSerivce:ProfileService,private offerService:OfferService,private generalpostservice:GeneralPostService,private router: Router,private tokenStorage: TokenStorageService) { }
+  visible = true;
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl();
+  filteredCompetances: Observable<string[]>;
+  competances: string[] = [];
+  allCompetances: Competance[] = [];  
+  ListCompetances:string[] = [];
+
+  @ViewChild('fruitInput') CompetanceInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  constructor(private competanceService: CompetanceService ,private modalService: NgbModal,private userService:UserService,private profileSerivce:ProfileService,private offerService:OfferService,private generalpostservice:GeneralPostService,private router: Router,private tokenStorage: TokenStorageService) { 
+    this.filteredCompetances = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.ListCompetances.slice()));
+  }
 
   ngOnInit(): void {
      this.bringmylist();
-     this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-    
-    this.dropdownSettings ={
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
   }
   getOffer(id) {
     this.router.navigate(['company/detail' + '/' + id]);
+    }
+    add(event: MatChipInputEvent): void {
+      const input = event.input;
+      const value = event.value;
+  
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.competances.push(value.trim());
+      }
+  
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+  
+      this.fruitCtrl.setValue(null);
+    }
+    remove(competance: string): void {
+      const index = this.competances.indexOf(competance);
+  
+      if (index >= 0) {
+        this.competances.splice(index, 1);
+      }
+    }
+    selected(event: MatAutocompleteSelectedEvent): void {
+      this.competances.push(event.option.viewValue);
+      this.CompetanceInput.nativeElement.value = '';
+      this.fruitCtrl.setValue(null);
+    }
+    private _filter(value: string): string[] {
+      const filterValue = value.toLowerCase();
+  
+      return this.ListCompetances.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
     }
   filtrer(location,categorie){
   
@@ -144,6 +178,14 @@ bringmylist(){
       if(element.offertasksolution.type==1){
         transferList.push(element);
       }
+      this.competanceService.listCompetances().subscribe(res=>{
+        this.allCompetances=res;
+        console.log(this.allCompetances);
+        this.allCompetances.forEach(element=>{
+          this.ListCompetances.push(element.competance);
+        })
+        
+      })
     })
     this.mylist=transferList;
     this.saved=this.mylist
@@ -234,7 +276,9 @@ getMyprofile(){
 }
     createTask() {
     
-   
+      console.log("nchoufou el competances");
+      console.log(this.competances);
+      
      let competance = new Competance();
      let task=new OfferTaskSolution();
      console.log("just testing the toogle value");
@@ -244,21 +288,8 @@ getMyprofile(){
      console.log(this.categorie);
      task.title=this.title;
      console.log(this.title);
-     this.lcompetance.forEach(element=>{
-       console.log("dkhalna lel for each");
-       
-       
-       competance.competance=element;
-       console.log(element);
-       
-       this.competanceService.createCompetance(competance).subscribe(res=>{
-         console.log(competance.competance);
-         console.log(task.competance);
-         
-         
-       })
-       
-     })
+    
+  
      console.log(task.competance);
      
      
@@ -279,9 +310,28 @@ getMyprofile(){
      console.log(task);
      this.offerService.createOfferTaskSolution(task,this.profile.id).subscribe(
        res=>{
+         let tasktosend=res;
+        
          console.log(res);
-         this.modalService.dismissAll();
-         this.ngOnInit();
+         this.competances.forEach(element=>{
+          console.log("dkhalna lel for each");
+          
+          
+          competance.competance=element;
+          console.log(element);
+          
+          this.competanceService.createCompetance(competance,tasktosend.id).subscribe(res=>{
+            console.log(res);
+            
+            console.log(competance.competance);
+            console.log(task.competance);
+            
+            
+          })
+          
+        })
+        //  this.modalService.dismissAll();
+        //  this.ngOnInit();
        }
      )
  

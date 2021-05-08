@@ -24,6 +24,12 @@ import { SprintDto } from "../apps/entities/SprintDto";
       }
       createSprint(sprint:Sprint){
         console.log("add",sprint)
+        console.log(sprint.start_date);
+        console.log(sprint.end_date);
+        // sprint.end_date=new Date(sprint.end_date)
+        // sprint.start_date=new Date(sprint.start_date)
+        // console.log(sprint.start_date);
+        // console.log(sprint.end_date);
         return this.Http.post<Sprint>(this.url, sprint);
         }
         getSprintByID(id){

@@ -12,6 +12,7 @@ import { Project } from '../../apps/entities/project';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { User } from '../../apps/entities/user';
 import { CommentService } from '../../services/CommentService';
+import { CompetanceService } from '../../services/CompetanceService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { ProfileService } from '../../services/ProfileService';
@@ -26,7 +27,7 @@ import { UserService } from '../../services/userService';
 export class SupervisorDetailsComponent implements OnInit {
 
   user:User;
-  profile: Profile;
+  profile= new Profile();
   id: any;
   generalPost:GeneralPost;
   closeResult: string;
@@ -49,7 +50,8 @@ export class SupervisorDetailsComponent implements OnInit {
   confirmedList=new Array<Profile>();
   commnt: string;
   mine: boolean=false;
-  constructor(private fb: FormBuilder,private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
+  offerCompetances: any;
+  constructor(private competanceService: CompetanceService,private fb: FormBuilder,private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
   }
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -67,6 +69,7 @@ export class SupervisorDetailsComponent implements OnInit {
      });
     this.getoffer();
     this.listdemandes();
+    this.getMyprofile();
   }
   openModal(targetModal, offer:OfferTaskSolution) {
     console.log(offer.description);
@@ -183,6 +186,18 @@ export class SupervisorDetailsComponent implements OnInit {
 })
 this.ngOnInit();
 }
+getMyprofile(){
+  this.userService.whoami().subscribe(res=>{
+    this.user=res;
+    this.profileService.getProfileByUserId(this.user.id).subscribe(res=>{
+      this.profile=res;
+      console.log("hetha profilna");
+      console.log(this.profile);
+      console.log(this.profile.name);
+      console.log(this.profile.lastname);
+    })
+  })
+}
   getoffer(){
     this.userService.whoami().subscribe(res=>{
       this.user=res;
@@ -216,10 +231,14 @@ this.ngOnInit();
         this.count=this.comms.length
         console.log(this.count);
         
-      })
+     
       console.log(this.mine);
-      
-    
+      this.competanceService.getCompetancesByOfferId(this.generalPost.offertasksolution.id).subscribe(res=>{
+        this.offerCompetances=res;
+        console.log(this.offerCompetances);
+        
+       })
+      })
   })
 })
 })

@@ -36,7 +36,7 @@
           <br>
           <!-- <button class="btn btn-success"  (click)="openModal(addtask,item.sprint_id)"> <i class="fas fa-plus"></i></button> -->
           
-            <a  (click)="openModalAffiche(sprint,item.sprint_id)" class="table-link text-warning" >
+            <a  (click)="openModalAfficheSprint(sprint,item.sprint_id)" class="table-link text-warning" >
               <span class="fa-stack">
                   <i class="fa fa-square fa-stack-2x"></i>
                   <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
@@ -108,7 +108,7 @@
           <br>
           <!-- <button class="btn btn-success"  (click)="openModal(addtask,item.sprint_id)"> <i class="fas fa-plus"></i></button> -->
           
-            <a  (click)="openModalAffiche(sprint,item.sprint_id)" class="table-link text-warning" >
+            <a  (click)="openModalAfficheSprint(sprint,item.sprint_id)" class="table-link text-warning" >
               <span class="fa-stack">
                   <i class="fa fa-square fa-stack-2x"></i>
                   <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
@@ -200,7 +200,7 @@
               <br>
               <!-- <button class="btn btn-success"  (click)="openModal(addtask,item.sprint_id)"> <i class="fas fa-plus"></i></button> -->
               
-                <a  (click)="openModalAffiche(sprint,item.sprint_id)" class="table-link text-warning" >
+                <a  (click)="openModalAfficheSprint(sprint,item.sprint_id)" class="table-link text-warning" >
                   <span class="fa-stack">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
@@ -218,7 +218,7 @@
             cdkDropList  (cdkDropListDropped)="drop($event)">
               <div *ngFor="let subItem of item.sprintsTask" cdkDrag>    
                 <div class="example-box" >{{subItem.description}}
-                  <a  (click)="openModal(task,item.sprint_id)" class="table-link text-warning">
+                  <a  (click)="openModalTask(task,subItem.task_id)" class="table-link text-warning">
                     <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fas fa-eye fa-stack-1x fa-inverse"></i>
@@ -275,7 +275,7 @@
   </button>
   </div>
   <div class="modal-body">
-    <div *ngFor="let item of sprintTodo">
+    <div >
       <div class="assign-team mt-4">
         <h6 class="m-b-5"><i class="fas fa-audio-description"></i> Description</h6>
         <div>
@@ -286,11 +286,11 @@
     <ul class="list-inline task-dates m-b-0 mt-5">
         <li>
             <h6 class="m-b-5"><i class="fas fa-code-branch"></i> Start Date</h6>
-            <p  class="text-muted" >{{oneSprint?.start_date}}</p>
+            <p  class="text-muted" >{{oneSprint?.start_date | date: 'shortDate'}} {{oneSprint?.start_date | date: 'shortTime'}}</p>
         </li>
         <li>
             <h6 class="m-b-5"><i class="fas fa-tags"></i> End Date </h6>
-            <p> <small class="text-muted">{{oneSprint?.end_date}}  </small></p>
+            <p> <small class="text-muted">{{oneSprint?.end_date | date: 'shortDate'}} {{oneSprint?.start_date | date: 'shortTime'}}  </small></p>
         </li>
     </ul>
     <ul class="list-inline task-dates m-b-0 mt-5">
@@ -326,7 +326,43 @@
     <span aria-hidden="true">&times;</span>
     </button>
     </div>
-   
+    <div class="modal-body">
+      <div >
+        <div class="assign-team mt-4">
+          <h6 class="m-b-5"><i class="fas fa-audio-description"></i> Description</h6>
+          <div>
+              <p>{{oneTask?.description}}</p>
+      </div>
+      </div>
+      <!-- <p class="text-muted">{{generalPost?.offertasksolution.description}}</p> -->
+      <ul class="list-inline task-dates m-b-0 mt-5">
+          <li>
+              <h6 class="m-b-5"><i class="fas fa-code-branch"></i> Start Date</h6>
+              <p  class="text-muted" >{{oneTask?.start_date | date: 'shortDate'}}</p>
+          </li>
+          <li>
+              <h6 class="m-b-5"><i class="fas fa-tags"></i> End Date </h6>
+              <p> <small class="text-muted">{{oneTask?.end_date | date: 'shortDate'}}  </small></p>
+          </li>
+      </ul>
+      <ul class="list-inline task-dates m-b-0 mt-5">
+          <li>
+              <div class="attached-files mt-4">
+                  <h6 class=""><i class="fas fa-file-signature"></i> Status</h6>
+                  <p class="text-muted">{{oneTask?.status}} </p>
+              </div>
+          </li>
+          <li>
+              <div class="assign-team mt-4">
+                  <h6 class="m-b-5"><i class="fas fa-users"></i> Type</h6>
+                  <div>
+                      <p> <small class="text-muted" > {{oneTask?.sprint_type}} </small></p>
+              </div>
+              </div>
+          </li>
+      </ul>
+      </div>
+    </div>
     <div class="modal-footer">
       <button id="btn-n-save" class="float-left btn btn-success" style="display: none;">Save</button>
       <button class="btn btn-danger" data-dismiss="modal">Discard</button>

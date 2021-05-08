@@ -64,7 +64,7 @@ export const routes: Routes = [
       .then(m => m.AuthenticationModule)
       
   },
- { path: '', redirectTo: 'pages', pathMatch: 'full' },
+ { path: '', redirectTo: '/pages/landing/home', pathMatch: 'full' },
    { path: '**', redirectTo: 'pages' },
 
 ];

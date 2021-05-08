@@ -9,6 +9,7 @@ import { GeneralPost } from '../../apps/entities/General_Post';
 import { Profile } from '../../apps/entities/Profile';
 import { User } from '../../apps/entities/user';
 import { CommentService } from '../../services/CommentService';
+import { CompetanceService } from '../../services/CompetanceService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { ProfileService } from '../../services/ProfileService';
@@ -38,7 +39,8 @@ export class StudentDetailsTaskComponent implements OnInit {
   comms=new Array<Comment>();
   comm: string;
   count;
-    constructor(private fb: FormBuilder,private commentService:CommentService,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
+  offerCompetances: any;
+    constructor(private competanceService: CompetanceService,private fb: FormBuilder,private commentService:CommentService,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private demandeService:DemandeService,private userService:UserService) { }
   
     ngOnInit(): void {
       this.edit = this.fb.group({
@@ -150,7 +152,11 @@ export class StudentDetailsTaskComponent implements OnInit {
           console.log(this.comms);
           this.count=this.comms.length
         })
-        
+        this.competanceService.getCompetancesByOfferId(this.generalPost.offertasksolution.id).subscribe(res=>{
+          this.offerCompetances=res;
+          console.log(this.offerCompetances);
+          
+         })
       })
     })
   })

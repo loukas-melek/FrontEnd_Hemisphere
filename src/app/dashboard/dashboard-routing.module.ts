@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CalComponent } from './cal/cal.component';
 import { DashboardComponent } from './dashboard.component';
 import { ProjectsComponent } from './projects/projects.component';
 
@@ -17,6 +18,11 @@ import { WorkflowComponent } from './workflow/workflow.component';
     {
       path: 'projects',
       component: ProjectsComponent,
+    },
+
+    {
+      path: 'cal',
+      component: CalComponent,
     },
 
     // {

@@ -67,8 +67,11 @@
                     <!-- <div class="clearfix"></div> -->
                     <div class="task-tags mt-4">
                         <h6 ><i class="fas fa-cubes"></i> Skills Required</h6>
-                        <div class="bootstrap-tagsinput"><span class="tag label label-info text-white">Html<span data-role="remove"></span></span> <span class="tag label label-info text-white">Bootstrap<span data-role="remove"></span></span> <span class="tag label label-info text-white">Css<span data-role="remove"></span></span>
-                            
+                        <div class="bootstrap-tagsinput" *ngFor="let skill of offerCompetances">
+                            <span class="tag label label-info text-white">{{skill.competance}}<span data-role="remove"></span></span> 
+                            <!-- <span class="tag label label-info text-white">Bootstrap<span data-role="remove"> </span></span> 
+                            <span class="tag label label-info text-white">Css<span data-role="remove"></span></span> -->
+                                
                         </div>
 
                     </div>
