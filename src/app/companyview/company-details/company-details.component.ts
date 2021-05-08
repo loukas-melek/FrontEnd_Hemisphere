@@ -5,13 +5,16 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LocalDataSource } from 'ng2-smart-table';
 import { SmartTableData } from '../../@core/data/smart-table';
 import { Comment } from '../../apps/entities/Comment';
+import { Competance } from '../../apps/entities/Competance';
 import { Demande } from '../../apps/entities/demande';
 import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Project } from '../../apps/entities/project';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { CommentService } from '../../services/CommentService';
+import { CompetanceService } from '../../services/CompetanceService';
 import { DemandeService } from '../../services/demandeService';
 import { GeneralPostService } from '../../services/generalpostService';
+import { OfferService } from '../../services/OfferTaskSolutionService';
 import { ProfileService } from '../../services/ProfileService';
 import { ProjectService } from '../../services/projectService';
 import { UserService } from '../../services/userService';
@@ -41,6 +44,7 @@ export class CompanyDetailsComponent implements OnInit {
   categories=["INFORMATIQUE","FINANCE","MANAGEMENT","SECURITY","COMMERCE","ELECTRIQUE","ENERGITIQUE","MECANIQUE","CHIMIE","OTHER"];
   locations=["Tunis","Bizert","HomeWorking","Online","BenArous","Siliana","SidBouzid","Monastir","Mednine","Ariana","Gafsa","Gabes","Sousse","Nabel","Manouba","Beja","Zaghouan","Kbili","Kasserine","Mahdia","Sfax","Karouane","Tozeur","Kef","Jendouba","Tatouine","Other"];
   comms=new Array<Comment>();
+  offerCompetances=new Array<Competance>();
   comentaire=new Comment;
   commmentaire: string;
   count;
@@ -49,7 +53,8 @@ export class CompanyDetailsComponent implements OnInit {
   commnt: string;
   mine: boolean;
   myprofile: Profile;
-  constructor(private fb: FormBuilder,private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
+  list: number[];
+  constructor(private competanceService:CompetanceService,private fb: FormBuilder,private offertaskService:OfferService,private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
   }
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -67,6 +72,7 @@ export class CompanyDetailsComponent implements OnInit {
      });
     this.getoffer();
     this.listdemandes();
+    // this.getCompetances();
   }
   openModal(targetModal, offer:OfferTaskSolution) {
     console.log(offer.description);
@@ -183,6 +189,13 @@ export class CompanyDetailsComponent implements OnInit {
 })
 this.ngOnInit();
 }
+getCompetances(){
+ this.competanceService.getCompetancesByOfferId(this.route.snapshot.params['id']).subscribe(res=>{
+  this.offerCompetances=res;
+  console.log(this.offerCompetances);
+  
+ })
+}
   getoffer(){
     this.userService.whoami().subscribe(res=>{
       this.user=res;
@@ -218,7 +231,11 @@ this.ngOnInit();
         console.log(this.count);
         
       })
-
+      this.competanceService.getCompetancesByOfferId(this.generalPost.offertasksolution.id).subscribe(res=>{
+        this.offerCompetances=res;
+        console.log(this.offerCompetances);
+        
+       })
     
   })
 })

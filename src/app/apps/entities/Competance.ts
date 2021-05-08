@@ -1,7 +1,7 @@
 
 export class Competance { 
     id: number;
-    competance:String;
+    competance:string;
     public constructor() {
        
     }

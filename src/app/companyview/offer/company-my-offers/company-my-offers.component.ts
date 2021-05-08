@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -12,7 +12,15 @@ import { GeneralPostService } from '../../../services/generalpostService';
 import { OfferService } from '../../../services/OfferTaskSolutionService';
 import { ProfileService } from '../../../services/ProfileService';
 import { UserService } from '../../../services/userService';
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
 
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { Competance } from '../../../apps/entities/Competance';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { CompetanceService } from '../../../services/CompetanceService';
 @Component({
   selector: 'ngx-company-my-offers',
   templateUrl: './company-my-offers.component.html',
@@ -32,7 +40,24 @@ export class CompanyMyOffersComponent implements OnInit {
   categories=["INFORMATIQUE","FINANCE","MANAGEMENT","SECURITY","COMMERCE","ELECTRIQUE","ENERGITIQUE","MECANIQUE","CHIMIE","OTHER"];
   locations=["Tunis","Bizert","HomeWorking","Online","BenArous","Siliana","SidBouzid","Monastir","Mednine","Ariana","Gafsa","Gabes","Sousse","Nabel","Manouba","Beja","Zaghouan","Kbili","Kasserine","Mahdia","Sfax","Karouane","Tozeur","Kef","Jendouba","Tatouine","Other"];
   saved: GeneralPost[];
-  constructor(private fb: FormBuilder,private modalService: NgbModal,private userService:UserService,private profileSerivce:ProfileService,private offerService:OfferService,private generalpostservice:GeneralPostService,private router: Router,private tokenStorage: TokenStorageService) { }
+  visible = true;
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl();
+  filteredCompetances: Observable<string[]>;
+  competances: string[] = [];
+  allCompetances: Competance[] = [];  
+  ListCompetances:string[] = [];
+  lcompetance=new Array<string>();
+  lcompetances=new Array<Competance>();
+  @ViewChild('fruitInput') CompetanceInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  constructor(private competanceService: CompetanceService ,private fb: FormBuilder,private modalService: NgbModal,private userService:UserService,private profileSerivce:ProfileService,private offerService:OfferService,private generalpostservice:GeneralPostService,private router: Router,private tokenStorage: TokenStorageService) {
+    this.filteredCompetances = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.ListCompetances.slice()));
+   }
 
   ngOnInit(): void {
     this.edit = this.fb.group({
@@ -46,6 +71,39 @@ export class CompanyMyOffersComponent implements OnInit {
      });
     this.listoffers();
     
+  }
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.competances.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.fruitCtrl.setValue(null);
+  }
+  remove(competance: string): void {
+    const index = this.competances.indexOf(competance);
+
+    if (index >= 0) {
+      this.competances.splice(index, 1);
+    }
+  }
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.competances.push(event.option.viewValue);
+    this.CompetanceInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.ListCompetances.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
   getMyprofile(){
     this.userService.whoami().subscribe(res=>{
@@ -84,7 +142,8 @@ export class CompanyMyOffersComponent implements OnInit {
 
       createOffer() {
      console.log(this.profile);
-     
+     let competance = new Competance();
+
      let offer=new OfferTaskSolution();
      console.log("just testing the toogle value");
      console.log(this.supervised);
@@ -112,8 +171,23 @@ export class CompanyMyOffersComponent implements OnInit {
      console.log(offer);
      this.offerService.createOfferTaskSolution(offer,this.profile.id).subscribe(
        res=>{
+         let created=res;
          console.log(res);
-         
+         this.competances.forEach(element=>{
+          console.log("dkhalna lel for each");
+          
+          
+          competance.competance=element;
+          console.log(element);
+          
+          this.competanceService.createCompetance(competance,created.id).subscribe(res=>{
+            console.log(res);
+            
+            console.log(competance.competance);
+            
+            
+          })
+        })
          this.modalService.dismissAll();
      this.ngOnInit();
        }

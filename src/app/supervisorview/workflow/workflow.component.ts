@@ -1,13 +1,16 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { Sprint } from '../../apps/entities/sprint';
 import { SprintDto } from '../../apps/entities/SprintDto';
 import { Task } from '../../apps/entities/Task';
+import { TaskDto } from '../../apps/entities/TaskDto';
 import { SprintService } from '../../services/SprintSerivce';
 import { Sprint_TaskService } from '../../services/TaskService';
 
@@ -17,19 +20,7 @@ import { Sprint_TaskService } from '../../services/TaskService';
   styleUrls: ['./workflow.component.scss']
 })
 export class WorkflowComponent implements OnInit {
-
-  private subscription: Subscription;
-  public dateNow = new Date();
-  public dDay = new Date('May 5 2021 00:00:00');
-  milliSecondsInASecond = 1000;
-  hoursInADay = 24;
-  minutesInAnHour = 60;
-  SecondsInAMinute  = 60;
-  public timeDifference;
-  public secondsToDday;
-  public minutesToDday;
-  public hoursToDday;
-  public daysToDday;
+  
   edit: FormGroup;
 
   sprint:SprintDto[];
@@ -39,18 +30,21 @@ export class WorkflowComponent implements OnInit {
   sprintDone:SprintDto[];
   sprintDoing:SprintDto[];
   closeResult: string;
-
   
-  description;type;dateD: Date;dateF: Date;duration;priority;
+  
+  description;type;dateD=new Date();dateF=new Date();duration;priority;
+  oneSprint: SprintDto;
+  onetask: TaskDto;
   
  
-constructor(private route:ActivatedRoute,private fb: FormBuilder,private modalService: NgbModal,private SprintSer:SprintService,private Sprint_TaskSer:Sprint_TaskService){
+constructor(public datepipe: DatePipe,private route:ActivatedRoute,private fb: FormBuilder,private modalService: NgbModal,private SprintSer:SprintService,private Sprint_TaskSer:Sprint_TaskService){
   this.sprint= [ ];
   this.tasks= [ ];
   this.sprintDoing= [ ]; 
   this.sprintTodo= [ ]; 
   this.sprintDone= [ ]; 
  this.sprints = new Sprint();
+ 
  this.ListSprint();
 
 }
@@ -178,6 +172,39 @@ LoadSprint(){
   console.log("Doing:",this.sprintDoing);
   console.log("Done:",this.sprintDone);
 }
+Toggletodo(id){
+  console.log(id);
+  this.sprintTodo.forEach(s => 
+    {
+      if(s.sprint_id==id)
+      {
+        s.toggle=!s.toggle;
+        console.log(s.toggle);
+      }
+    }); 
+}
+Toggledoing(id){
+  console.log(id);
+  this.sprintDoing.forEach(s => 
+    {
+      if(s.sprint_id==id)
+      {
+        s.toggle=!s.toggle;
+        console.log(s.toggle);
+      }
+    }); 
+}
+Toggledone(id){
+  console.log(id);
+  this.sprintDone.forEach(s => 
+    {
+      if(s.sprint_id==id)
+      {
+        s.toggle=!s.toggle;
+        console.log(s.toggle);
+      }
+    }); 
+}
 ListSprint(){
   this.sprint= [ ];
   this.SprintSer.getall().subscribe(res=>{
@@ -195,21 +222,11 @@ ListSprint(){
       });  
      console.log(res);
 }); 
-  //this.SprintSer.listSprint().subscribe(res=>{
-    // this.sprint = res;
-    //  this.sprint.forEach(e => {
-      
-    //   this.Sprint_TaskSer.listSprint_TaskBySprint(e.sprint_id).subscribe(t=>{
-    //   e.SprintsTask=t;  
-    //   });   
- // });  
-  
- 
-//}); 
  
 }
 
   ngOnInit(): void {
+   
     this.ListSprint();
     this.edit = this.fb.group({
       sprint_id:[''],
@@ -473,10 +490,55 @@ ListSprint(){
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     
     });
+   console.log(sprint_id);
    
     this.edit.patchValue({
       sprint_id:sprint_id,
     });
+   }
+   openModalAfficheSprint(targetModal, sprint_id:number) {
+    
+    
+    this.modalService.open(targetModal, {
+      ariaLabelledBy: 'modal-basic-title' ,size:'lg',
+     centered: true,
+     backdrop: 'static'
+    })
+    .result.then((result)=>{
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    
+    });
+   console.log(sprint_id);
+   
+   this.SprintSer.getSprintByID(sprint_id).subscribe(res=>{
+    this.oneSprint=res;
+    console.log(this.oneSprint);
+    
+  })
+   }
+   openModalAfficheTask(targetModal, task_id:number) {
+    
+    
+    this.modalService.open(targetModal, {
+      ariaLabelledBy: 'modal-basic-title' ,size:'lg',
+     centered: true,
+     backdrop: 'static'
+    })
+    .result.then((result)=>{
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    
+    });
+   console.log(task_id);
+   
+   this.Sprint_TaskSer.gettaskById(task_id).subscribe(res=>{
+    this.onetask=res;
+    console.log(this.onetask);
+    
+  })
    }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -487,13 +549,32 @@ ListSprint(){
       return `with: ${reason}`;
     }
   }
+  getSprintByid(id){
+    this.SprintSer.getSprintByID(id).subscribe(res=>{
+      this.oneSprint=res;
+      console.log(this.oneSprint);
+      
+    })
+  }
   CreateSprint() {
     let sprint=new Sprint();
     sprint.description=this.description;
     sprint.project.project_id=this.route.snapshot.params['id'];
     sprint.sprint_type=this.type;
-    //sprint.start_date=this.dateD;
-    //sprint.end_date=this.dateF;
+    console.log(this.dateD);
+    console.log(this.dateF);
+    let start =moment(this.dateD);
+    let end =moment(this.dateF);
+  
+      let s = new NgbDate(start.year(),start.month(),start.date()+1);
+      console.log(s);
+      let e=new NgbDate(end.year(),end.month(),end.date()+1);
+     console.log(e);
+     
+      
+    sprint.start_date=new Date(s.year,s.month,s.day);
+    console.log(sprint.start_date);
+    sprint.end_date=new Date(e.year,e.month,e.day);;
     sprint.status="TODO";
     console.log("we start to create sprint and this is the value");
     console.log(sprint);

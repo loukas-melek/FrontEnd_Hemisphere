@@ -20,6 +20,7 @@ import { ResizableModule } from 'angular-resizable-element';
 import { ChartsModule } from 'ng2-charts';
 
 import { MatTreeModule } from '@angular/material/tree';
+import {MatChipsModule} from '@angular/material/chips';
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSliderModule} from '@angular/material/slider';
@@ -31,7 +32,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { FormsRoutingModule } from '../../pages/forms/forms-routing.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -84,7 +85,10 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatTreeModule,
     MatMomentDateModule,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
    
 
   ],
@@ -127,6 +131,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     FormsRoutingModule,
     NbSelectModule,
     NbIconModule,
+    MatChipsModule,
+    MatAutocompleteModule,
   ],
 })
 export class AppMaterialModule { }

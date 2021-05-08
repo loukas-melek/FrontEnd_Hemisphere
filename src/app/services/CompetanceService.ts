@@ -13,8 +13,8 @@ import { Competance } from "../apps/entities/Competance";
     listCompetances() {
      return this.Http.get<any[]>(this.url + '/list');
      }
-        createCompetance(competance){
-            return this.Http.post<Competance>(this.url+'/add',competance)
+        createCompetance(competance,id){
+            return this.Http.post<Competance>(this.url+'/add/'+id,competance)
         }
         getCompetancesByOfferId(id): Observable<any>{
             return this.Http.get(this.url +"/list/competances/"+ id);
