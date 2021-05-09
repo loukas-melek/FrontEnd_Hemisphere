@@ -207,20 +207,14 @@ Toggledone(id){
 }
 ListSprint(){
   this.sprint= [ ];
-  this.SprintSer.getall().subscribe(res=>{
-     let project=new Array <ProjectDto>()
-    project=res
-    console.log(this.route.snapshot.params['id']);
+  this.SprintSer.listSprintByProjectID(this.route.snapshot.params['id']).subscribe(res=>{
+   
     
-    project.forEach(e => {
-      if(e.project_id==this.route.snapshot.params['id'])
-      {
-        this.sprint=e.sprints
+   
+        this.sprint=res
         console.log("all:",this.sprint);
         this.LoadSprint();
-      }
-      });  
-     console.log(res);
+    
 }); 
  
 }
@@ -263,6 +257,11 @@ ListSprint(){
                   task.task_id=t.task_id;
                   task.task_type=t.task_type;
                   task.sprint.sprint_id=e.sprint_id;
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
+                  console.log(task.end_date);
+                  console.log(task.start_date);
+                  
                   this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
                 } 
             });
@@ -293,7 +292,8 @@ ListSprint(){
                   console.log("el id te3na");
                   
                   console.log(task.sprint.sprint_id);
-                  
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
                   this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
                 } 
             });
@@ -319,7 +319,8 @@ ListSprint(){
                   task.task_type=t.task_type;
                   task.sprint.sprint_id=e.sprint_id;
                   console.log('push');
-                  
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
                   this.Sprint_TaskSer.updatetask(task).subscribe(res=>{console.log(res);
                   });
                 } 
@@ -345,6 +346,8 @@ ListSprint(){
                   task.task_id=t.task_id;
                   task.task_type=t.task_type;
                   task.sprint.sprint_id=e.sprint_id;
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
                   this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
                 } 
             });
@@ -377,6 +380,11 @@ ListSprint(){
                   task.task_id=t.task_id;
                   task.task_type=t.task_type;
                   task.sprint.sprint_id=e.sprint_id;
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
+                  console.log(t.start_date);
+                  console.log(task.start_date);
+                  
               this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
              
@@ -403,6 +411,8 @@ ListSprint(){
                   task.task_id=t.task_id;
                   task.task_type=t.task_type;
                   task.sprint.sprint_id=e.sprint_id;
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
               this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
                 
@@ -430,6 +440,8 @@ ListSprint(){
                   task.task_id=t.task_id;
                   task.task_type=t.task_type;
                   task.sprint.sprint_id=e.sprint_id;
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
               this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
           });
@@ -455,6 +467,8 @@ ListSprint(){
                   task.task_id=t.task_id;
                   task.task_type=t.task_type;
                   task.sprint.sprint_id=e.sprint_id;
+                  task.start_date=t.start_date;
+                  task.end_date=t.end_date;
                 this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
             }
                 

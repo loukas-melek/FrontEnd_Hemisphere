@@ -413,19 +413,19 @@
                         <div class="card-box" >
                             <h4 class="header-title mt-0 mb-3">Experience</h4>
                             <div class="">
-                                <div class="">
-                                    <h5 class="text-custom">Lead designer / Developer</h5>
-                                    <p class="mb-0">websitename.com</p>
-                                    <p><b>2010-2015</b></p>
-                                    <p class="text-muted font-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                <div class="" *ngFor="let ex of experiencestudent">
+                                    <h5 class="text-custom">{{ex.type}} : {{ex.title}}</h5>
+                                    <p class="mb-0">Within {{ex.company}} Company</p>
+                                    <p><b>{{formatDate(ex.created_at)}}</b></p>
+                                    <p class="text-muted font-13 mb-0">{{ex.description}}.</p>
                                 </div>
                                 <hr>
-                                <div class="">
+                                <!-- <div class="">
                                     <h5 class="text-custom">Senior Graphic Designer</h5>
                                     <p class="mb-0">coderthemes.com</p>
                                     <p><b>2007-2009</b></p>
                                     <p class="text-muted font-13 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-box">
@@ -439,49 +439,19 @@
                                             <th>Start Date</th>
                                             <th>Due Date</th>
                                             <th>Status</th>
-                                            <th>Assign</th>
+                                            <th>Categorie</th>
+                                            <th>Employer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Adminox Admin</td>
-                                            <td>01/01/2015</td>
-                                            <td>07/05/2015</td>
+                                        <tr *ngFor="let proj of projectstudent; let i = index" [attr.data-index]="i">
+                                            <td>{{i+1}}</td>
+                                            <td>{{proj.title}}</td>
+                                            <td>{{proj.start_date}}</td>
+                                            <td>{{proj.end_date}}</td>
                                             <td><span class="label label-info">Work in Progress</span></td>
-                                            <td>Coderthemes</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Adminox Frontend</td>
-                                            <td>01/01/2015</td>
-                                            <td>07/05/2015</td>
-                                            <td><span class="label label-success">Pending</span></td>
-                                            <td>Coderthemes</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Adminox Admin</td>
-                                            <td>01/01/2015</td>
-                                            <td>07/05/2015</td>
-                                            <td><span class="label label-pink">Done</span></td>
-                                            <td>Coderthemes</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Adminox Frontend</td>
-                                            <td>01/01/2015</td>
-                                            <td>07/05/2015</td>
-                                            <td><span class="label label-purple">Work in Progress</span></td>
-                                            <td>Coderthemes</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Adminox Admin</td>
-                                            <td>01/01/2015</td>
-                                            <td>07/05/2015</td>
-                                            <td><span class="label label-warning">Coming soon</span></td>
-                                            <td>Coderthemes</td>
+                                            <td>{{proj.project_category}}</td>
+                                            <td>{{proj.profile.name}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

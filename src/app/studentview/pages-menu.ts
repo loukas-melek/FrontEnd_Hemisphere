@@ -9,7 +9,7 @@ export const MENU_ITEMS_STUDENT: NbMenuItem[] = [
   {
     title: 'Project Management',
     icon: 'calendar-outline',
-    link: '/student/workflow',
+    link: '/student/projects',
     
   },
   {
