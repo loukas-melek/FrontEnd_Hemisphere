@@ -1,3 +1,4 @@
+import { Periority } from "./priority";
 import { Project } from "./project";
 import { Status } from "./Status";
 import { Task } from "./Task";
@@ -7,6 +8,7 @@ export class SprintDto {
     sprint_id: number;
     start_date: Date;
     end_date: Date;
+    priority:Periority;
     status:string;
     description:string;
     sprintsTask=new Array<TaskDto>();

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,12 +8,14 @@ import { SmartTableData } from '../../@core/data/smart-table';
 import { Comment } from '../../apps/entities/Comment';
 import { Competance } from '../../apps/entities/Competance';
 import { Demande } from '../../apps/entities/demande';
+import { Experience } from '../../apps/entities/experience';
 import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Project } from '../../apps/entities/project';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { CommentService } from '../../services/CommentService';
 import { CompetanceService } from '../../services/CompetanceService';
 import { DemandeService } from '../../services/demandeService';
+import { ExperienceService } from '../../services/experienceService';
 import { GeneralPostService } from '../../services/generalpostService';
 import { OfferService } from '../../services/OfferTaskSolutionService';
 import { ProfileService } from '../../services/ProfileService';
@@ -54,8 +57,14 @@ export class CompanyDetailsComponent implements OnInit {
   mine: boolean;
   myprofile: Profile;
   list: number[];
-  constructor(private competanceService:CompetanceService,private fb: FormBuilder,private offertaskService:OfferService,private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
+  experiencestudent=new Array<Experience>();
+  projectstudent=new Array<ProjectDto>();
+  constructor(private datepipe: DatePipe,private experienceService:ExperienceService,private competanceService:CompetanceService,private fb: FormBuilder,private offertaskService:OfferService,private projectService:ProjectService,private commentService:CommentService,private demandeService:DemandeService,private service: SmartTableData,private router:Router,private route:ActivatedRoute,private profileService:ProfileService, private generalPostService:GeneralPostService,private modalService: NgbModal,private userService:UserService) { 
   }
+  formatDate(date:Date){
+      
+    return this.datepipe.transform(date, 'yyyy-MM-dd');
+   }
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.edit = this.fb.group({
@@ -322,6 +331,13 @@ declinedemande(demande:Demande){
   }
   openprofile(content,profile) {
     this.profilestudent=profile;
+    this.experienceService.listExperienceByUser(this.profilestudent.id).subscribe(res=>{
+      this.experiencestudent=res;
+      
+    })
+    this.projectService.findProjectByStudent(this.profilestudent.id).subscribe(res=>{
+      this.projectstudent=res;
+    })
     console.log(this.profilestudent);
     
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' ,size:'lg'}).result.then((result) => {

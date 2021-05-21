@@ -16,11 +16,15 @@ import { StudentDetailsTaskModule } from './student-details-task/student-details
 import { StudentDetailsOfferModule } from './student-details-offer/student-details-offer.module';
 import { ProfileModule } from './profile/profile.module';
 import { ProfileSettingsModule } from './profile-settings/profile-settings.module';
+import { ProjectsModule } from './projects/projects.module';
+import { WorkflowModule } from './workflow/workflow.module';
 
 
 @NgModule({
   declarations: [StudentviewComponent],
   imports: [
+    WorkflowModule,
+    ProjectsModule,
     ProfileModule,
     ProfileSettingsModule,
     StudentDetailsOfferModule,

@@ -1,324 +1,307 @@
-import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
+import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { promises } from 'dns';
 import { jqxSchedulerComponent } from 'jqwidgets-ng/jqxscheduler';
+import * as moment from 'moment';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { SprintDto } from '../../apps/entities/SprintDto';
 import { Task } from '../../apps/entities/Task';
 import { TaskDto } from '../../apps/entities/TaskDto';
 import { SprintService } from '../../services/SprintSerivce';
 import { Sprint_TaskService } from '../../services/TaskService';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
+import { Observable, Subject } from 'rxjs';
+import { colors } from '../../apps/utils/colors';
+import { map } from 'rxjs/operators';
+
+import {
+  isSameMonth,
+  isSameDay,
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  endOfWeek,
+  startOfDay,
+  endOfDay,
+  format,
+  addHours,
+  addDays,
+  subDays,
+} from 'date-fns';
+import { HttpClient, HttpParams } from '@angular/common/http';
+interface Film {
+  id: number;
+  title: string;
+  release_date: string;
+}
+
+function getTimezoneOffsetString(date: Date): string {
+  const timezoneOffset = date.getTimezoneOffset();
+  const hoursOffset = String(
+    Math.floor(Math.abs(timezoneOffset / 60))
+  ).padStart(2, '0');
+  const minutesOffset = String(Math.abs(timezoneOffset % 60)).padEnd(2, '0');
+  const direction = timezoneOffset > 0 ? '-' : '+';
+
+  return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
+}
+
 @Component({
   selector: 'ngx-cal',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './cal.component.html',
-  styleUrls: ['./cal.component.scss']
+  styles: [
+    `
+      .fill-height {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    `,
+  ],
 })
 export class CalComponent implements OnInit {
-  appointmentDataFields: any
-  views: string[] | any[]
-  dataAdapter: any
-  resources:any
-  date: any
-  @ViewChild('scheduler', { static: false }) myScheduler: jqxSchedulerComponent;
-  source: { dataType: string; dataFields: { name: string; type: string; }[]; id: string; localData: any[]; };
-  constructor(private SprintSer:SprintService,private Sprint_TaskSer:Sprint_TaskService){
-}
-
-mySchedulerOnAppointmentDelete(event: any): void {
-  let appointment = event.args.appointment;
-  //this.Sprint_TaskSerdelete(event.args.appointment.id).subscribe(res=>{});
-
-  
-};
-mySchedulerOnAppointmentAdd(event: any): void {
-  let appointment = event.args.appointment;
-  console.log('appointmentAdd is raised') ;
-  let task= new Task();
-  task.description=event.args.appointment.subject;
-  task.duration=2;
-  task.is_done=null;
-  task.priority=event.args.appointment.description;
-  task.status="TODO";
-  task.task_type=null;
-  console.log(event.args.appointment);
-  this.sprint.forEach(e => {
-    if(e.description==event.args.appointment.resourceId)
-        {
-          task.sprint.sprint_id=e.sprint_id;
-        } 
-  }); 
-
-  this.Sprint_TaskSer.createTask(task).subscribe(res=>{});
-  
-};
-mySchedulerOnAppointmentDoubleClick(event: any): void {
-  let appointment = event.args.appointment;
-  console.log('appointmentDoubleclic is raised') ;
-
-};
-mySchedulerOnAppointmentChange(event: any): void {
-  let appointment = event.args.appointment;
-  console.log('appointmentChange is raised',event,event.args.appointment) ;
-  this.sprint.forEach(e => {
-    e.sprintsTask.forEach(t => {
-      if(t.task_id==event.args.appointment.id)
-        {
-          let task= new Task();
-          task.description=event.args.appointment.subject;
-          task.duration=t.duration;
-          task.is_done=t.is_done;
-          task.priority=event.args.appointment.description;
-          task.status=t.status;
-          task.task_id=t.task_id;
-          task.task_type=t.task_type;
-          task.sprint.sprint_id=e.sprint_id;
-
-          this.Sprint_TaskSer.updatetask(task).subscribe(res=>{});
-        } 
-    });
-  }); 
-};
-mySchedulerOnCellClick(event: any): void {
-  let cell = event.args.cell;
-  console.log('appointmentClic is raised') ;
-};
+  priorities=["BLOCKER","HIGH","MEDIUM","LOW","MINOR"];
+  priority;sum;edate:Date;sdate:Date;description;
+  sprint:SprintDto[];
+  tasks:Task[];
   ngOnInit(): void {
-    this.myview()
+    this.fetchEvents();
+
   }
-  editDialogCreate = (dialog, fields, editAppointment) => {
-    if(fields)
+  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+
+  view: CalendarView = CalendarView.Month;
+
+  viewDate: Date = new Date();
+
+
+  refresh: Subject<any> = new Subject();
+
+  events$: Observable<CalendarEvent<{ film: Film }>[]>;
+
+  activeDayIsOpen: boolean = false;
+
+  modalData: {
+    action: string;
+    event: CalendarEvent;
+  };
+  actions: CalendarEventAction[] = [
     {
-    // hide repeat option
-    fields.repeatContainer.hide();
-    // hide status option
-    fields.statusContainer.hide();
-    // hide timeZone option
-    fields.timeZoneContainer.hide();
-    // hide color option
-    fields.colorContainer.hide();
-    fields.subjectLabel.html("Description");
-    fields.fromLabel.html("Start");
-    fields.toLabel.html("End");
-    fields.repeatLabel.hide();
-    fields.locationContainer.hide();
-    fields.descriptionLabel.html("Priority");
-    fields.resourceLabel.html("Sprint");
-    let buttonElement = document.createElement("BUTTON");
-    buttonElement.innerText = 'Print';
-    buttonElement.style.cssFloat = 'right';
-    buttonElement.style.marginLeft = '5px';
-    buttonElement.id = 'PrintButton';
-    fields.buttons[0].appendChild(buttonElement);
-    let printButton: jqwidgets.jqxButton = jqwidgets.createInstance('#PrintButton', 'jqxButton', {
-        width: 50,
-        height: 25
-    });
-    this.printButton = printButton;
-    printButton.addEventHandler('click', function () {
-        let appointment = editAppointment;
-        if (!appointment && printButton.disabled) {
-            return;
-        }
-        let appointmentContent =
-            "<table class='printTable'>" +
-            "<tr>" +
-            "<td class='label'>Title</td>" +
-            "<td>" + fields.subject.val() + "</td>" +
-            "</tr>" +
-            "<tr>" +
-            "<td class='label'>Start</td>" +
-            "<td>" + fields.from.val() + "</td>" +
-            "</tr>" +
-            "<tr>" +
-            "<td class='label'>End</td>" +
-            "<td>" + fields.to.val() + "</td>" +
-            "</tr>" +
-            "<tr>" +
-            "<td class='label'>Where</td>" +
-            "<td>" + fields.location.val() + "</td>" +
-            "</tr>" +
-            "<tr>" +
-            "<td class='label'>Calendar</td>" +
-            "<td>" + fields.resource.val() + "</td>" +
-            "</tr>"
-            + "</table>";
-        let newWindow = window.open('', '', 'width=800, height=500'),
-            document = newWindow.document.open(),
-            pageContent =
-                '<!DOCTYPE html>\n' +
-                '<html>\n' +
-                '<head>\n' +
-                '<meta charset="utf-8" />\n' +
-                '<title>jQWidgets Scheduler</title>\n' +
-                '<style>\n' +
-                '.printTable {\n' +
-                'border-color: #aaa;\n' +
-                '}\n' +
-                '.printTable .label {\n' +
-                'font-weight: bold;\n' +
-                '}\n' +
-                '.printTable td{\n' +
-                'padding: 4px 3px;\n' +
-                'border: 1px solid #DDD;\n' +
-                'vertical-align: top;\n' +
-                '}\n' +
-                '</style>' +
-                '</head>\n' +
-                '<body>\n' + appointmentContent + '\n</body>\n</html>';
-        try {
-            document.write(pageContent);
-            document.close();
-        }
-        catch (error) {
-        }
-        newWindow.print();
-    });
-    }  
-};
-/**
-* called when the dialog is opened. Returning true as a result disables the built-in handler.
-* @param {Object} dialog - jqxWindow's jQuery object.
-* @param {Object} fields - Object with all widgets inside the dialog.
-* @param {Object} the selected appointment instance or NULL when the dialog is opened from cells selection.
-*/
-printButton: any = null;
-editDialogOpen = (dialog, fields, editAppointment) => {
-    if (!editAppointment && this.printButton) {
-        this.printButton.setOptions({ disabled: true });
-    }
-    else if (editAppointment && this.printButton) {
-        this.printButton.setOptions({ disabled: false });
-    }
-};
-/**
-* called when the dialog is closed.
-* @param {Object} dialog - jqxWindow's jQuery object.
-* @param {Object} fields - Object with all widgets inside the dialog.
-* @param {Object} the selected appointment instance or NULL when the dialog is opened from cells selection.
-*/
-editDialogClose = (dialog, fields, editAppointment) => {
-};
-/**
-* called when a key is pressed while the dialog is on focus. Returning true or false as a result disables the built-in keyDown handler.
-* @param {Object} dialog - jqxWindow's jQuery object.
-* @param {Object} fields - Object with all widgets inside the dialog.
-* @param {Object} the selected appointment instance or NULL when the dialog is opened from cells selection.
-* @param {jQuery.Event Object} the keyDown event.
-*/
-editDialogKeyDown = (dialog?, fields?, editAppointment?) => {
-};
-  sprint=new Array<SprintDto>(); 
-  tasks=new Array<TaskDto>();
-    appointments = new Array<any>();
-
-     Tasks(){
-        this.tasks= [ ] ;
-        this.sprint= [ ] ;
-        //this.appointments= [ ] ;
-        this.SprintSer.getall()
-        .subscribe(res=>{
-            let project=new Array();
-           project=res
-           console.log(project);
-           
-           project.forEach(p => {
-             if(p.project_id==7)
-             {
-                this.sprint= p.sprints;
-                console.log("list sprints :",this.sprint);
-                console.log(p.sprints);
-                
-                p.sprints.forEach(s => {
-                    s.sprintsTask.forEach(t => {
-                      console.log(t);
-                      
-                        this.tasks.push(t);
-                        let appointment = {
-                          id: "",
-                          description: '',
-                          location: '',
-                          priority:"",
-                          subject: '',
-                          sprint: '',
-                          start: new Date(2020, 10, 25, 15, 0, 0),
-                          end: new Date(2020, 10, 25, 17, 0, 0)
-                      }
- 
-                      appointment.id=t.task_id;
-                      appointment.location=s.sprint_id;
-                      appointment.subject=t.description;
-                      appointment.description=t.priority;
-                      appointment.sprint=s.description;
-                      appointment.start=new Date(2020, 10, 23, 9, 0, 0);
-                      appointment.end=new Date(2020, 10, 23, 16, 0, 0);
-                       this.appointments.push(appointment);
-                        }); 
-                    });  
-                    console.log("list tasks",this.tasks);
-                    
-    
-                   
-             }
-             });     
-    }); 
-
-    }
-  ngAfterViewInit() {
-      this.myScheduler.ensureAppointmentVisible('id1');
-  }
-getWidth() : any {
-  if (document.body.offsetWidth < 800) {
-    return '90%';
-  }
-  
-  return 800;
-}
-
-    
-myview(){
-  this.Tasks();
-  console.log(this.appointments);
-  
-  this.date = new jqx.date(2020, 11, 23);
-  this.source =
-  {
-      dataType: 'array',
-      dataFields: [
-          { name: 'id', type: 'string' },
-          { name: 'location', type: 'string' },
-          { name: 'description', type: 'string' },
-          { name: 'subject', type: 'string' },
-          { name: 'sprint', type: 'string' },
-          { name: 'start', type: 'date' },
-          { name: 'end', type: 'date' }
-      ],
-      id: 'id',
-      localData: this.appointments
-  };
- this.dataAdapter= new jqx.dataAdapter(this.source);
- this.resources =
-  {
-      colorScheme: 'scheme05',
-      dataField: 'sprint',
-      source: new jqx.dataAdapter(this.source)
-  };
- this.appointmentDataFields=
-  {
-      from: 'start',
-      to: 'end',
-      id: 'id',
-      description: 'description',
-      location: 'location',
-      subject: 'subject',
-      resourceId: 'sprint'
-  };
- this.views =
-  [
-      'dayView',
-      'weekView',
-      'monthView',
-      'agendaView'
+      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+      a11yLabel: 'Edit',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.handleEvent('Edited', event);
+      },
+    },
+    {
+      label: '<i class="fas fa-fw fa-trash-alt"></i>',
+      a11yLabel: 'Delete',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter((iEvent) => iEvent !== event);
+        this.handleEvent('Deleted', event);
+      },
+    },
   ];
-  // this.ngOnInit()
-}
+  // events: CalendarEvent[] = [
+  //   {
+  //     start: subDays(startOfDay(new Date()), 1),
+  //     end: addDays(new Date(), 1),
+  //     title: 'A 3 day event',
+  //     color: colors.red,
+  //     actions: this.actions,
+  //     allDay: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true,
+  //     },
+  //     draggable: true,
+  //   },
+  //   {
+  //     start: startOfDay(new Date()),
+  //     title: 'An event with no end date',
+  //     color: colors.yellow,
+  //     actions: this.actions,
+  //   },
+  //   {
+  //     start: subDays(endOfMonth(new Date()), 3),
+  //     end: addDays(endOfMonth(new Date()), 3),
+  //     title: 'A long event that spans 2 months',
+  //     color: colors.blue,
+  //     allDay: true,
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 2),
+  //     end: addHours(new Date(), 2),
+  //     title: 'A draggable and resizable event',
+  //     color: colors.yellow,
+  //     actions: this.actions,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true,
+  //     },
+  //     draggable: true,
+  //   },
+  // ];
  
+  
+  constructor(private http: HttpClient,private modal: NgbModal,private SprintSer:SprintService,private Sprint_TaskSer:Sprint_TaskService) {
+    this.ListSprint();
+    this.refresh.next();
+  }
+  ListSprint(){
+    this.sprint= [ ];
+    this.SprintSer.listSprintByProjectID(7).subscribe(res=>{
+          this.sprint=res
+          console.log("all:",this.sprint);
+          this.LoadTask();
+          this.LoadEvent();
+  }); 
+  }
+  LoadTask(){
+    this.tasks= [ ]; 
+
+    this.sprint.forEach(e => {
+      e.sprintsTask.forEach(t => {
+        let task= new Task();
+        task.description=t.description
+        task.duration=t.duration
+        task.is_done=t.is_done
+        task.priority=t.priority
+        task.status=t.status;
+        task.task_id=t.task_id;
+        task.task_type=t.task_type;
+        task.sprint.sprint_id=e.sprint_id;
+        task.start_date=t.start_date;
+        task.end_date=t.end_date;
+        this.tasks.push(task);
+      });
+    });
+    console.log("Tasks:",this.tasks);
+  }
+  LoadEvent(){
+    this.events= [ ]; 
+
+    this.tasks.forEach(t => {
+      this.events = [
+        ...this.events,
+        {
+          title: t.description,
+          start:new Date(t.start_date),
+          id:t.task_id,
+          ids:t.sprint.sprint_id,
+          end:new Date(t.end_date),
+          color: colors.red,
+          //allDay: true,
+          draggable: true,
+          actions: this.actions,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true,
+          },
+        },
+      ];
+    });
+    console.log("Events:",this.events);
+    return this.events;
+  }
+  events: CalendarEvent[] ;
+  addEvent(date: Date): void {
+    this.events = [
+      ...this.events,
+      {
+        title: 'New Task',
+        start: startOfDay(date),
+        end: endOfDay(date),
+        color: colors.red,
+        draggable: true,
+        actions: this.actions,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true,
+        },
+      },
+    ];
+    this.refresh.next();
+  }
+  fetchEvents(): void {
+    const getStart: any = {
+      month: startOfMonth,
+      week: startOfWeek,
+      day: startOfDay,
+    }[this.view];
+
+    const getEnd: any = {
+      month: endOfMonth,
+      week: endOfWeek,
+      day: endOfDay,
+    }[this.view];
+
+    const params = new HttpParams()
+      .set(
+        'primary_release_date.gte',
+        format(getStart(this.viewDate), 'yyyy-MM-dd')
+      )
+      .set(
+        'primary_release_date.lte',
+        format(getEnd(this.viewDate), 'yyyy-MM-dd')
+      )
+      .set('api_key', '0ec33936a68018857d727958dca1424f');
+
+    this.events$ = this.http
+      .get('https://api.themoviedb.org/3/discover/movie', { params })
+      .pipe(
+        map(({ results }: { results: Film[] }) => {
+          return results.map((film: Film) => {
+            return {
+              title: film.title,
+              start: new Date(
+                film.release_date + getTimezoneOffsetString(this.viewDate)
+              ),
+              color: colors.yellow,
+              allDay: true,
+              meta: {
+                film,
+              },
+            };
+          });
+        })
+      );
+  }
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
+  }
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd,
+  }: CalendarEventTimesChangedEvent): void {
+    this.events = this.events.map((iEvent) => {
+      if (iEvent === event) {
+        return {
+          ...event,
+          start: newStart,
+          end: newEnd,
+        };
+      }
+      return iEvent;
+    });
+    this.handleEvent('Dropped or resized', event);
+  }
+
+  handleEvent(action: string, event: CalendarEvent): void {
+    this.modalData = { event, action };
+    this.modal.open(this.modalContent, { size: 'lg' });
+  }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { CompanyDetailsComponent } from './company-details.component';
 import { AppMaterialModule } from '../../app-material/app-material/app-material.module';
 import { NbCardModule, NbTreeGridModule, NbIconModule, NbInputModule } from '@nebular/theme';
@@ -21,6 +21,7 @@ import { TablesRoutingModule } from '../../pages/tables/tables-routing.module';
     ThemeModule,
     TablesRoutingModule,
     Ng2SmartTableModule,
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class CompanyDetailsModule { }

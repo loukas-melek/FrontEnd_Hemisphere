@@ -15,9 +15,9 @@ import { SprintDto } from "../apps/entities/SprintDto";
     sprint: Sprint;
 
    constructor(private Http: HttpClient) { }
-   listSprint() {
-     let id=1;
-    return this.Http.get<Sprint[]>(this.url+"/sprint/"+id);
+   listSprintByProjectID(id) {
+     
+    return this.Http.get<SprintDto[]>(this.url+"/sprint/"+id);
     }
     getall(){
         return this.Http.get<ProjectDto[]>("http://localhost:3000/project"+"/getall")

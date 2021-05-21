@@ -1,3 +1,4 @@
+import { Periority } from "./priority";
 import { Sprint } from "./sprint";
 import { Status } from "./Status";
 
@@ -6,9 +7,11 @@ export class Task {
     task_type: Date;
     status:string;
     duration:number;
-    priority:number;
+    priority:Periority;
     description:string;
     is_done:number;
+    start_date: Date;
+    end_date: Date;
     sprint=new Sprint();
     public constructor() {
      
