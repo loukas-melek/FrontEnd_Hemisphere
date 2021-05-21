@@ -74,10 +74,13 @@
     </mwl-calendar-month-view>
    
     <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-        [headerTemplate]="weekHeaderTemplate" [hourSegmentTemplate]="weekViewHourSegment">
+        [headerTemplate]="weekHeaderTemplate" [hourSegmentTemplate]="weekViewHourSegment"      (eventTimesChanged)="eventTimesChanged($event)"
+        >
     </mwl-calendar-week-view>
     <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-        [hourSegmentTemplate]="dayHourSegmentTemplate">
+        [hourSegmentTemplate]="dayHourSegmentTemplate"
+        (eventTimesChanged)="eventTimesChanged($event)"
+        >
     </mwl-calendar-day-view>
 </div>
 <context-menu #basicMenu>

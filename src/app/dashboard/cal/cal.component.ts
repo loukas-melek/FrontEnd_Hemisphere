@@ -64,6 +64,8 @@ function getTimezoneOffsetString(date: Date): string {
 export class CalComponent implements OnInit {
   priorities=["BLOCKER","HIGH","MEDIUM","LOW","MINOR"];
   priority;sum;edate:Date;sdate:Date;description;
+  sprint:SprintDto[];
+  tasks:Task[];
   ngOnInit(): void {
     this.fetchEvents();
 
@@ -102,51 +104,109 @@ export class CalComponent implements OnInit {
       },
     },
   ];
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+  // events: CalendarEvent[] = [
+  //   {
+  //     start: subDays(startOfDay(new Date()), 1),
+  //     end: addDays(new Date(), 1),
+  //     title: 'A 3 day event',
+  //     color: colors.red,
+  //     actions: this.actions,
+  //     allDay: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true,
+  //     },
+  //     draggable: true,
+  //   },
+  //   {
+  //     start: startOfDay(new Date()),
+  //     title: 'An event with no end date',
+  //     color: colors.yellow,
+  //     actions: this.actions,
+  //   },
+  //   {
+  //     start: subDays(endOfMonth(new Date()), 3),
+  //     end: addDays(endOfMonth(new Date()), 3),
+  //     title: 'A long event that spans 2 months',
+  //     color: colors.blue,
+  //     allDay: true,
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 2),
+  //     end: addHours(new Date(), 2),
+  //     title: 'A draggable and resizable event',
+  //     color: colors.yellow,
+  //     actions: this.actions,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true,
+  //     },
+  //     draggable: true,
+  //   },
+  // ];
  
   
-  constructor(private http: HttpClient,private modal: NgbModal) {}
+  constructor(private http: HttpClient,private modal: NgbModal,private SprintSer:SprintService,private Sprint_TaskSer:Sprint_TaskService) {
+    this.ListSprint();
+    this.refresh.next();
+  }
+  ListSprint(){
+    this.sprint= [ ];
+    this.SprintSer.listSprintByProjectID(7).subscribe(res=>{
+          this.sprint=res
+          console.log("all:",this.sprint);
+          this.LoadTask();
+          this.LoadEvent();
+  }); 
+  }
+  LoadTask(){
+    this.tasks= [ ]; 
 
+    this.sprint.forEach(e => {
+      e.sprintsTask.forEach(t => {
+        let task= new Task();
+        task.description=t.description
+        task.duration=t.duration
+        task.is_done=t.is_done
+        task.priority=t.priority
+        task.status=t.status;
+        task.task_id=t.task_id;
+        task.task_type=t.task_type;
+        task.sprint.sprint_id=e.sprint_id;
+        task.start_date=t.start_date;
+        task.end_date=t.end_date;
+        this.tasks.push(task);
+      });
+    });
+    console.log("Tasks:",this.tasks);
+  }
+  LoadEvent(){
+    this.events= [ ]; 
 
+    this.tasks.forEach(t => {
+      this.events = [
+        ...this.events,
+        {
+          title: t.description,
+          start:new Date(t.start_date),
+          id:t.task_id,
+          ids:t.sprint.sprint_id,
+          end:new Date(t.end_date),
+          color: colors.red,
+          //allDay: true,
+          draggable: true,
+          actions: this.actions,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true,
+          },
+        },
+      ];
+    });
+    console.log("Events:",this.events);
+    return this.events;
+  }
+  events: CalendarEvent[] ;
   addEvent(date: Date): void {
     this.events = [
       ...this.events,
