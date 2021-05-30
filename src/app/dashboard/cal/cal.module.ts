@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CalComponent } from './cal.component';
 import { FormsModule } from '@angular/forms';
 import { jqxSchedulerModule } from 'jqwidgets-ng/jqxscheduler';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -12,7 +11,7 @@ import { DemoUtilsModule } from '../../apps/utils/module';
 
 @NgModule({
   declarations: [
-    CalComponent
+    
   ],
   imports: [
     CommonModule, 

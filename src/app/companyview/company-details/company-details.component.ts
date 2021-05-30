@@ -9,9 +9,12 @@ import { Comment } from '../../apps/entities/Comment';
 import { Competance } from '../../apps/entities/Competance';
 import { Demande } from '../../apps/entities/demande';
 import { Experience } from '../../apps/entities/experience';
+import { GeneralPost } from '../../apps/entities/General_Post';
 import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
+import { Profile } from '../../apps/entities/Profile';
 import { Project } from '../../apps/entities/project';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
+import { User } from '../../apps/entities/user';
 import { CommentService } from '../../services/CommentService';
 import { CompetanceService } from '../../services/CompetanceService';
 import { DemandeService } from '../../services/demandeService';
@@ -21,8 +24,7 @@ import { OfferService } from '../../services/OfferTaskSolutionService';
 import { ProfileService } from '../../services/ProfileService';
 import { ProjectService } from '../../services/projectService';
 import { UserService } from '../../services/userService';
-import { GeneralPost } from 'c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/General_Post';
-import { Profile } from 'c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/Profile';
+
 
 @Component({
   selector: 'ngx-company-details',
@@ -30,10 +32,10 @@ import { Profile } from 'c:/Users/loukas/Desktop/hemisphere/front-master/front-m
   styleUrls: ['./company-details.component.scss']
 })
 export class CompanyDetailsComponent implements OnInit {
-  user: import("c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/user").User;
-  profile: import("c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/Profile").Profile;
+  user: User;
+  profile: Profile;
   id: any;
-  generalPost: import("c:/Users/loukas/Desktop/hemisphere/front-master/front-master/src/app/apps/entities/General_Post").GeneralPost;
+  generalPost:GeneralPost;
   closeResult: string;
   title;poste;location;nofstudent;type;categorie;cname;description;date;cost;supervised=false;
   listDemandes=new Array<Demande>()
