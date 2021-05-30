@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestRegister } from '../../../apps/entities/RequestRegister';
-import { Role } from '../../../apps/entities/role';
+import { Role } from '../../../apps/entities/Role';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({

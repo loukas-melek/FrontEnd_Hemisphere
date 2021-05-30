@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestLogin } from '../../../apps/entities/RequestLogin';
-import { Role } from '../../../apps/entities/role';
+import { Role } from '../../../apps/entities/Role';
 import { User } from '../../../apps/entities/user';
 import { UserService } from '../../../services/userService';
 import { AuthenticationService } from '../services/authentication.service';

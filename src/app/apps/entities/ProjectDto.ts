@@ -1,9 +1,6 @@
 import { CategorieOffer } from "./CategorieOffer";
-import { GeneralPost } from "./General_Post";
-import { Profile } from "./Profile";
-import { Sprint } from "./sprint";
+
 import { SprintDto } from "./SprintDto";
-import { Task } from "./Task";
 
 export class ProjectDto{ 
     project_id: number;

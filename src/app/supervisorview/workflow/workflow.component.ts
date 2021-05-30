@@ -5,11 +5,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
-import { Subscription } from 'rxjs';
+
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { Sprint } from '../../apps/entities/sprint';
 import { SprintDto } from '../../apps/entities/SprintDto';
-import { Task } from '../../apps/entities/Task';
+import { Task } from '../../apps/entities/task';
 import { TaskDto } from '../../apps/entities/TaskDto';
 import { SprintService } from '../../services/SprintSerivce';
 import { Sprint_TaskService } from '../../services/TaskService';
