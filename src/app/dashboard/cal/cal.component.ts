@@ -1,3 +1,4 @@
+
 // import { Component, ViewChild, AfterViewInit, OnInit, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
 // import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -301,3 +302,4 @@
 //     this.modal.open(this.modalContent, { size: 'lg' });
 //   }
 // }
+

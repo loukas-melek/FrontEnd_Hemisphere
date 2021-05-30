@@ -1,4 +1,10 @@
 {
     "typescript.tsdk": "./node_modules/typescript/lib",
-    "tslint.enable": false
+    "tslint.enable": false,
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/cd489bd0-47c1-45ff-aaa3-ac63bdb2c8e9/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/projettest",
+    "appService.deploySubpath": "."
 }

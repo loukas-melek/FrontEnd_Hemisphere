@@ -19,10 +19,12 @@ import { WorkflowComponent } from './workflow/workflow.component';
       path: 'projects',
       component: ProjectsComponent,
     },
+
     // {
     //   path: 'cal',
     //   component: CalComponent,
     // },
+
     // {
     //   path: 'company/offers',
     //   component: CompanyOffersComponent,
@@ -39,6 +41,7 @@ import { WorkflowComponent } from './workflow/workflow.component';
     //   path: 'student/tasks',
     //   component: StudentTasksComponent,
     // },
+
   ],
  }];
 
