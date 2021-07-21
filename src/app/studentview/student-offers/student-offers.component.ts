@@ -43,6 +43,10 @@ export class StudentOffersComponent implements OnInit {
       this.offers=res;
       this.offers.forEach(element=>{
         if(element.offertasksolution.type==0){
+          console.log("image working? ");
+          
+          console.log(element.offertasksolution.image);
+          
           transferList.push(element);
         }
       })

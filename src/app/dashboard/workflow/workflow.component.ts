@@ -5,7 +5,7 @@ import { interval, Subscription } from 'rxjs';
 import { debounce } from "@agentepsilon/decko";
 import { Sprint } from '../../apps/entities/sprint';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Task } from '../../apps/entities/Task';
+import { Task } from '../../apps/entities/task';
 import { SprintService } from '../../services/SprintSerivce';
 import { Sprint_TaskService } from '../../services/TaskService';
 import { Project } from '../../apps/entities/project';

@@ -5,6 +5,7 @@ import { CompanyviewComponent } from './companyview.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { TestComponent } from './test/test.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 
 const routes: Routes = [{
@@ -14,6 +15,10 @@ const routes: Routes = [{
     {
       path: 'workflow/:id',
       component: WorkflowComponent,
+    },
+    {
+      path: 'test',
+      component: TestComponent,
     },
     {
       path: 'projects',

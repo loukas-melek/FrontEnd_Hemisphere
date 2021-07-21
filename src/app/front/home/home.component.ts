@@ -1,11 +1,7 @@
 
-
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators' ;
-
-import { Component, LOCALE_ID, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 import * as moment from 'moment';
@@ -18,12 +14,9 @@ import { OfferService } from '../../services/OfferTaskSolutionService';
 import { CompetanceService } from '../../services/CompetanceService';
 import { UserService } from '../../services/userService';
 import { PostService } from '../../services/postService';
-import { Task } from '../../apps/entities/Task';
-import { SharedPost } from '../../apps/entities/SharedPost';
-import { Post } from '../../apps/entities/Post';
+
 import { Comment } from '../../apps/entities/Comment';
-import { Like } from '../../apps/entities/like';
-import { DatePipe } from '@angular/common';
+
 import { interval, Subscription } from 'rxjs';
 
 

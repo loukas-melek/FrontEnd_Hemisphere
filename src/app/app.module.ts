@@ -65,7 +65,7 @@ import { SupervisorviewModule } from './supervisorview/supervisorview.module';
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent],
-  providers:[RoleGuard],
+    providers:[RoleGuard],
 })
 export class AppModule {
 }

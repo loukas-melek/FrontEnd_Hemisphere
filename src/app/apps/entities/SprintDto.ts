@@ -1,7 +1,5 @@
 import { Periority } from "./priority";
-import { Project } from "./project";
-import { Status } from "./Status";
-import { Task } from "./Task";
+
 import { TaskDto } from "./TaskDto";
 
 export class SprintDto { 

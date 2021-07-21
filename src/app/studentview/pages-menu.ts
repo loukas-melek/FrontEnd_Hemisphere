@@ -6,6 +6,11 @@ export const MENU_ITEMS_STUDENT: NbMenuItem[] = [
     icon: 'home-outline',
     link: '/front/home',
   },
+  // {
+  //   title: 'test',
+  //   icon: 'home-outline',
+  //   link: '/student/test',
+  // },
   {
     title: 'Project Management',
     icon: 'calendar-outline',

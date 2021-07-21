@@ -1,7 +1,6 @@
 import { Periority } from "./priority";
 import { Project } from "./project";
-import { Status } from "./Status";
-import { Task } from "./Task";
+
 
 export class Sprint { 
     sprint_id: number;

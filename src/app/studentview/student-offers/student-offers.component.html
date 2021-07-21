@@ -1,4 +1,4 @@
-Offers
+<!-- Offers
 <br><br>
 <form >
     <table style="width: 100%;">
@@ -72,4 +72,74 @@ Offers
         </div>
 
 </div>
+</div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let offer of offers">
+  <div class="blog-card blog-card-blog">
+    <div class="blog-card-image">
+        <a (click)='getOffer(offer)'> <img class="img" src="{{offer.offertasksolution.image}}"> </a>
+        <div class="ripple-cont"></div>
+    </div>
+    <div class="blog-table">
+        <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> {{offer.offertasksolution.categorie}}</h6>
+        <h4 class="blog-card-caption">
+            <a (click)='getOffer(offer)'>{{offer.offertasksolution.title}}</a>
+        </h4>
+        <p class="blog-card-description">{{offer.offertasksolution.description}}.</p>
+        <div class="ftr">
+            <div class="author">
+                <a href="#"> <img src="{{offer.profile.profilePicUrl}}" alt="..." class="avatar img-raised"> <span>{{offer.profile.name}}</span> </a>
+            </div>
+            <div class="stats"> <i class="far fa-clock"></i> {{changeDate(offer.updated_at)}} </div>
+        </div>
+    </div>
+</div>
+</div>
+    
+    
+    <!-- <div class="col-md-4">
+  <div class="blog-card blog-card-blog">
+    <div class="blog-card-image">
+        <a href="#"> <img class="img" src="https://picsum.photos/id/1084/536/354?grayscale"> </a>
+        <div class="ripple-cont"></div>
+    </div>
+    <div class="blog-table">
+        <h6 class="blog-category blog-text-success"><i class="fas fa-blog"></i> News</h6>
+        <h4 class="blog-card-caption">
+            <a href="#">Lorem Ipsum is simply dummy text of the printing and</a>
+        </h4>
+        <p class="blog-card-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="ftr">
+            <div class="author">
+                <a href="#"> <img src="https://picsum.photos/id/1005/5760/3840" alt="..." class="avatar img-raised"> <span>Lorem</span> </a>
+            </div>
+            <div class="stats"> <i class="far fa-clock"></i> 10 min </div>
+        </div>
+    </div>
+</div>
+</div>
+    
+    <div class="col-md-4">
+  <div class="blog-card blog-card-blog">
+    <div class="blog-card-image">
+        <a href="#"> <img class="img" src="https://picsum.photos/id/1084/536/354?grayscale"> </a>
+        <div class="ripple-cont"></div>
+    </div>
+    <div class="blog-table">
+        <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> News</h6>
+        <h4 class="blog-card-caption">
+            <a href="#">Lorem Ipsum is simply dummy text of the printing and</a>
+        </h4>
+        <p class="blog-card-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="ftr">
+            <div class="author">
+                <a href="#"> <img src="https://picsum.photos/id/1005/5760/3840" alt="..." class="avatar img-raised"> <span>Lorem</span> </a>
+            </div>
+            <div class="stats"> <i class="far fa-clock"></i> 10 min </div>
+        </div>
+    </div>
+</div>
+</div> -->
+  </div>
 </div>

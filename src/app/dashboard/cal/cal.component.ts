@@ -1,12 +1,8 @@
 import { Component, ViewChild, AfterViewInit, OnInit, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
-import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { promises } from 'dns';
-import { jqxSchedulerComponent } from 'jqwidgets-ng/jqxscheduler';
-import * as moment from 'moment';
-import { ProjectDto } from '../../apps/entities/ProjectDto';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { SprintDto } from '../../apps/entities/SprintDto';
-import { Task } from '../../apps/entities/Task';
-import { TaskDto } from '../../apps/entities/TaskDto';
+import { Task } from '../../apps/entities/task';
 import { SprintService } from '../../services/SprintSerivce';
 import { Sprint_TaskService } from '../../services/TaskService';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';

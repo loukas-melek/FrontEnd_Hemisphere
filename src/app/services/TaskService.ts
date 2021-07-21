@@ -1,8 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Sprint } from "../apps/entities/sprint";
-import { Task } from "../apps/entities/Task";
+
+import { Task } from "../apps/entities/task";
 import { TaskDto } from "../apps/entities/TaskDto";
 
 
