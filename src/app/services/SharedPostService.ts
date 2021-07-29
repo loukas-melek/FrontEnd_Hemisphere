@@ -6,7 +6,7 @@ import { SharedPost } from "../apps/entities/SharedPost";
     providedIn: 'root'
   })
 export class SharedPostService {
-    urlPub = 'http://localhost:3000/sharedpost';
+    urlPub = 'http://54.37.155.0:3000/sharedpost';
     constructor(private Http: HttpClient) { }
 
     listSharedPosts() {
@@ -14,7 +14,7 @@ export class SharedPostService {
       } 
       createSharedPost(post,id){
         console.log("we are now in the service we will parse to the controller")
-        return this.Http.post<SharedPost>("http://localhost:3000/sharedpost/add/"+id, post);
+        return this.Http.post<SharedPost>("http://54.37.155.0:3000/sharedpost/add/"+id, post);
         }
         numberShares(id){
             return this.Http.get<number>(this.urlPub+'/count/'+id);

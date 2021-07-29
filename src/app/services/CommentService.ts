@@ -7,7 +7,7 @@ import { Post } from "../apps/entities/Post";
     providedIn: 'root'
   })
 export class CommentService {
-    urlPub = 'http://localhost:3000/comment';
+    urlPub = 'http://54.37.155.0:3000/comment';
     constructor(private Http: HttpClient) { }
 
     listComments() {
@@ -19,7 +19,7 @@ export class CommentService {
         console.log("we are now in the service we will parse to the controller")
         console.log(comment.general_Post);
         
-        return this.Http.post<Comment>("http://localhost:3000/comment/add/", comment);
+        return this.Http.post<Comment>("http://54.37.155.0:3000/comment/add/", comment);
         }
     listCommentsByPub(id){
         return this.Http.get<Comment[]>(this.urlPub + '/list/'+id);

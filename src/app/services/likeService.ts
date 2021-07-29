@@ -8,7 +8,7 @@ import { Like } from "../apps/entities/like";
     providedIn: 'root'
   })
 export class LikeService {
-    urlPub = 'http://localhost:3000/like';
+    urlPub = 'http://54.37.155.0:3000/like';
     constructor(private Http: HttpClient) { }
 
     listlikes() {
@@ -18,7 +18,7 @@ export class LikeService {
       
           
         console.log("we are now in the service we will parse to the controller")
-        return this.Http.post<Comment>("http://localhost:3000/like/add/", like);
+        return this.Http.post<Comment>("http://54.37.155.0:3000/like/add/", like);
         }
     listLikeById(id){
         return this.Http.get<Comment[]>(this.urlPub + '/list/'+id);

@@ -11,7 +11,7 @@ import { TokenStorageService } from "../auth/authentication/services/token-stora
   })
 
 export class OfferService {
-    urlOffers = 'http://localhost:3000/offers';
+    urlOffers = 'http://54.37.155.0:3000/offers';
     offer=new OfferTaskSolution();
     offers=new Array<OfferTaskSolution>();
     headers: HttpHeaders;
@@ -31,7 +31,7 @@ return this.Http.get<OfferTaskSolution[]>(this.urlOffers + '/list');
 
   createOfferTaskSolution(offer,id){
     console.log("we are now in the service we will parse to the controller")
-    return this.Http.post<OfferTaskSolution>("http://localhost:3000/offers/add/"+id, offer);
+    return this.Http.post<OfferTaskSolution>("http://54.37.155.0:3000/offers/add/"+id, offer);
     }
 
 

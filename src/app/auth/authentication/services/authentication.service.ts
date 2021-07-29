@@ -7,7 +7,7 @@ import { UserService } from '../../../services/userService';
 import { TokenStorageService } from './token-storage.service';
 import decode from 'jwt-decode';
 
-const AUTH_API = 'http://localhost:3000/users/';
+const AUTH_API = 'http://54.37.155.0:3000/users/';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 const httpOptions = {

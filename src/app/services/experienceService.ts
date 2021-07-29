@@ -7,7 +7,7 @@ import { GeneralPost } from "../apps/entities/General_Post";
     providedIn: 'root'
   })
 export class ExperienceService {
-    urlPub = 'http://localhost:3000/experience';
+    urlPub = 'http://54.37.155.0:3000/experience';
     constructor(private Http: HttpClient) { }
 
     listExperience() {

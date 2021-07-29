@@ -12,7 +12,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-          
             "preserveSymlinks": true,
             "outputPath": "dist",
             "index": "src/index.html",
@@ -58,8 +57,7 @@
               "lodash",
               "zrender/lib/svg/svg",
               "zrender/lib/vml/vml",
-              "style-loader!leaflet/dist/leaflet.css",
-              "chart.js"
+              "style-loader!leaflet/dist/leaflet.css"
             ]
           },
           "configurations": {
@@ -67,7 +65,8 @@
               "budgets": [
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "3000000kb",
+                  "maximumError": "3000000kb"
                 }
               ],
               "optimization": true,

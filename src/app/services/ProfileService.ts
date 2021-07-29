@@ -10,7 +10,7 @@ import { UserService } from "./userService";
   })
 export class ProfileService {
     user=new User();
-    urlPub = 'http://localhost:3000/profile';
+    urlPub = 'http://54.37.155.0:3000/profile';
     constructor(private Http: HttpClient) { }
 
  

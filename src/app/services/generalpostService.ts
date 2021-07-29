@@ -6,7 +6,7 @@ import { GeneralPost } from "../apps/entities/General_Post";
     providedIn: 'root'
   })
 export class GeneralPostService {
-    urlPub = 'http://localhost:3000/pub';
+    urlPub = 'http://54.37.155.0:3000/pub';
     constructor(private Http: HttpClient) { }
 
     listPubs() {
@@ -14,7 +14,7 @@ export class GeneralPostService {
       }
       createPub(pub){
         console.log("we are now in the service we will parse to the controller")
-        return this.Http.post<GeneralPost>("http://localhost:3000/pub/add", pub);
+        return this.Http.post<GeneralPost>("http://54.37.155.0:3000/pub/add", pub);
         }
     
     getPubById(id){
