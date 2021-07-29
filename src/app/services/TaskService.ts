@@ -9,7 +9,7 @@ import { TaskDto } from "../apps/entities/TaskDto";
     providedIn: 'root'
   })
   export class Sprint_TaskService {
-    url = 'http://localhost:3000/sprint_tasks';
+    url = 'http://54.37.155.0:3000/sprint_tasks';
     task: Task;
 
    constructor(private Http: HttpClient) { }

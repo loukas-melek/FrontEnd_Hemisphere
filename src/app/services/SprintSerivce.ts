@@ -11,7 +11,7 @@ import { SprintDto } from "../apps/entities/SprintDto";
     providedIn: 'root'
   })
   export class SprintService {
-    url = 'http://localhost:3000/sprint';
+    url = 'http://54.37.155.0:3000/sprint';
     sprint: Sprint;
 
    constructor(private Http: HttpClient) { }
@@ -20,7 +20,7 @@ import { SprintDto } from "../apps/entities/SprintDto";
     return this.Http.get<SprintDto[]>(this.url+"/sprint/"+id);
     }
     getall(){
-        return this.Http.get<ProjectDto[]>("http://localhost:3000/project"+"/getall")
+        return this.Http.get<ProjectDto[]>("http://54.37.155.0:3000/project"+"/getall")
       }
       createSprint(sprint:Sprint){
         console.log("add",sprint)

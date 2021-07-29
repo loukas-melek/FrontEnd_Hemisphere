@@ -1,8 +1,10 @@
 
 
+import { Component,OnInit } from '@angular/core';
 
 
-import { Component, OnInit } from '@angular/core';
+
+
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,6 +20,7 @@ import { UserService } from '../../services/userService';
 import { PostService } from '../../services/postService';
 
 import { Comment } from '../../apps/entities/Comment';
+
 import { interval, Subscription } from 'rxjs';
 
 

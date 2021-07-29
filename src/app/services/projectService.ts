@@ -12,7 +12,7 @@ import { UserService } from "./userService";
   })
 export class ProjectService {
     user=new User();
-    urlPub = 'http://localhost:3000/project';
+    urlPub = 'http://54.37.155.0:3000/project';
     constructor(private Http: HttpClient) { }
 
  

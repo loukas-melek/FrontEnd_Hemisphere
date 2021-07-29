@@ -18,10 +18,12 @@ import { ProfileModule } from './profile/profile.module';
 import { ProfileSettingsModule } from './profile-settings/profile-settings.module';
 import { ProjectsModule } from './projects/projects.module';
 import { WorkflowModule } from './workflow/workflow.module';
+import { TestComponent } from './test/test.component';
+import { Test2Component } from './test2/test2.component';
 
 
 @NgModule({
-  declarations: [StudentviewComponent],
+  declarations: [StudentviewComponent, TestComponent, Test2Component],
   imports: [
     WorkflowModule,
     ProjectsModule,

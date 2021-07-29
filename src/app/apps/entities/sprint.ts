@@ -1,6 +1,7 @@
 import { Periority } from "./priority";
 import { Project } from "./project";
 
+
 export class Sprint { 
     sprint_id: number;
     start_date: Date;

@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ExtraOptions, Router } from '@angular/router';
 import { RequestRegister } from '../../../apps/entities/RequestRegister';
 import { Role } from '../../../apps/entities/Role';
 import { AuthenticationService } from '../services/authentication.service';
@@ -140,4 +140,7 @@ export class RegisterComponent implements OnInit {
       window.alert("Log Yourself In !");
       this.router.navigate(['auth/login']);
   }
+
+
+
 }

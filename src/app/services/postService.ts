@@ -6,7 +6,7 @@ import { Post } from "../apps/entities/Post";
     providedIn: 'root'
   })
 export class PostService {
-    urlPub = 'http://localhost:3000/post';
+    urlPub = 'http://54.37.155.0:3000/post';
     constructor(private Http: HttpClient) { }
 
     listPosts() {
@@ -14,6 +14,6 @@ export class PostService {
       } 
       createPost(post,id){
         console.log("we are now in the service we will parse to the controller")
-        return this.Http.post<Post>("http://localhost:3000/post/add/"+id, post);
+        return this.Http.post<Post>("http://54.37.155.0:3000/post/add/"+id, post);
         }
 }

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LocalDataSource } from 'ng2-smart-table';
 import { SmartTableData } from '../../@core/data/smart-table';
 import { Comment } from '../../apps/entities/Comment';
 import { Competance } from '../../apps/entities/Competance';
@@ -12,7 +11,9 @@ import { Experience } from '../../apps/entities/experience';
 import { GeneralPost } from '../../apps/entities/General_Post';
 import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Profile } from '../../apps/entities/Profile';
+
 import { Project } from '../../apps/entities/project';
+
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { User } from '../../apps/entities/user';
 import { CommentService } from '../../services/CommentService';
@@ -35,7 +36,9 @@ export class CompanyDetailsComponent implements OnInit {
   user: User;
   profile: Profile;
   id: any;
-  generalPost:GeneralPost;
+
+  generalPost: GeneralPost;
+
   closeResult: string;
   title;poste;location;nofstudent;type;categorie;cname;description;date;cost;supervised=false;
   listDemandes=new Array<Demande>()

@@ -9,7 +9,7 @@ import { User } from "../apps/entities/user";
     providedIn: 'root'
   })
   export class UserService {
-    url = 'http://localhost:3000/users';
+    url = 'http://54.37.155.0:3000/users';
     user: any;
     role_id:any;
    constructor(private Http: HttpClient) { }

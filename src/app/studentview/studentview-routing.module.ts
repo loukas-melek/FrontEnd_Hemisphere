@@ -8,6 +8,8 @@ import { StudentDetailsTaskComponent } from './student-details-task/student-deta
 import { StudentOffersComponent } from './student-offers/student-offers.component';
 import { StudentTasksComponent } from './student-tasks/student-tasks.component';
 import { StudentviewComponent } from './studentview.component';
+import { TestComponent } from './test/test.component';
+import { Test2Component } from './test2/test2.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 
 const routes: Routes = [{
@@ -25,6 +27,14 @@ const routes: Routes = [{
     {
       path: 'offers',
       component: StudentOffersComponent,
+    },
+    {
+      path: 'test',
+      component: TestComponent,
+    },
+    {
+      path: 'test2',
+      component: Test2Component,
     },
     {
       path: 'tasks',

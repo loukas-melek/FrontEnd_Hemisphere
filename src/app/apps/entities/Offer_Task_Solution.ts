@@ -15,6 +15,7 @@ export class OfferTaskSolution {
     offer_type:TypeOffer
     cost: number;
     poste:string;
+    image:string;
     location:LocationsOffer;
     competance:Competance
     public constructor() {

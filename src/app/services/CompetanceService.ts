@@ -7,7 +7,7 @@ import { Competance } from "../apps/entities/Competance";
     providedIn: 'root'
   })
   export class CompetanceService {
-    url = 'http://localhost:3000/competance';
+    url = 'http://54.37.155.0:3000/competance';
 
     constructor(private Http: HttpClient) { }
     listCompetances() {

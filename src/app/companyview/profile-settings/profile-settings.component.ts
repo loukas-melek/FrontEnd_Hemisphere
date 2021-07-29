@@ -21,7 +21,7 @@ export class ProfileSettingsComponent implements OnInit {
   userupdated:User;
   status;
   password;username;email;first:string;last:string;;location;city;phone;cpass;state;interests:string;languages;about;
-  cnpass;npass;cpass
+  cnpass;npass;
   constructor(private userService:UserService,private profileSerivce:ProfileService) { }
 
   ngOnInit(): void {
@@ -142,6 +142,8 @@ export class ProfileSettingsComponent implements OnInit {
       profileup.about=this.about;
     }
     if(this.imageUrl!=undefined){
+      console.log(this.imageUrl);
+      
       profileup.profilePicUrl=this.imageUrl;
     }
     
@@ -154,7 +156,8 @@ export class ProfileSettingsComponent implements OnInit {
       console.log(p);
       
     })
-    this.reloadPage();
+    // this.reloadPage();
+    waits(5000);
   }
   updateuser(){
     console.log("testt aal pass");
@@ -190,10 +193,10 @@ export class ProfileSettingsComponent implements OnInit {
       
     })
   })
-   this.reloadPage();
+  //  this.reloadPage();
   }
 }
-  reloadPage(): void {
-    window.location.reload();
-  }
+  // reloadPage(): void {
+  //   window.location.reload();
+  // }
 }

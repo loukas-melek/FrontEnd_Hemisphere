@@ -21,10 +21,11 @@ import { OfferModule } from './offer/offer.module';
 import { TaskModule } from './task/task.module';
 import { ProjectsModule } from './projects/projects.module';
 import { WorkflowModule } from './workflow/workflow.module';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
-  declarations: [CompanyviewComponent],
+  declarations: [CompanyviewComponent, TestComponent],
   imports: [
     ProjectsModule,
     WorkflowModule,

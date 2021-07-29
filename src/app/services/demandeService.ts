@@ -7,7 +7,7 @@ import { Demande } from "../apps/entities/demande";
     providedIn: 'root'
   })
   export class DemandeService {
-    url = 'http://localhost:3000/demandes';
+    url = 'http://54.37.155.0:3000/demandes';
     
     demande: Demande;
    

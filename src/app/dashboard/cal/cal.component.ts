@@ -1,4 +1,17 @@
 
+import { Component, ViewChild, AfterViewInit, OnInit, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { SprintDto } from '../../apps/entities/SprintDto';
+import { Task } from '../../apps/entities/task';
+import { SprintService } from '../../services/SprintSerivce';
+import { Sprint_TaskService } from '../../services/TaskService';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
+import { Observable, Subject } from 'rxjs';
+import { colors } from '../../apps/utils/colors';
+import { map } from 'rxjs/operators';
+
+
 // import { Component, ViewChild, AfterViewInit, OnInit, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
 // import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
