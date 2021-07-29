@@ -1,10 +1,14 @@
 
+
 import { Component,OnInit } from '@angular/core';
+
+
+
+
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
-import * as moment from 'moment';
 import { Competance } from '../../apps/entities/Competance';
 import { User } from '../../apps/entities/user';
 import { SharedPostService } from '../../services/SharedPostService';

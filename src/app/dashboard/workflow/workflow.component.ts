@@ -8,7 +8,6 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Task } from '../../apps/entities/task';
 import { SprintService } from '../../services/SprintSerivce';
 import { Sprint_TaskService } from '../../services/TaskService';
-import { Project } from '../../apps/entities/project';
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { SprintDto } from '../../apps/entities/SprintDto';
 import { FormBuilder, FormGroup } from '@angular/forms';

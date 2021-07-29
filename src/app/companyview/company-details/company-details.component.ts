@@ -11,6 +11,9 @@ import { Experience } from '../../apps/entities/experience';
 import { GeneralPost } from '../../apps/entities/General_Post';
 import { OfferTaskSolution } from '../../apps/entities/Offer_Task_Solution';
 import { Profile } from '../../apps/entities/Profile';
+
+import { Project } from '../../apps/entities/project';
+
 import { ProjectDto } from '../../apps/entities/ProjectDto';
 import { User } from '../../apps/entities/user';
 import { CommentService } from '../../services/CommentService';
@@ -33,7 +36,9 @@ export class CompanyDetailsComponent implements OnInit {
   user: User;
   profile: Profile;
   id: any;
+
   generalPost: GeneralPost;
+
   closeResult: string;
   title;poste;location;nofstudent;type;categorie;cname;description;date;cost;supervised=false;
   listDemandes=new Array<Demande>()

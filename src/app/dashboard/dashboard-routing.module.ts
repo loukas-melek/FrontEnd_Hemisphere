@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CalComponent } from './cal/cal.component';
+// import { CalComponent } from './cal/cal.component.ts';
 import { DashboardComponent } from './dashboard.component';
 import { ProjectsComponent } from './projects/projects.component';
 
@@ -19,10 +19,12 @@ import { WorkflowComponent } from './workflow/workflow.component';
       path: 'projects',
       component: ProjectsComponent,
     },
-    {
-      path: 'cal',
-      component: CalComponent,
-    },
+
+    // {
+    //   path: 'cal',
+    //   component: CalComponent,
+    // },
+
     // {
     //   path: 'company/offers',
     //   component: CompanyOffersComponent,
@@ -39,6 +41,7 @@ import { WorkflowComponent } from './workflow/workflow.component';
     //   path: 'student/tasks',
     //   component: StudentTasksComponent,
     // },
+
   ],
  }];
 
